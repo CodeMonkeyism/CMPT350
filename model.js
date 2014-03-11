@@ -1,6 +1,8 @@
 // model for the game
 var model = {
 
+	timerRuntime : "0",
+
 	// test: function(){ console.log("test"); }
 	add:function(name,parameter){
 		var data = this.getData(name);
@@ -49,16 +51,53 @@ var model = {
 			allItem[i] = localStorage.key(i);
 		}
 		return allItem;
-	}
+	},
 
+	/**
+	@param action add/minus/multiply/divide
+	@param name name of items
+	@param parameter parameter of add/minus/multiply/divide method
+	@param delay the gap of two actions
+	@param times the length of loop time
+	*/
+	setTimer:function(action,name,parameter,delay,period){
+		var i=0;
+		if(action == "add"){
+			var id=setInterval(function(){
+				model.add(name,parameter);
+				console.log(model.getData(name));
+			},delay);
+		}
+
+		if(action == "minus"){
+			var id=setInterval(function(){
+				model.minus(name,parameter);
+				console.log(model.getData(name));
+			},delay);
+		}
+
+		if(action == "multiply"){
+			var id=setInterval(function(){
+				model.multiply(name,parameter);
+				console.log(model.getData(name));
+			},delay);
+		}
+
+		if(action == "divide"){
+			var id=setInterval(function(){
+				model.divide(name,parameter);
+				console.log(model.getData(name));
+			},delay);
+		}
+
+		//cancel timer
+		setTimeout(function(){
+			clearInterval(id);	
+		},period);
+
+	},
 };
 
-// var storage = window.localStorage;
-// function showStorage(){
-// for(var i=0;i<storage.length;i++){ //key(i)获得相应的键，再用getItem()方法获得对应的值
-// document.write(storage.key(i)+ ” : ” + storage.getItem(storage.key(i)) + “<br>”);
-// }
-// }
 
 //test case for model
 
@@ -86,6 +125,9 @@ testModel.removeItem("iron");
 console.log(testModel.getData("iron")+"should null");
 
 console.log(testModel.getAllItem());
+
+testModel.setTimer("add","wood",1,100,1000);
+
 // localStorage.setItem("students",students);//用localStorage保存转化好的的字符串
 
 // localStorage.setItem("test1","20")
