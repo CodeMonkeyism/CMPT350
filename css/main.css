@@ -1,0 +1,28 @@
+	#sourceArea {
+		position:absolute;
+		top: 50px;
+		left: 50px;
+	}
+
+	#robotArea {
+		position:absolute;
+		top: 50px;
+		right: 50px;
+	}
+
+	#messageArea {
+		position:absolute;
+		bottom: 50px;
+		right: 50px;
+	}
+
+	#buildingArea {
+		position:absolute;
+		bottom: 50px;
+		left: 50px;
+	}
+	#mainArea {
+		position:relative;
+		top: 50px;
+		left: 33%;
+	}
