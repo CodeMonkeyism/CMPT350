@@ -101,32 +101,32 @@ var model = {
 
 //test case for model
 
-var testModel= Object.create(model);
+// var testModel= Object.create(model);
 
-testModel.setData("wood",10);
-console.log(testModel.getData("wood")+"should 10");
+// testModel.setData("wood",10);
+// console.log(testModel.getData("wood")+"should 10");
 
-testModel.add("wood",2);
-console.log(testModel.getData("wood")+"should 12");
+// testModel.add("wood",2);
+// console.log(testModel.getData("wood")+"should 12");
 
-testModel.minus("wood",1);
-console.log(testModel.getData("wood")+"should 11");
+// testModel.minus("wood",1);
+// console.log(testModel.getData("wood")+"should 11");
 
-testModel.multiply("wood",2);
-console.log(testModel.getData("wood")+"should 22");
+// testModel.multiply("wood",2);
+// console.log(testModel.getData("wood")+"should 22");
 
-testModel.divide("wood",11);
-console.log(testModel.getData("wood")+"should 2");
+// testModel.divide("wood",11);
+// console.log(testModel.getData("wood")+"should 2");
 
-testModel.addNewItem("iron",5);
-console.log(testModel.getData("iron")+"should 5");
+// testModel.addNewItem("iron",5);
+// console.log(testModel.getData("iron")+"should 5");
 
-testModel.removeItem("iron");
-console.log(testModel.getData("iron")+"should null");
+// testModel.removeItem("iron");
+// console.log(testModel.getData("iron")+"should null");
 
-console.log(testModel.getAllItem());
+// console.log(testModel.getAllItem());
 
-testModel.setTimer("add","wood",1,100,1000);
+// testModel.setTimer("add","wood",1,100,1000);
 
 // localStorage.setItem("students",students);//用localStorage保存转化好的的字符串
 
