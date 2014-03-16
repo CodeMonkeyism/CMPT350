@@ -5,11 +5,12 @@ var robotFactory = {
         };
         // Create a new base robot.
         var baseRobot = {
-            robotName : type + " " + name,
+            robotName : "rob_" + name,
             attackPower : 5,
             defensePower : 5,
             HP: 5,
-            luck: 5
+            luck: 5,
+            robotType: type
         };
         // Randomly generate a number for this robot.
         // If we get < 0.5, then bad luck. Attributes will be reduced.
@@ -39,7 +40,7 @@ var robotFactory = {
                 baseRobot.defensePower = 1;
                 baseRobot.luck = 1;
                 baseRobot.HP =1;
-                baseRobot.robotName = "Malfunction"
+                baseRobot.robotType = "Malfunction"
                 break;
         }
 
