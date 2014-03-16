@@ -7,7 +7,12 @@ var pushMessage = {
 
 
 	addNew:function(newMessage){
+<<<<<<< HEAD
 		$("#messageArea").prepend(newMessage);
+=======
+		$("#messageArea").prepend("<p>"+newMessage+"</p>");
+		console.log("new is  "+ newMessage);
+>>>>>>> origin/Xingze
 	}
 
 
@@ -43,6 +48,7 @@ var pushMessage = {
 
 var testPushMessage= Object.create(pushMessage);
 // testPushMessage.init();
+<<<<<<< HEAD
 testPushMessage.addNew(1);
  // console.log(pushMessage.getMessage());
 // console.log(pushMessage.message);
@@ -59,5 +65,23 @@ testPushMessage.addNew(5);
  // console.log(pushMessage.getMessage());
 // console.log(pushMessage.message);
 testPushMessage.addNew(6);
+=======
+// testPushMessage.addNew(1);
+ // console.log(pushMessage.getMessage());
+// console.log(pushMessage.message);
+// testPushMessage.addNew(2);
+ // console.log(pushMessage.getMessage());
+// console.log(pushMessage.message);
+// testPushMessage.addNew(3);
+ // console.log(pushMessage.getMessage());
+// console.log(pushMessage.message);
+// testPushMessage.addNew(4);
+ // console.log(pushMessage.getMessage());
+// console.log(pushMessage.message);
+// testPushMessage.addNew(5);
+ // console.log(pushMessage.getMessage());
+// console.log(pushMessage.message);
+// testPushMessage.addNew(6);
+>>>>>>> origin/Xingze
  // console.log(pushMessage.getMessage());
 // console.log(pushMessage.message);
