@@ -1,0 +1,45 @@
+<head>
+	<script type="text/javascript" src="script/model.js"></script>
+	<script type="text/javascript" src="script/robotFactory.js"></script>
+	<script type="text/javascript" src="script/robotGroupModel.js"></script>
+	<script type="text/javascript">
+	model.setData("res_Power",9999);
+	model.setData("res_Metal",9999);
+	model.setData("res_Fuel",9999);
+	robot1 = robotFactory.create("Robot One", "S.W.O.R.D.");
+	robot2 = robotFactory.create("Robot Two", "S.H.I.E.L.D.");
+	robot3 = robotFactory.create("Robot Three", "Gather");
+	robot4 = robotFactory.create("Robot Four", "Paladin");
+	console.log("robot 1 defense:" + robot1.defensePower);
+	console.log("robot 2 defense:" + robot2.defensePower);
+	console.log("robot 3 defense:" + robot3.defensePower);
+	console.log("robot 4 defense:" + robot4.defensePower);
+	testGroup = robotGroupModel.create(robot1, robot2, robot3, robot4);
+	console.log("group defense:" + testGroup.defensePower);
+	console.log("group minDefense:" + testGroup.minDefense);
+	console.log("group HP:" + testGroup.HP);
+	console.log("Attack with 1:")
+	console.log("Defend success:" + testGroup.defense(1));
+	console.log("group HP:" + testGroup.HP);
+	// Test attack until total loss.
+	while(true){
+		console.log("----------")
+		console.log("Attack with 10:")
+		var isDefendSuccess = testGroup.defense(10);
+		console.log("group HP:" + testGroup.HP);
+		console.log("group loss HP:" + testGroup.lossOfHp);
+		if (isDefendSuccess) {
+			console.log("Defend success:" + isDefendSuccess);
+			console.log(testGroup.endFight());
+		} else{
+			console.log("Defend success:" + isDefendSuccess);
+			console.log(testGroup.endFight());
+			break;
+		};
+		
+		console.log("----------")
+	}
+
+	</script>
+</head>
+<body></body>
