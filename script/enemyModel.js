@@ -17,11 +17,16 @@ var enemyModel = {
     },
     "attack": function(target) {
         // Target should be a robotGroupModel
+	// If attack missed, this turn is not the final turn.
+	if(Math.random() < weapon.length * 0.1) {
+	    return true;
+	}
         return target.defense(this.attackPower);
     },
     "defense": function(attackPower) {
         int reducedAttackPower = attackPower - this.defensePower;
         if (reducedAttackPower < 1) {
+	    //TODO: Insert code output to log window 
             console.log("Invincible!")
         } else{
             this.HP -= reducedAttackPower;
@@ -58,6 +63,9 @@ var enemyModel = {
         return true;
     },
     "loot": function(){
+	//TODO Insert loot code
+	//Loot is determined by AP, DP and HP. Higher avgerage means better loot.
+	//Depends on loot list
         console.log("To be determined.")
     }
 }
