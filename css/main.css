@@ -1,28 +1,97 @@
-	#sourceArea {
+	div#buildingArea, div#sourceArea{
+		margin: 5% 15%;
+	}
+	.Area {
+		margin: 2% 5%;
+	}
+	#sourceAreaContainer {
 		position:absolute;
-		top: 50px;
-		left: 50px;
+		top: 2%;
+		left: 2%;
+		border-style: groove;
+		width: 20%;
+		height: 50%;
+	}
+	div#sourceAreaContainer:before {
+		position: absolute;
+		content: "Source";
+		top: -13px;
+		background-color: white;
+	}
+	
+	#robotAreaContainer {
+		position:absolute;
+		top: 2%;
+		left: 78%;
+		border-style: groove;
+		width: 20%;
+		height: 70%;
+	}
+	div#robotAreaContainer:before {
+		position: absolute;
+		content: "Robot Missions";
+		top: -13px;
+		background-color: white;
+	}
+	
+	#messageAreaContainer {
+		position:absolute;
+		bottom: 2%;
+		left: 24%;
+		border-style: groove;
+		width: 52%;
+		height: 22%;
+		overflow: hidden;
+	}
+	div#messageArea>p{
+		line-height: 5px;
 	}
 
-	#robotArea {
+	#buildingAreaContainer {
 		position:absolute;
-		top: 50px;
-		right: 50px;
+		bottom: 2%;
+		left: 2%;
+		border-style: groove;
+		width: 20%;
+		height: 42%;
+	}
+	div#buildingAreaContainer:before {
+		position: absolute;
+		content: "Building";
+		top: -13px;
+		background-color: white;
+	}
+	#mainAreaContainer {
+		position:absolute;
+		top: 2%;
+		left: 24%;
+		border-style: groove;
+		width: 52%;
+		height: 70%;
 	}
 
-	#messageArea {
-		position:absolute;
-		bottom: 50px;
-		right: 50px;
+	#menuAreaContainer {
+		position: absolute;
+		bottom: 2%;
+		left: 78%;
+		border-style: groove;
+		width: 20%;
+		height: 22%;
+	}
+	div#menuAreaContainer:before {
+		position: absolute;
+		content: "System";
+		top: -13px;
+		background-color: white;
 	}
 
-	#buildingArea {
-		position:absolute;
-		bottom: 50px;
-		left: 50px;
+	div.RowRoot {
+		position: relative;
 	}
-	#mainArea {
-		position:relative;
-		top: 50px;
-		left: 33%;
+	div.RowLeft {
+		clear: both;
+		float: left;
+	}
+	div.RowRight {
+		float: right;
 	}
