@@ -1,7 +1,7 @@
 var robotGroupModel = {
     "attackPower" : "0",
     "defensePower": "0",
-    "minDefense": "0",
+    "minDefense": "999999",
     "HP": "0",
     "lossOfHp": "0",
     "robots": [],
@@ -14,7 +14,7 @@ var robotGroupModel = {
             this.robots.push(arguements[i]);
             this.attackPower += arguements[i].attackPower;
             totalDefense += arguements[i].defensePower;
-            if (arguements[i].defensePower >= this.minDefense) {
+            if (arguements[i].defensePower < this.minDefense) {
                 this.minDefense = arguements[i].defensePower;
             };
             this.HP += arguements[i].HP;
@@ -26,10 +26,11 @@ var robotGroupModel = {
         return target.defense(this.attackPower);
     },
     "defense": function(attackPower){
-        
+        // If attack cannot break lowest defense:
         if (attackPower < this.minDefense) {
             console.log("Invincible!")
         } else{
+	    // If defense is broken, then at least lose 1 HP.
             int reducedAttackPower = attackPower - this.defensePower;
             if (reducedAttackPower < 1) {
                 reducedAttackPower = 1;
@@ -40,12 +41,14 @@ var robotGroupModel = {
     },
     "endFight": function(){
         int totalLossHp = this.lossOfHp;
+	// If total loss HP is larger than total HP, then you got a total loss.
         if (totalLossHp >= this.HP) {
             return [];
         } 
         else{
+	    // Calcuate loss count.
             int lossCount = Math.ceil(totalLossHp / this.HP * 10);
-
+	    // Randomly sort member and remove destoried member.
             randomLoss = this.robots.sort(function(a,b){return Math.random()>.5 ? -1 : 1;})
             return randomLoss.slice(lossCount);
         };
