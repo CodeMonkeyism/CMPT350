@@ -1,28 +1,51 @@
 	#sourceArea {
 		position:absolute;
-		top: 50px;
-		left: 50px;
+		top: 2%;
+		left: 2%;
+		border-style: groove;
+		width: 20%;
+		height: 50%;
 	}
 
 	#robotArea {
 		position:absolute;
-		top: 50px;
-		right: 50px;
+		top: 2%;
+		left: 78%;
+		border-style: groove;
+		width: 20%;
+		height: 70%;
 	}
 
 	#messageArea {
 		position:absolute;
-		bottom: 50px;
-		right: 50px;
+		bottom: 2%;
+		left: 24%;
+		border-style: groove;
+		width: 52%;
+		height: 22%;
 	}
 
 	#buildingArea {
 		position:absolute;
-		bottom: 50px;
-		left: 50px;
+		bottom: 2%;
+		left: 2%;
+		border-style: groove;
+		width: 20%;
+		height: 42%;
 	}
 	#mainArea {
-		position:relative;
-		top: 50px;
-		left: 33%;
+		position:absolute;
+		top: 2%;
+		left: 24%;
+		border-style: groove;
+		width: 52%;
+		height: 70%;
+	}
+	#menuArea {
+		position: absolute;
+		bottom: 2%;
+		left: 78%;
+		border-style: groove;
+		width: 20%;
+		height: 22%;
 	}
