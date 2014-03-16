@@ -7,7 +7,8 @@ var pushMessage = {
 
 
 	addNew:function(newMessage){
-		$("#messageArea").prepend(newMessage);
+		$("#messageArea").prepend("<p>"+newMessage+"</p>");
+		console.log("new is  "+ newMessage);
 	}
 
 
@@ -43,21 +44,21 @@ var pushMessage = {
 
 var testPushMessage= Object.create(pushMessage);
 // testPushMessage.init();
-testPushMessage.addNew(1);
+// testPushMessage.addNew(1);
  // console.log(pushMessage.getMessage());
 // console.log(pushMessage.message);
-testPushMessage.addNew(2);
+// testPushMessage.addNew(2);
  // console.log(pushMessage.getMessage());
 // console.log(pushMessage.message);
-testPushMessage.addNew(3);
+// testPushMessage.addNew(3);
  // console.log(pushMessage.getMessage());
 // console.log(pushMessage.message);
-testPushMessage.addNew(4);
+// testPushMessage.addNew(4);
  // console.log(pushMessage.getMessage());
 // console.log(pushMessage.message);
-testPushMessage.addNew(5);
+// testPushMessage.addNew(5);
  // console.log(pushMessage.getMessage());
 // console.log(pushMessage.message);
-testPushMessage.addNew(6);
+// testPushMessage.addNew(6);
  // console.log(pushMessage.getMessage());
 // console.log(pushMessage.message);
