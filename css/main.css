@@ -37,6 +37,9 @@
 		height: 22%;
 		overflow: hidden;
 	}
+	div#messageArea>p{
+		line-height: 5px;
+	}
 
 	#buildingArea {
 		position:absolute;
