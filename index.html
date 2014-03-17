@@ -2,8 +2,10 @@
 <html>
 <head>
 <script language="JavaScript" src="lib/jquery-1.11.0.min.js"></script>
-<script language="JavaScript" src="lib/Botton.js"></script>
+<script language="JavaScript" src="lib/Button.js"></script>
 <script language="JavaScript" src="script/model.js"></script>
+<script language="JavaScript" src="script/engine.js"></script>
+<script language="JavaScript" src="script/pushMessage.js"></script>
 <script language="JavaScript" src="script/showResource.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
@@ -36,6 +38,8 @@
 		</div>
 	</div>
 	<div id="messageAreaContainer">
+		<button onclick="setTimer()"> setTimer </button>
+		<button onclick="cancelTimer()"> cancelTimer </button>
 		<div id="messageArea" class="Area">
 			<p>test for messageArea</p>
 			<p>test for messageArea</p>
@@ -56,5 +60,17 @@
 			<p>test for menuArea</p>			
 		</div>
 	</div>
+
+	<script>
+
+				function setTimer(){
+					engine.resAdd();
+				}
+
+
+				function cancelTimer(){
+					engine.cancelTimer();
+				}
+	</script>
 </body>
 </html>

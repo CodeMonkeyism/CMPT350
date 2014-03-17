@@ -78,14 +78,14 @@ var showResource = {
 
 
 
-var testShow= Object.create(showResource);
-console.log(testShow.getAllResName()+"result");
+// var testShow= Object.create(showResource);
+// console.log(testShow.getAllResName()+"result");
 
- $( document ).ready(function() {
-    testShow.refreshRes();
-    testShow.refreshBuild();
+ // $( document ).ready(function() {
+ //    testShow.refreshRes();
+ //    testShow.refreshBuild();
 
-  });
+ //  });
 
 // var testPushMessage= Object.create(pushMessage);
 
