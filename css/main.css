@@ -57,12 +57,10 @@
 		border-style: groove;
 		width: 52%;
 		height: 22%;
+		overflow-y: scroll;
 	}
 	div#messageArea>p{
 		line-height: 5px;
-	}
-	div#messageArea {
-		overflow: auto;
 	}
 
 	#buildingAreaContainer {
