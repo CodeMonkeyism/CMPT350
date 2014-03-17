@@ -1,19 +1,26 @@
-var enemyModel = {
+var enemyFactory = {
     "attackPower" : "-1",
     "defensePower" : "-1",
     "HP": "-1",
     "weapon": [],
-    "init" : function (attack, defense, HP) {
+    "create" : function (attack, defense, HP, weapons) {
         // Try to parse Int.
+        newEnemy = new Object(enemyFactory);
         if (parseInt(attack) && parseInt(defense) && parseInt(HP)) {
-            this.attackPower = parseInt(attack);
-            this.defensePower = parseInt(defense);
-            this.HP = parseInt(HP);
+            newEnemy.attackPower = parseInt(attack);
+            newEnemy.defensePower = parseInt(defense);
+            newEnemy.HP = parseInt(HP);
         } else{
-            this.attackPower = 1;
-            this.defensePower = 1;
-            this.HP = 1;
+            newEnemy.attackPower = 1;
+            newEnemy.defensePower = 1;
+            newEnemy.HP = 1;
+            return newEnemy;
         };
+        for (var i = weapons.length - 1; i >= 0; i--) {
+            console.log(weapons[i]);
+            console.log(newEnemy.addWeapon(weapons[i]));
+        };
+        return newEnemy;
     },
     "attack": function(target) {
         // Target should be a robotGroupModel
@@ -24,7 +31,7 @@ var enemyModel = {
         return target.defense(this.attackPower);
     },
     "defense": function(attackPower) {
-        int reducedAttackPower = attackPower - this.defensePower;
+        var reducedAttackPower = attackPower - this.defensePower;
         if (reducedAttackPower < 1) {
 	    //TODO: Insert code output to log window 
             console.log("Invincible!")
@@ -34,7 +41,9 @@ var enemyModel = {
         return this.HP <= 0;
     },
     "addWeapon":function(newWeapon){
+        // console.log(this.weapon.length);
         if (this.weapon.length >= 4) {
+            // console.log(this.weapon.length);
             console.log("Enemy could have 4 weapons at most.")
             return false;
         };
@@ -55,7 +64,7 @@ var enemyModel = {
                 this.weapon.push("Gattling Laser");
                 this.attackPower += 30;
                 break;
-            case default:
+            default:
                 this.weapon.push("Unknown Power");
                 this.attackPower += Math.floor(Math.random() * 30 + 1);
                 break;

@@ -1,0 +1,23 @@
+<head>
+	<script type="text/javascript" src="script/enemyFactory.js"></script>
+	<script type="text/javascript">
+		enemy1 = enemyFactory.create(10,10,20);
+		console.log("Enemy 1");
+		console.log(enemy1.attackPower);
+		console.log(enemy1.defensePower);
+		console.log(enemy1.HP);
+
+		console.log("Enemy 2");
+		enemy2 = enemyFactory.create(10,10,20,["MetalFist"]);
+		console.log(enemy2.attackPower);
+		console.log(enemy2.defensePower);
+		console.log(enemy2.HP);
+
+		console.log("Enemy 3");
+		enemy3 = enemyFactory.create(10,10,20);
+		console.log(enemy3.attackPower);
+		console.log(enemy3.defensePower);
+		console.log(enemy3.HP);
+	</script>
+</head>
+<body></body>
