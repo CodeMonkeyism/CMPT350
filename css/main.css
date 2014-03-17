@@ -1,3 +1,19 @@
+	div#header {
+		position:absolute;
+		top :0%;
+		left:0%;
+		border-style: groove;
+		height: 5%;
+		width: 100%;
+		background-color: #B8CAEE;
+	}
+	div#content {
+		top: 6%;
+		position:absolute;
+		height: 94%;
+		width: 100%;
+	}
+
 	div#buildingArea, div#sourceArea{
 		margin: 5% 15%;
 	}
