@@ -57,10 +57,12 @@
 		border-style: groove;
 		width: 52%;
 		height: 22%;
-		overflow: hidden;
 	}
 	div#messageArea>p{
 		line-height: 5px;
+	}
+	div#messageArea {
+		overflow: auto;
 	}
 
 	#buildingAreaContainer {
@@ -110,4 +112,8 @@
 	}
 	div.RowRight {
 		float: right;
+	}
+	#headButtonArea {
+		top:0%;
+		text-align: center;
 	}
