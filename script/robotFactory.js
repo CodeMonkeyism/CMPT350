@@ -1,6 +1,15 @@
 var robotFactory = {
+    BASECOST : {
+            Power : 5,
+            Metal : 5,
+            Fuel : 5,
+    },
+    ATTACKER : "Attacker",
+    DEFENSER : "Defenser",
+    GATHER : "Gather",
+    HEALER : "Healer",
     create : function (name, type) {
-        if (!robotFactory.isResourceEnough(type)) {
+        if (!robotFactory.checkAndConsumeResource(type)) {
             return null;
         };
         // Create a new base robot.
@@ -19,19 +28,19 @@ var robotFactory = {
         var randomStat = Math.ceil(magic * baseStat * Math.random());
         // Set attributes for different robots.
         switch(type){
-            case "S.W.O.R.D.":
+            case robotFactory.ATTACKER:
                 baseRobot.attackPower += (7 + randomStat);
                 baseRobot.defensePower += 2;
                 break;
-            case "S.H.I.E.L.D.":
+            case robotFactory.DEFENSER:
                 baseRobot.attackPower += 2;
                 baseRobot.defensePower += (7 + randomStat);
                 break;
-            case "Gather":
+            case robotFactory.GATHER:
                 baseRobot.luck += (7 + randomStat);
                 baseRobot.HP += 2
                 break;
-            case "Paladin":
+            case robotFactory.HEALER:
                 baseRobot.defensePower += 2;
                 baseRobot.HP += (7 + randomStat);
                 break;
@@ -46,33 +55,27 @@ var robotFactory = {
 
         return baseRobot;
     },
-    isResourceEnough : function (type){
-        // Base resource cost.
-        var resourceCost = {
-            Power : 5,
-            Metal : 5,
-            Fuel : 5,
-        }
-        // Get resource details
-
+    checkAndConsumeResource : function (type){
+        // Load base resource cost.
+        var resourceCost = new Object(robotFactory.BASECOST);
         // Set resource cost for different robots
         switch(type){
-            case "S.W.O.R.D.":
+            case robotFactory.ATTACKER:
                 resourceCost.Power += 2;
                 resourceCost.Metal += 5;
                 resourceCost.Fuel  += 1;
                 break;
-            case "S.H.I.E.L.D.":
+            case robotFactory.DEFENSER:
                 resourceCost.Power += 5;
                 resourceCost.Metal += 2;
                 resourceCost.Fuel  += 1;
                 break;
-            case "Gather":
+            case robotFactory.GATHER:
                 resourceCost.Power += 1;
                 resourceCost.Metal += 2;
                 resourceCost.Fuel  += 5;
                 break;
-            case "Paladin":
+            case robotFactory.HEALER:
                 resourceCost.Power += 5;
                 resourceCost.Metal += 5;
                 resourceCost.Fuel  += 5;
