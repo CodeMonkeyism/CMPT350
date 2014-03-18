@@ -3,7 +3,7 @@ var combat = {
     "mRobots": [],
     "init": function(enemy, robotGroup){
         this.mEnemy = enemy;
-	this.mRobots = robotGroup;
+		this.mRobots = robotGroup;
     },
     "doCombat": function(){
 	// Robots attack first.
@@ -19,7 +19,7 @@ var combat = {
 	this.finishCombat(true);
     },
     "finishCombat": function(isCombatWin){
-        //show combat result, include loot and loss
+    //show combat result, include loot and loss
 	//Return an array, the first is loss ( from the robots), the second is loot (from enemy).
 	//TODO see notification code to determine.
 	var result = new Array();
