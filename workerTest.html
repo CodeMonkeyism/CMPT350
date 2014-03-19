@@ -1,0 +1,41 @@
+<head>
+    <script type="text/javascript" src="script/model.js"></script>
+    <script type="text/javascript" src="script/worker.js"></script>
+    <script type="text/javascript">
+        model.addNewItem('power',0);
+        model.addNewItem('scrap',0);
+        model.addNewItem('frame',0);
+        model.addNewItem('silicon',0);
+        model.addNewItem('chip',0);
+        Workers._WorkerCount.Cellman = 10;
+        Workers._WorkerCount.Scavenger = 1;
+        Workers._WorkerCount.Foundryman = 1;
+        Workers._WorkerCount.Bender = 1;
+        Workers._WorkerCount.Miner = 1;
+        Workers._WorkerCount.Fitter = 1;
+        document.write("Resource not enough<br>")
+        document.write(Workers.Product.power() + "<br>")
+        document.write(Workers.Product.scrap() + "<br>")
+        document.write(Workers.Product.frame() + "<br>")
+        document.write(Workers.Product.silicon() + "<br>")
+        document.write(Workers.Product.chip() + "<br>")
+        model.setData('power',1000);
+        model.setData('scrap',1000);
+        model.setData('frame',1000);
+        model.setData('silicon',1000);
+        model.setData('chip',1000);
+        Workers._WorkerCount.Cellman = 10;
+        Workers._WorkerCount.Scavenger = 1;
+        Workers._WorkerCount.Foundryman = 1;
+        Workers._WorkerCount.Bender = 1;
+        Workers._WorkerCount.Miner = 1;
+        Workers._WorkerCount.Fitter = 1;
+        document.write("Resource enough<br>")
+        document.write(Workers.Product.power() + "<br>")
+        document.write(Workers.Product.scrap() + "<br>")
+        document.write(Workers.Product.frame() + "<br>")
+        document.write(Workers.Product.silicon() + "<br>")
+        document.write(Workers.Product.chip() + "<br>")      
+    </script>
+</head>
+<body></body>

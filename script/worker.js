@@ -2,9 +2,9 @@
 * show the worker page, and organize how robot workers distribute. 
 */
 var Workers = {
-	name: "worker"
+	name: "worker",
 	_Delay: 10,
-	_Duty = {
+	_Duty: {
 		'Cellman':{
 			'power':1
 		},
@@ -34,7 +34,7 @@ var Workers = {
 
 
 	},
-	_WorkerCount{
+	_WorkerCount: {
 		'Cellman':0,
 		'Scavenger':0,
 		'Foundryman':0,
@@ -42,32 +42,32 @@ var Workers = {
 		'Miner':0,
 		'Fitter':0,
 	},
-	Product {
+	Product: {
 		'power': function(){
 			var product = Workers._Duty.Cellman.power * Workers._WorkerCount.Cellman;
-			return product;
+			return parseInt(product);
 		},
 		'scrap': function(){
 			var powerEnough = Workers.isResourceEnough('power', Workers._Duty.Scavenger.power);
 			var product = Workers._Duty.Scavenger.scrap * Workers._WorkerCount.Scavenger;
-			return powerEnough * product;
+			return parseInt(powerEnough * product);
 		},
 		'frame': function(){
 			var metalEnough = Workers.isResourceEnough('metal', Workers._Duty.Bender.metal);
 			var powerEnough = Workers.isResourceEnough('power', Workers._Duty.Bender.power);
 			var product = Workers._Duty.Bender.frame * Workers._WorkerCount.Bender;
-			return metalEnough * powerEnough * product;
+			return parseInt(metalEnough * powerEnough * product);
 		},
 		'silicon': function(){
 			var powerEnough = Workers.isResourceEnough('power', Workers._Duty.Miner.power);
 			var product = Workers._Duty.Miner.silicon * Workers._WorkerCount.Miner;
-			return powerEnough * product;
+			return parseInt(powerEnough * product);
 		},
 		'chip': function(){
 			var powerEnough = Workers.isResourceEnough('power', Workers._Duty.Fitter.power);
 			var siliconEnough = Workers.isResourceEnough('silicon', Workers._Duty.Fitter.silicon);
 			var product = Workers._Duty.Fitter.chip * Workers._WorkerCount.Fitter;
-			return siliconEnough * powerEnough * product;
+			return parseInt(siliconEnough * powerEnough * product);
 		}
 
 	},
