@@ -48,7 +48,7 @@ var robotFactory = {
     DEFENSER : "Defenser",
     GATHER : "Gather",
     HEALER : "Healer",
-    create : function (name, type) {
+    createRobot : function (name, type) {
         // Create a new base robot.
         var baseRobot = {
             robotName : "rob_" + name,
@@ -161,5 +161,40 @@ var robotFactory = {
         else {
             return false;
         };
-    }
+    },
+
+    createRobotGroup: function (){
+        // Guard: avoid zero argument.
+        if (arguments.length == 0) {
+            return false;
+        };
+        // Create a new group.
+        var newGroup = {
+            attackPower : 0,
+            defensePower: 0,
+            minDefense: 99999999,
+            HP: 0,
+            lossOfHp: 0,
+            robots: [],
+        };
+        var totalDefense = 0;
+        // Create robot group.
+        for (var i = arguments.length - 1; i >= 0; i--) {
+            // Add robot
+            newGroup.robots.push(arguments[i]);
+            // Calcuate total attack power
+            newGroup.attackPower += arguments[i].attackPower;
+            // Calcuate total defense power
+            totalDefense += arguments[i].defensePower;
+            // Find minimum defense power. 
+            if (arguments[i].defensePower < newGroup.minDefense) {
+                newGroup.minDefense = arguments[i].defensePower;
+            };
+            // Calcuate total HP
+            newGroup.HP += arguments[i].HP;
+        };
+        // Set average defense power = total / robot count
+        newGroup.defensePower = Math.floor(totalDefense/arguments.length);
+        return newGroup;
+    },
 }
