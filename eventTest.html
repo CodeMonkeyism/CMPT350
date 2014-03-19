@@ -1,12 +1,13 @@
 <head>
     <script type="text/javascript" src="script/event.js"></script>
     <script type="text/javascript" src="script/scene/exploreScene.js"></script>
+    <script type="text/javascript" src="script/scene/randomEvent.js"></script>
     <script type="text/javascript">
         document.write("Test read from event.exploreScene<br>");
-        document.write(event.exploreScene.tier1.length + "<br>");
-        document.write(event.exploreScene.tier1 + "<br>");
-        document.write(event.exploreScene.tier2.length + "<br>");
-        document.write(event.exploreScene.tier2 + "<br>");
+        document.write(Events.exploreScene.tier1.length + "<br>");
+        document.write(Events.exploreScene.tier1 + "<br>");
+        document.write(Events.exploreScene.tier2.length + "<br>");
+        document.write(Events.exploreScene.tier2 + "<br>");
         var emptyGroup = {
             attackPower : 0,
             defensePower: 0,
@@ -15,7 +16,7 @@
             lossOfHp: 0,
             robots: [],
         };
-        var emptyGroupResult = event.explore(emptyGroup, event.exploreLevelOne);
+        var emptyGroupResult = Events.explore(emptyGroup, Events.exploreLevelOne);
         document.write(emptyGroupResult.robotReturned + "<br>");
         document.write(emptyGroupResult.loot + "<br>");
         document.write(emptyGroupResult.result + "<br>");
@@ -27,7 +28,7 @@
             lossOfHp: 0,
             robots: ["Robot One"],
         };
-        var group5Result = event.explore(group5, event.exploreLevelOne);
+        var group5Result = Events.explore(group5, Events.exploreLevelOne);
         document.write(group5Result.robotReturned + "<br>");
         document.write(group5Result.loot + "<br>");
         document.write(group5Result.result + "<br>");
@@ -39,10 +40,21 @@
             lossOfHp: 0,
             robots: ["Robot One","Robot Two","Robot Three"],
         };
-        var group20Result = event.explore(group20, event.exploreLevelTwo);
+        var group20Result = Events.explore(group20, Events.exploreLevelTwo);
         document.write(group20Result.robotReturned + "<br>");
         document.write(group20Result.loot + "<br>");
         document.write(group20Result.result + "<br>");
+
+        var rndRoomEvent = Events.createRandomEvent(Events.randomRoomEvent);
+        document.write(rndRoomEvent.title + "<br>")
+        document.write(rndRoomEvent.scenes.start.text + "<br>")
+        document.write(rndRoomEvent.scenes.start.notification + "<br>")
+        document.write(rndRoomEvent.scenes.start.buttons.investigate + "<br>")
+        document.write(rndRoomEvent.scenes.start.buttons.ignore + "<br>")
+        document.write(rndRoomEvent.scenes.nothing + "<br>")
+        document.write(rndRoomEvent.scenes.stuff + "<br>")
+        // document.write(rndRoomEvent.scenes.start.text + "<br>")
+        // document.write(rndRoomEvent.scenes.start.text + "<br>")
     </script>
 </head>
 <body></body>

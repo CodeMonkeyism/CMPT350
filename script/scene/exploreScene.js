@@ -1,4 +1,4 @@
-event.exploreScene = {
+Events.exploreScene = {
     // Tier 1: two scenes
     tier1 :[ {
         name : "Unpowered corridor",

@@ -17,19 +17,19 @@ var Events = {
                 start : {
                     text : [],
                     notification : '',
-                    buttons : []
+                    buttons : {}
                 }
             }
         }
         switch(type){
             case "room" :
-                return event.random.roomEvent(baseEvent);
+                return Events.random.roomEvent(baseEvent);
                 break;
             case "wander" :
-                return event.random.shipEvent(baseEvent);
+                return Events.random.shipEvent(baseEvent);
                 break;
             default :
-                return event.random.unknownEvent(baseEvent);
+                return Events.random.unknownEvent(baseEvent);
         }
     },
 
@@ -37,22 +37,22 @@ var Events = {
         // Determine explore scene.
         switch(sceneLevel){
             case 1:
-                var scenes = event.exploreScene.tier1;
+                var scenes = Events.exploreScene.tier1;
                 break;
             case 2:
-                var scenes = event.exploreScene.tier2;
+                var scenes = Events.exploreScene.tier2;
                 break;
             case 3:
-                var scenes = event.exploreScene.tier3;
+                var scenes = Events.exploreScene.tier3;
                 break;
             case 4:
-                var scenes = event.exploreScene.tier4;
+                var scenes = Events.exploreScene.tier4;
                 break;
             case 5:
-                var scenes = event.exploreScene.tier5;
+                var scenes = Events.exploreScene.tier5;
                 break;
             case 6:
-                var scenes = event.exploreScene.tier6;
+                var scenes = Events.exploreScene.tier6;
                 break;
             default:
                 var scenes = null;
@@ -61,15 +61,15 @@ var Events = {
 
         // Null scene will automatically fail.
         if (scenes == null) {
-            return event.exploreFailed("Your robots fell to a hole, and flied off the plant.");
+            return Events.exploreFailed("Your robots fell to a hole, and flied off the plant.");
         };
 
         // Random choose a scene.
         var sceneIndex = Math.floor(Math.random() * scenes.length);
 
         // If robot group is too weak, you failed.
-        if (!event.isExplorePossible(robotGroup, scenes[sceneIndex])) {
-            return event.exploreFailed("You robots are too weak.");
+        if (!Events.isExplorePossible(robotGroup, scenes[sceneIndex])) {
+            return Events.exploreFailed("You robots are too weak.");
         };
         
 
@@ -82,27 +82,21 @@ var Events = {
             var lossCount = Math.floor(scenes[sceneIndex].lossCount * Math.random());
         };
         if (lossCount >= robotGroup.robots.length) {
-            return event.exploreFailed("Though you explored that zone, all robots are down. You get nothing back.");
+            return Events.exploreFailed("Though you explored that zone, all robots are down. You get nothing back.");
         };
         // Robot group removed lost robots.
         var randomGroup = robotGroup.robots.sort(function(a,b){return Math.random()>.5 ? -1 : 1;});
         var groupAfterExplore = randomGroup.slice(lossCount);
 
         // Resource you got.
-        var exploreLoot = new Array();
+        var exploreLoot = new Object();
         for (var i = scenes[sceneIndex].loot.length - 1; i >= 0; i--) {
             if (scenes[sceneIndex].loot[i].rate > Math.random()) {
-                var tempObject = scenes[sceneIndex].loot[i].resourceName 
-                                 + "=" 
-                                 + scenes[sceneIndex].loot[i].quantity;
-                exploreLoot.push(tempObject);
+                exploreLoot[scenes[sceneIndex].loot[i].resourceName] = scenes[sceneIndex].loot[i].quantity;
             }
             else {
-                var tempObject = scenes[sceneIndex].loot[i].resourceName 
-                                 + "=0" 
-                exploreLoot.push(tempObject);
+                exploreLoot[scenes[sceneIndex].loot[i].resourceName] = 0;
             };
-            
         };
         console.log(exploreLoot);
 
@@ -140,10 +134,10 @@ var Events = {
     exploreFailed : function(description) {
         return {
                 robotReturned : [],
-                time : 0;
-                loot : ["res_Power=0",
-                        "res_Metal=0",
-                        "res_Fuel=0"],
+                time : 0,
+                loot : {res_Power : 0,
+                        res_Metal : 0,
+                        res_Fuel : 0},
                 result : description
             }
     },
