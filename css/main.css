@@ -57,7 +57,7 @@
 		border-style: groove;
 		width: 52%;
 		height: 22%;
-		overflow: hidden;
+		overflow-y: scroll;
 	}
 	div#messageArea>p{
 		line-height: 5px;
@@ -110,4 +110,8 @@
 	}
 	div.RowRight {
 		float: right;
+	}
+	#headButtonArea {
+		top:0%;
+		text-align: center;
 	}
