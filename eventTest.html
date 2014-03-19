@@ -1,0 +1,48 @@
+<head>
+    <script type="text/javascript" src="script/event.js"></script>
+    <script type="text/javascript" src="script/scene/exploreScene.js"></script>
+    <script type="text/javascript">
+        document.write("Test read from event.exploreScene<br>");
+        document.write(event.exploreScene.tier1.length + "<br>");
+        document.write(event.exploreScene.tier1 + "<br>");
+        document.write(event.exploreScene.tier2.length + "<br>");
+        document.write(event.exploreScene.tier2 + "<br>");
+        var emptyGroup = {
+            attackPower : 0,
+            defensePower: 0,
+            minDefense: 0,
+            HP: 0,
+            lossOfHp: 0,
+            robots: [],
+        };
+        var emptyGroupResult = event.explore(emptyGroup, event.exploreLevelOne);
+        document.write(emptyGroupResult.robotReturned + "<br>");
+        document.write(emptyGroupResult.loot + "<br>");
+        document.write(emptyGroupResult.result + "<br>");
+        var group5 = {
+            attackPower : 5,
+            defensePower: 5,
+            minDefense: 5,
+            HP: 5,
+            lossOfHp: 0,
+            robots: ["Robot One"],
+        };
+        var group5Result = event.explore(group5, event.exploreLevelOne);
+        document.write(group5Result.robotReturned + "<br>");
+        document.write(group5Result.loot + "<br>");
+        document.write(group5Result.result + "<br>");
+        var group20 = {
+            attackPower : 20,
+            defensePower: 20,
+            minDefense: 20,
+            HP: 20,
+            lossOfHp: 0,
+            robots: ["Robot One","Robot Two","Robot Three"],
+        };
+        var group20Result = event.explore(group20, event.exploreLevelTwo);
+        document.write(group20Result.robotReturned + "<br>");
+        document.write(group20Result.loot + "<br>");
+        document.write(group20Result.result + "<br>");
+    </script>
+</head>
+<body></body>

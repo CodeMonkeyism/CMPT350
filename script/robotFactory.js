@@ -1,8 +1,54 @@
 var robotFactory = {
-    create : function (name, type) {
-        if (!robotFactory.isResourceEnough(type)) {
-            return null;
-        };
+    ATTACKERMOD : {
+        attackPowerMod : 7,
+        defensePowerMod : 2,
+        hpMod: 0,
+        luckMod: 0,
+        powerMod : 2,
+        metalMod : 5,
+        fuelMod  : 1
+    },
+    DEFENSERMOD : {
+        attackPowerMod : 2,
+        defensePowerMod : 7,
+        hpMod: 0,
+        luckMod: 0,
+        powerMod : 5,
+        metalMod : 2,
+        fuelMod  : 1,
+    },
+    GATHERMOD : {
+        attackPowerMod : 0,
+        defensePowerMod : 0,
+        hpMod: 2,
+        luckMod: 7,
+        powerMod : 1,
+        metalMod : 2,
+        fuelMod  : 5,
+    },
+    HEALERMOD : {
+        attackPowerMod : 0,
+        defensePowerMod : 2,
+        hpMod: 7,
+        luckMod: 0,
+        powerMod : 5,
+        metalMod : 5,
+        fuelMod  : 5,
+    },
+    ZEROMOD : {
+        attackPowerMod : 0,
+        defensePowerMod : 0,
+        hpMod: 0,
+        luckMod: 0,
+        powerMod : 0,
+        metalMod : 0,
+        fuelMod  : 0,
+    },
+    ATTACKER : "Attacker",
+    DEFENSER : "Defenser",
+    GATHER : "Gather",
+    HEALER : "Healer",
+    createRobot : function (name, type) {
         // Create a new base robot.
         var baseRobot = {
             robotName : "rob_" + name,
@@ -10,76 +56,98 @@ var robotFactory = {
             defensePower : 5,
             HP: 5,
             luck: 5,
-            robotType: type
+            robotType: ""
         };
+        // Check resource.
+        if (!robotFactory.checkAndConsumeResource(type)) {
+            return null;
+        };        
+        // Set basic attributes for different robots.
+        switch(type){
+            case robotFactory.ATTACKER:
+                var modifier = robotFactory.ATTACKERMOD;
+                break;
+            case robotFactory.DEFENSER:
+                var modifier = robotFactory.DEFENSERMOD;
+                break;
+            case robotFactory.GATHER:
+                var modifier = robotFactory.GATHERMOD;
+                break;
+            case robotFactory.HEALER:
+                var modifier = robotFactory.HEALERMOD;
+                break;
+            default:
+                var modifier = robotFactory.ZEROMOD;
+                baseRobot.robotType = "Malfunction";
+                break;
+        }
+        // If the robot is malfunctioned, directly return it.
+        if (modifier == robotFactory.ZEROMOD) {
+            return baseRobot;
+        };
+        
         // Randomly generate a number for this robot.
         // If we get < 0.5, then bad luck. Attributes will be reduced.
         var magic = Math.random() < 0.5 ? -1 : 1;
         var baseStat = 4;
         var randomStat = Math.ceil(magic * baseStat * Math.random());
-        // Set attributes for different robots.
+        // Modify robot attribute, set to basic by type.
+        baseRobot.robotType = type;
+        baseRobot.attackPower += modifier.attackPowerMod;
+        baseRobot.defensePower += modifier.defensePowerMod;
+        baseRobot.HP += modifier.hpMod;
+        baseRobot.luck += modifier.luckMod;
+        // Modify main attribute.
         switch(type){
-            case "S.W.O.R.D.":
-                baseRobot.attackPower += (7 + randomStat);
-                baseRobot.defensePower += 2;
+            case robotFactory.ATTACKER:
+                baseRobot.attackPower += randomStat;
                 break;
-            case "S.H.I.E.L.D.":
-                baseRobot.attackPower += 2;
-                baseRobot.defensePower += (7 + randomStat);
+            case robotFactory.DEFENSER:
+                baseRobot.defensePower += randomStat;
                 break;
-            case "Gather":
-                baseRobot.luck += (7 + randomStat);
-                baseRobot.HP += 2
+            case robotFactory.GATHER:
+                baseRobot.luck += randomStat;
                 break;
-            case "Paladin":
-                baseRobot.defensePower += 2;
-                baseRobot.HP += (7 + randomStat);
+            case robotFactory.HEALER:
+                baseRobot.HP += randomStat;
                 break;
             default:
-                baseRobot.attackPower = 1;
-                baseRobot.defensePower = 1;
-                baseRobot.luck = 1;
-                baseRobot.HP =1;
-                baseRobot.robotType = "Malfunction"
                 break;
         }
-
         return baseRobot;
     },
-    isResourceEnough : function (type){
+    checkAndConsumeResource : function (type){
         // Base resource cost.
         var resourceCost = {
             Power : 5,
             Metal : 5,
             Fuel : 5,
-        }
-        // Get resource details
-
+        };
         // Set resource cost for different robots
         switch(type){
-            case "S.W.O.R.D.":
-                resourceCost.Power += 2;
-                resourceCost.Metal += 5;
-                resourceCost.Fuel  += 1;
+            case robotFactory.ATTACKER:
+                var modifier = robotFactory.ATTACKERMOD;
                 break;
-            case "S.H.I.E.L.D.":
-                resourceCost.Power += 5;
-                resourceCost.Metal += 2;
-                resourceCost.Fuel  += 1;
+            case robotFactory.DEFENSER:
+                var modifier = robotFactory.DEFENSERMOD;
                 break;
-            case "Gather":
-                resourceCost.Power += 1;
-                resourceCost.Metal += 2;
-                resourceCost.Fuel  += 5;
+            case robotFactory.GATHER:
+                var modifier = robotFactory.GATHERMOD;
                 break;
-            case "Paladin":
-                resourceCost.Power += 5;
-                resourceCost.Metal += 5;
-                resourceCost.Fuel  += 5;
+            case robotFactory.HEALER:
+                var modifier = robotFactory.HEALERMOD;
                 break;
             default:
+                var modifier = robotFactory.ZEROMOD;
                 break;
-        };
+        }
+        // Set Resource Cost:
+        resourceCost.Power += modifier.powerMod;
+        resourceCost.Metal += modifier.metalMod;
+        resourceCost.Fuel += modifier.fuelMod;
+        console.log("Consume Power:" + resourceCost.Power);
+        console.log("Consume Metal:" + resourceCost.Metal);
+        console.log("Consume Fuel:" + resourceCost.Fuel);
         // Check resource. 
         // If it is enough, spend resource and return true. Otherwise returns false.
         if (model.getData("res_Power") >= resourceCost.Power
@@ -93,5 +161,40 @@ var robotFactory = {
         else {
             return false;
         };
-    }
+    },
+
+    createRobotGroup: function (){
+        // Guard: avoid zero argument.
+        if (arguments.length == 0) {
+            return false;
+        };
+        // Create a new group.
+        var newGroup = {
+            attackPower : 0,
+            defensePower: 0,
+            minDefense: 99999999,
+            HP: 0,
+            lossOfHp: 0,
+            robots: [],
+        };
+        var totalDefense = 0;
+        // Create robot group.
+        for (var i = arguments.length - 1; i >= 0; i--) {
+            // Add robot
+            newGroup.robots.push(arguments[i]);
+            // Calcuate total attack power
+            newGroup.attackPower += arguments[i].attackPower;
+            // Calcuate total defense power
+            totalDefense += arguments[i].defensePower;
+            // Find minimum defense power. 
+            if (arguments[i].defensePower < newGroup.minDefense) {
+                newGroup.minDefense = arguments[i].defensePower;
+            };
+            // Calcuate total HP
+            newGroup.HP += arguments[i].HP;
+        };
+        // Set average defense power = total / robot count
+        newGroup.defensePower = Math.floor(totalDefense/arguments.length);
+        return newGroup;
+    },
 }
