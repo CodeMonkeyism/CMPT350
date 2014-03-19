@@ -6,7 +6,7 @@ var Events = {
     exploreLevelFive : 5,
     exploreLevelSecret : 6,
     randomRoomEvent : "room",
-    randomSHipEvent : "ship",
+    randomShipEvent : "ship",
     createRandomEvent  : function ( type ) {
         var baseEvent = {
             title: '',
@@ -22,10 +22,10 @@ var Events = {
             }
         }
         switch(type){
-            case "room" :
+            case Events.randomRoomEvent :
                 return Events.random.roomEvent(baseEvent);
                 break;
-            case "wander" :
+            case Events.randomShipEvent :
                 return Events.random.shipEvent(baseEvent);
                 break;
             default :
