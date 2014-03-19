@@ -1,36 +1,36 @@
-var event = {
+var Events = {
     exploreLevelOne : 1,
     exploreLevelTwo : 2,
     exploreLevelThree : 3,
     exploreLevelFour : 4,
     exploreLevelFive : 5,
     exploreLevelSecret : 6,
+    randomRoomEvent : "room",
+    randomSHipEvent : "ship",
     createRandomEvent  : function ( type ) {
+        var baseEvent = {
+            title: '',
+            isAvailable : function() {
+                return true;
+            },
+            scenes : {
+                start : {
+                    text : [],
+                    notification : '',
+                    buttons : []
+                }
+            }
+        }
         switch(type){
-            case "space" :
-                return event.createSpaceEvent();
-                break;
             case "room" :
-                return event.createRoomEvent();
+                return event.random.roomEvent(baseEvent);
                 break;
             case "wander" :
-                return event.createShipEvent();
+                return event.random.shipEvent(baseEvent);
                 break;
             default :
-                console.log("unknown event type:" + type);
+                return event.random.unknownEvent(baseEvent);
         }
-    },
-
-    createShipEvent   : function () {
-        console.log("Create a ship event. So what should be on the ship?")
-    },
-
-    createRoomEvent   : function () {
-        console.log("Create a room event. So what should be on the room?")
-    },
-
-    createSpaceEvent  : function () {
-        console.log("Create a space event. So what should be in the space?")
     },
 
     explore : function (robotGroup, sceneLevel) {
