@@ -175,6 +175,8 @@ var robotFactory = {
             minDefense: 99999999,
             HP: 0,
             lossOfHp: 0,
+            healerCount :0,
+            gatherCount :0,
             robots: [],
         };
         var totalDefense = 0;
@@ -189,6 +191,14 @@ var robotFactory = {
             // Find minimum defense power. 
             if (arguments[i].defensePower < newGroup.minDefense) {
                 newGroup.minDefense = arguments[i].defensePower;
+            };
+            // Get healer count.
+            if (arguments[i].robotType == robotFactory.GATHER) {
+                newGroup.gatherCount += 1;
+            };
+            // Get healer count.
+            if (arguments[i].robotType == robotFactory.HEALER) {
+                newGroup.healerCount += 1;
             };
             // Calcuate total HP
             newGroup.HP += arguments[i].HP;
