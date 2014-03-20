@@ -725,12 +725,12 @@ Events.exploreScene = {
         // Possible loss of robots.
         lossCount : 2,
         // Possibility of loss.
-        lossPossibility: 0.20,
+        lossPossibility : 0.20,
         // Result descriptions
         results : [
                 "Harvest time!",
                 "A robot occasionally down.",
-                "One locker blasts when your robot opens it. Two robots are involved"
+                "One locker blasts when your robot opens it. Two robots are involved."
             ],
         // The minimum requirement for robot group.
         requirement : {
@@ -757,6 +757,7 @@ Events.exploreScene = {
             ]
         },
 
+        {
         name : "Yellow Security Zone",
         description : "Yellow is only less than red. Do you understand?",
         // The time to explore in second.
@@ -1019,6 +1020,7 @@ Events.exploreScene = {
             ]
         },
 
+        {
         name : "Specimen Room",
         description : "Flesh and mucus. You have a bad feeling about this.",
         // The time to explore in second.
@@ -1061,6 +1063,7 @@ Events.exploreScene = {
             ]
         },
 
+        {
         name : "Hidden Room",
         description : "You found this room behind specimen room.",
         // The time to explore in second.
