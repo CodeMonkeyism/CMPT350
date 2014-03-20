@@ -8,7 +8,7 @@ $(function(){
 
 	function chooseTest(){
 		var command = $('#testInput').val();
-		if (command=="show me your money") {
+		if (command=="show me the money") {
 			console.log("gas and money+10000");
 			$("#testMode").append("<p>Rich Test is On!</p>");
 	
