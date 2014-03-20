@@ -4,7 +4,7 @@ var Events = {
     exploreLevelThree : 3,
     exploreLevelFour : 4,
     exploreLevelFive : 5,
-    exploreLevelSecret : 6,
+    exploreLevelSix : 6,
     randomRoomEvent : "room",
     randomShipEvent : "ship",
     createRandomEvent  : function ( type ) {
@@ -72,14 +72,16 @@ var Events = {
             return Events.exploreFailed("You robots are too weak.");
         };
         
-
-        
+        // Robot loss reduce: max reduce 4 loss.
+        var lossReduce = robotGroup.healerCount >=4 ? robotGroup.healerCount : 4;
         // The count of loss robot.
         if (Math.random() < scenes[sceneIndex].lossPossibility) {
             var lossCount = 0;
         } 
         else{
+            // calcuate reduced loss count. Make sure the loss count is >= 0.
             var lossCount = Math.floor(scenes[sceneIndex].lossCount * Math.random());
+            lossCount = (lossCount - lossReduce) >= 0 ? (lossCount - lossReduce) : 0;
         };
         if (lossCount >= robotGroup.robots.length) {
             return Events.exploreFailed("Though you explored that zone, all robots are down. You get nothing back.");
@@ -88,11 +90,14 @@ var Events = {
         var randomGroup = robotGroup.robots.sort(function(a,b){return Math.random()>.5 ? -1 : 1;});
         var groupAfterExplore = randomGroup.slice(lossCount);
 
+        // Resource adjustment index: max value 50%.
+        var resourceAdjust = (0.1 * robotGroup.gatherCount) >= 0.5 ? 0.5 : 0.1 * robotGroup.gatherCount;
+
         // Resource you got.
         var exploreLoot = new Object();
         for (var i = scenes[sceneIndex].loot.length - 1; i >= 0; i--) {
             if (scenes[sceneIndex].loot[i].rate > Math.random()) {
-                exploreLoot[scenes[sceneIndex].loot[i].resourceName] = scenes[sceneIndex].loot[i].quantity;
+                exploreLoot[scenes[sceneIndex].loot[i].resourceName] = Math.ceil(scenes[sceneIndex].loot[i].quantity * resourceAdjust);
             }
             else {
                 exploreLoot[scenes[sceneIndex].loot[i].resourceName] = 0;
@@ -121,10 +126,6 @@ var Events = {
         };
 
         if (robotGroup.HP < scene.requirement.minHP) {
-            return false;
-        };
-
-        if (robotGroup.minDefense < scene.requirement.minGroupDefensePower) {
             return false;
         };
 
