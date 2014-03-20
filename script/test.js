@@ -4,6 +4,16 @@ $(function(){
 	.append('<button id="testButton" >Start Test</button>')
 	.append('<div id="testMode"></div>');
 	$("#testButton").attr("onclick","chooseTest()");
+
+	$('#testInput').bind("enterKey",function(e){
+	   $("#testButton").click();
+	});
+	$('#testInput').keyup(function(e){
+	    if(e.keyCode == 13)
+	    {
+	        $(this).trigger("enterKey");
+	    }
+	});
 });
 
 	function chooseTest(){
