@@ -1,5 +1,5 @@
 var mainRoom = {
-	name: mainRoom,
+	name: 'mainRoom',
 
 	_Craftables: {
 		'solar cell':{
@@ -7,7 +7,7 @@ var mainRoom = {
 			maximum: 20,
 			buildMsg:'a new solar cell is installed.',
 			maxMsg:'no room for new solar cell',
-			type:'building'
+			type:'building',
 			cost: function(){
 				var n =1; //TODO change n = (get the number of exist solar cell)
 				return {
@@ -20,7 +20,7 @@ var mainRoom = {
 			maximum: 40,
 			buildMsg:'a new charging post is settled, it can supply two fighting robot.',
 			maxMsg:'electricity supply is not enough for more charging post.',
-			type:'building'
+			type:'building',
 			cost: function(){
 				var n =1; //TODO change n = (get the number of exist charging post)
 				return {
