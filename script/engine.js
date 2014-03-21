@@ -38,16 +38,11 @@ engine = {
 
 	initGUI: function(){
 		//create headButtonArea
-		d = document.createElement("div");
-		$(d).attr("id","headButtonArea")
+		$("<div>").attr("id","headButtonArea")
 			.appendTo($("div#header"));
-
-		
-		
 		HeadButtonName.forEach(function(name){
 			//create AreaChoose button
-			var b = document.createElement("button");
-			$(b).html(name)
+			$('<button>').html(name)
 			.attr("id",name+"Button")
 			.click(function(){
 			//when click, show the panel which have same name.
@@ -57,15 +52,14 @@ engine = {
 			})
 			.appendTo($("div#headButtonArea"));	
 			//Create Area
-			var theArea = document.createElement("div");
-			$(theArea)
+			$('<div>')
 			.attr("id",name+"Panel")
 			.attr("class","Panel")
 			.appendTo($("#mainAreaRoller"));
 		});
-		var secondPageId = "#"+HeadButtonName[1]+"Panel";
-		$(secondPageId).append($(document.createElement("div"))
-			.attr("id","buildingButton")
+		var secondPageId = "#"+HeadButtonName[0]+"Panel";
+		$(secondPageId).append($('<div>')
+			.attr("id","buildingButton").append("test")
 		);
 	}
 }
