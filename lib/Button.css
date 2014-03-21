@@ -1,0 +1,37 @@
+/* Button */
+
+div.button {
+	position: relative;
+	text-align: center;
+	border: 1px solid black;
+	width: 100px;
+	margin-bottom: 5px;
+	padding: 5px 10px;
+	cursor: pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+div.button:hover {
+	text-decoration: underline;
+}
+
+div.button.disabled, div.button.disabled:hover {
+	cursor: default;
+	border-color: grey;
+	color: grey;
+	text-decoration: none;
+}
+
+div.button div.cooldown {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: -1;
+	height: 100%;
+	background-color: #DDDDDD;
+}
