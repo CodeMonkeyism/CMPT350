@@ -18,15 +18,32 @@ $(function(){
 
 	function chooseTest(){
 		var command = $('#testInput').val();
-		//test case example 1
-		if (command=="show me the money") {
+		
+		if (command=="show me the money") {//test case example 1
 			console.log("gas and money+10000");
 			$("#testMode").empty()
 			.append("<p>Rich Test is On!</p>");
-		//test case example 2	
-		}else if (command=="black sheep wall") {
+		}else if (command=="black sheep wall") {//test case example 2
+
 			console.log("no fog of war!");
 			$("#testMode").empty()
 			.append("<p>clear vision Test is On!</p>");
+		}else if (command=="ahb") {//add header button
+
+			d = document.createElement("div");
+			$(d).attr("id","headButtonArea")
+				.appendTo($("div#header"));
+			var list = ["room","WorkShop","Outside"];
+			list.forEach(function(name){
+				var b = document.createElement("button");
+				$(b).html(name).attr("id",name+"Button").appendTo($("div#headButtonArea"));	
+			});
+			$("#WorkShopButton").click(function(){
+				$(this).hide();
+			});
+			$("#OutsideButton").click(function(){
+				$("#WorkShopButton").show();
+			})
 		};
+
 	}
