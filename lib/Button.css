@@ -1,5 +1,8 @@
-/* Button */
 
+/*
+*code in this file copied from project A Dark Room, which is following MPL.
+*thank for the author Michael Townsend.
+*/
 div.button {
 	position: relative;
 	text-align: center;
