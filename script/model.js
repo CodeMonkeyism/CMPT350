@@ -64,51 +64,51 @@ var model = {
 	@param delay the gap of two actions
 	@param times the length of loop time
 	*/
-	setTimer:function(action,name,parameter,delay,period){
-		var i=0;
-		var id;
-		if(action == "add"){
-			 id=setInterval(function(){
-				model.add(name,parameter);
-				showResource.refreshRes();
-				//for test 
-				pushMessage.addNew("get 1 wood");
-				//test finish				
-				console.log(model.getData(name));
-			},delay);
-		}
+	// setTimer:function(action,name,parameter,delay,period){
+	// 	var i=0;
+	// 	var id;
+	// 	if(action == "add"){
+	// 		 id=setInterval(function(){
+	// 			model.add(name,parameter);
+	// 			showResource.refreshRes();
+	// 			//for test 
+	// 			pushMessage.addNew("get 1 wood");
+	// 			//test finish				
+	// 			console.log(model.getData(name));
+	// 		},delay);
+	// 	}
 
-		if(action == "minus"){
-			 id=setInterval(function(){
-				model.minus(name,parameter);
-				// showResource.refreshRes();
-				console.log(model.getData(name));
-			},delay);
-		}
+	// 	if(action == "minus"){
+	// 		 id=setInterval(function(){
+	// 			model.minus(name,parameter);
+	// 			// showResource.refreshRes();
+	// 			console.log(model.getData(name));
+	// 		},delay);
+	// 	}
 
-		if(action == "multiply"){
-			 id=setInterval(function(){
-				model.multiply(name,parameter);
-				// showResource.refreshRes();
-				console.log(model.getData(name));
-			},delay);
-		}
+	// 	if(action == "multiply"){
+	// 		 id=setInterval(function(){
+	// 			model.multiply(name,parameter);
+	// 			// showResource.refreshRes();
+	// 			console.log(model.getData(name));
+	// 		},delay);
+	// 	}
 
-		if(action == "divide"){
-			 id=setInterval(function(){
-				model.divide(name,parameter);
-				// showResource.refreshRes();
-				console.log(model.getData(name));
-			},delay);
-		}
+	// 	if(action == "divide"){
+	// 		 id=setInterval(function(){
+	// 			model.divide(name,parameter);
+	// 			// showResource.refreshRes();
+	// 			console.log(model.getData(name));
+	// 		},delay);
+	// 	}
 
-		//cancel timer
-		setTimeout(function(){
-			clearInterval(id);	
-		},period);
+	// 	//cancel timer
+	// 	setTimeout(function(){
+	// 		clearInterval(id);	
+	// 	},period);
 
-		return id;
-	},
+	// 	return id;
+	// },
 };
 
 
