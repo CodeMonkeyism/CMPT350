@@ -119,6 +119,12 @@
 	div.RowRight{
 		float: right;
 	}
+	div.RowMiddle{
+		clear: both;
+		float: left;
+		
+
+	}
 	div.row_key{
 		clear: both;
 		float: left;		

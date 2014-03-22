@@ -32,11 +32,15 @@ var showResource = {
 		$("#sourceArea").empty();
 		for(var i=0;i<getRes.length;i++){
 			//getRes[i][0] is name, getRes[i][0] is value
+			$('<div>').attr("class","RowRoot").appendTo($("div#sourceArea"))
+			 .append("<div class='RowLeft'>" + getRes[i][0].substring(4) + "</div>")
+			 .append("<div class='RowMiddle'>" + "test1" + "</div>")
+			 .append("<div class='RowRight'>" + getRes[i][1] + "</div>")
+			 .append("<div class='tooltip'>" + "test" + "</div>")
 
-			$("#sourceArea").append("<div class=RowRoot>");
-			$("#sourceArea").append("<div class=RowLeft>" + getRes[i][0].substring(4) + "</div>");
-			$("#sourceArea").append("<div class=RowRight>" + getRes[i][1] + "</div>");
-			$("#sourceArea").append("</div>");
+			// $("#sourceArea").append("<div class='RowLeft'>" + getRes[i][0].substring(4) + "</div>");
+			// $("#sourceArea").append("<div class='RowRight'>" + getRes[i][1] + "</div>");
+			// $("#sourceArea").append("</div>");
 		}
 	},
 
