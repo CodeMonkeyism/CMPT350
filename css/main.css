@@ -1,3 +1,11 @@
+	body, .tooltip {
+		font-family: "Times New Roman", Times, serif;
+		font-size: 16px;
+		font-weight: normal;
+		line-height: normal;
+		letter-spacing: normal;
+	}
+
 	div#header {
 		position:absolute;
 		top :0%;
@@ -104,11 +112,18 @@
 	div.RowRoot {
 		position: relative;
 	}
-	div.RowLeft {
+	div.RowLeft{
 		clear: both;
 		float: left;
 	}
-	div.RowRight {
+	div.RowRight{
+		float: right;
+	}
+	div.row_key{
+		clear: both;
+		float: left;		
+	}
+	div.row_val{
 		float: right;
 	}
 	#headButtonArea {

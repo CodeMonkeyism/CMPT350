@@ -38,3 +38,50 @@ div.button div.cooldown {
 	height: 100%;
 	background-color: #DDDDDD;
 }
+
+/* Tooltip */
+
+div.tooltip {
+	display: none;
+	padding: 2px 5px;
+	border: 1px solid black;
+	position: absolute;
+	box-shadow: -1px 3px 2px #666;
+	background: white;
+	z-index: 999;
+}
+
+.tooltip.bottom {
+	top: 30px;
+}
+
+.tooltip.right {
+	left: 2px;
+}
+
+.tooltip.left {
+	right: 0px;
+}
+
+.tooltip.top {
+	bottom: 20px;
+}
+
+*:hover > div.tooltip {
+	display: block;
+}
+
+div.tooltip:hover {
+	display: none !important;
+}
+
+.disabled:hover > div.tooltip, .button.free:hover > div.tooltip {
+	display: none;
+}
+
+#event .button.disabled:hover > div.tooltip {
+	display: block;
+}
+div.button div.tooltip {
+	width: 100px;
+}
