@@ -1,4 +1,9 @@
 var robotFactory = {
+    attackerList : [],
+    defenserList : [],
+    gatherList: [],
+    healerList: [],
+    malfunctionList : [],
     ATTACKERMOD : {
         attackPowerMod : 7,
         defensePowerMod : 2,
@@ -66,21 +71,28 @@ var robotFactory = {
         switch(type){
             case robotFactory.ATTACKER:
                 var modifier = robotFactory.ATTACKERMOD;
+                robotFactory.attackerList.push(baseRobot);
                 break;
             case robotFactory.DEFENSER:
                 var modifier = robotFactory.DEFENSERMOD;
+                robotFactory.defenserList.push(baseRobot);
                 break;
             case robotFactory.GATHER:
                 var modifier = robotFactory.GATHERMOD;
+                robotFactory.gatherList.push(baseRobot);
                 break;
             case robotFactory.HEALER:
                 var modifier = robotFactory.HEALERMOD;
+                robotFactory.healerList.push(baseRobot);
                 break;
             default:
                 var modifier = robotFactory.ZEROMOD;
                 baseRobot.robotType = "Malfunction";
+                robotFactory.malfunctionList.push(baseRobot);
                 break;
         }
+        // Add robot to group.
+        
         // If the robot is malfunctioned, directly return it.
         if (modifier == robotFactory.ZEROMOD) {
             return baseRobot;

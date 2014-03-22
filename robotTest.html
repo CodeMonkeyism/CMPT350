@@ -2,6 +2,7 @@
 	<script type="text/javascript" src="script/robotFactory.js"></script>
 	<script type="text/javascript" src="script/model.js"></script>
 	<script type="text/javascript">
+
 	model.setData("res_Power",9999);
 	model.setData("res_Metal",9999);
 	model.setData("res_Fuel",9999);
@@ -49,8 +50,13 @@
 	document.writeln(testGroup.healerCount + "<br>");
 	document.writeln(testGroup.gatherCount + "<br>");
 	document.writeln(testGroup.robots + "<br>");
-	
-	
+
+	document.writeln(robotFactory.attackerList[0].attackPower);
+	document.writeln(robotFactory.defenserList[0].attackPower);
+	document.writeln(robotFactory.gatherList[0].attackPower);
+	document.writeln(robotFactory.healerList[0].attackPower);
+	document.writeln(robotFactory.malfunctionList[0].attackPower);
+
 	</script>
 </head>
 <body>
