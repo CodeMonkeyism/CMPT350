@@ -29,6 +29,5 @@ var mainRoom = {
 				};
 			}			
 		},
-
 	}//end of craftables
 }

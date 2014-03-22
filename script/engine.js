@@ -9,10 +9,19 @@ var delay = 1000;   //res add per
 engine = {
 	
 	//TODO  finish all resource
+	// total speed
+	powerSpeed : "0",
+	scrapSpeed : "0",
+	lubeSpeed : "0",
 	//rescourse speed
-	powerSpeed : "1",
-	scrapSpeed : "1",
-	lubeSpeed : "1",
+	powerGrow : "3",
+	scrapGrow : "3",
+	lubeGrow : "3",
+
+	//decrease speed
+	powerDecrease :"1",
+	scrapDecrease : "1",
+	lubeDecrease : "1",
 
 	//building switch
 	solarCellButton : false,
@@ -45,10 +54,44 @@ engine = {
 */
 	calcResSpeed: function(){
 		//TODO finished res speed calc
-		this.powerSpeed = parseInt(this.powerSpeed) + parseInt(powerPerCell)*parseInt(localStorage.getItem("bld_Solar Cell"));
+		// this.powerSpeed = parseInt(this.powerSpeed) + parseInt(powerPerCell)*parseInt(localStorage.getItem("bld_Solar Cell"));
+		this.powerSpeed = parseInt(this.powerGrow) - parseInt(this.powerDecrease);
+		this.scrapSpeed = parseInt(this.scrapGrow) - parseInt(this.scrapDecrease);
+		this.lubeSpeed = parseInt(this.lubeGrow) - parseInt(this.lubeDecrease);
+		// console.log("powerSpeed is "+ this.powerSpeed);
+		// metalSpeed = 1;
+
+
+
+	// powerSpeed : "0",
+	// scrapSpeed : "0",
+	// lubeSpeed : "0",
+	// //rescourse speed
+	// powerGrow : "3",
+	// scrapGrow : "3",
+	// lubeGrow : "3",
+
+	// //decrease speed
+	// powerDecrease :"1",
+	// scrapDecrease : "1",
+	// lubeDecrease : "1",
+	},
+
+	calcGrowSpeed: function(){
+		//TODO finished res speed calc
+		this.powerGrow = parseInt(powerPerCell)*parseInt(localStorage.getItem("bld_Solar Cell"));
 		// console.log("powerSpeed is "+ this.powerSpeed);
 		// metalSpeed = 1;
 	},
+
+	calcDecreaseSpeed: function(){
+		//TODO finished res speed calc
+		// this.powerSpeed = parseInt(this.powerSpeed) + parseInt(powerPerCell)*parseInt(localStorage.getItem("bld_Solar Cell"));
+		this.powerDecrease = "1";
+		// console.log("powerSpeed is "+ this.powerSpeed);
+		// metalSpeed = 1;
+	},
+
 
 
 	cancelTimer: function(){

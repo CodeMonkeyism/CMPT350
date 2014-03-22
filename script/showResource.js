@@ -61,7 +61,7 @@ var showResource = {
 
 	refreshBuild:function(){
 		var getBulid = this.getAllBulid();
-		// console.log(getBulid);
+		console.log(getBulid);
 		$("#buildingArea").empty();
 		for(var i=0;i<getBulid.length;i++){
 			//getBulid[i][0] is name, getBulid[i][0] is value
