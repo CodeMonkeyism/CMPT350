@@ -1,3 +1,37 @@
+/**
+Exploration events have the following structure:
+{
+    name: The exploration's name.
+    description: The exploration's description.
+    robotReturned : The robot returned after exploration,
+    time: How much time will the exploration take,
+    loot : A structure contains all resources obtained,
+    result : A message reflecting exploration's loss.
+}
+
+Random Event has the structure as in RandomEvent.js.
+{
+    title: The random event's title,
+    isAvailable: a function to judge whether this event is possible.
+        scenes: {
+            'start': {
+                text: description of the event.
+                notification: text to show in notification area.
+                buttons:{
+                    bottonName: {
+                        text: bottonText,
+                        nextScene: { possibility: nextSceneName, possibility: nextSceneName }
+                    },...
+                }
+            },...
+            sceneName: {
+                text: ...,
+                buttons: {...},
+                }
+            },...
+        }
+}
+*/
 var Events = {
     exploreLevelOne : 1,
     exploreLevelTwo : 2,
@@ -61,7 +95,7 @@ var Events = {
 
         // Null scene will automatically fail.
         if (scenes == null) {
-            return Events.exploreFailed("Your robots fell to a hole, and flied off the plant.");
+            return Events.exploreFailed("Fell into space","Your robots fell to a hole, and flied off the plant.");
         };
 
         // Random choose a scene.
@@ -69,18 +103,22 @@ var Events = {
 
         // If robot group is too weak, you failed.
         if (!Events.isExplorePossible(robotGroup, scenes[sceneIndex])) {
-            return Events.exploreFailed("You robots are too weak.");
+            return Events.exploreFailed(scenes[sceneIndex].name, "You robots are too weak.");
         };
         
         // Robot loss reduce: max reduce 4 loss.
         var lossReduce = robotGroup.healerCount >=4 ? robotGroup.healerCount : 4;
+        // Get the modifier of group power.
+        var groupPowerModifier = Events.groupPowerModifier(robotGroup, scenes[sceneIndex]);
         // The count of loss robot.
-        if (Math.random() < scenes[sceneIndex].lossPossibility) {
+        // If group is powerful enough and you are lucky, you lose nothing.
+        if ((Math.random() + groupPowerModifier) < scenes[sceneIndex].lossPossibility) {
             var lossCount = 0;
         } 
         else{
             // calcuate reduced loss count. Make sure the loss count is >= 0.
-            var lossCount = Math.floor(scenes[sceneIndex].lossCount * Math.random());
+            // Group power could still reduce loss here.
+            var lossCount = Math.floor(scenes[sceneIndex].lossCount * Math.random() * groupPowerModifier);
             lossCount = (lossCount - lossReduce) >= 0 ? (lossCount - lossReduce) : 0;
         };
         if (lossCount >= robotGroup.robots.length) {
@@ -90,13 +128,22 @@ var Events = {
         var randomGroup = robotGroup.robots.sort(function(a,b){return Math.random()>.5 ? -1 : 1;});
         var groupAfterExplore = randomGroup.slice(lossCount);
 
-        // Resource adjustment index: max value 50%.
-        var resourceAdjust = (0.1 * robotGroup.gatherCount) >= 0.5 ? 0.5 : 0.1 * robotGroup.gatherCount;
+        // Resource modifier: each gather brings 10% more, max 50% for gathers.
+        // Also plus group power modifier.
+        // Max modifier: 200%
+        var gatherModifier = (0.1 * robotGroup.gatherCount) >= 0.5 ? 0.5 : (0.1 * robotGroup.gatherCount);
+        var resourceAdjust = (gatherModifier + groupPowerModifier + 1) >= 2 ? 2 : (gatherModifier + groupPowerModifier + 1);
+        console.log(groupPowerModifier);
+        console.log(gatherModifier);
+        console.log(resourceAdjust);
 
         // Resource you got.
         var exploreLoot = new Object();
         for (var i = scenes[sceneIndex].loot.length - 1; i >= 0; i--) {
             if (scenes[sceneIndex].loot[i].rate > Math.random()) {
+                console.log(scenes[sceneIndex].name);
+                console.log(scenes[sceneIndex].loot[i].quantity);
+                console.log(Math.ceil(scenes[sceneIndex].loot[i].quantity * resourceAdjust));
                 exploreLoot[scenes[sceneIndex].loot[i].resourceName] = Math.ceil(scenes[sceneIndex].loot[i].quantity * resourceAdjust);
             }
             else {
@@ -106,6 +153,8 @@ var Events = {
         console.log(exploreLoot);
 
         return {
+            name: scenes[sceneIndex].name,
+            description: scenes[sceneIndex].description,
             robotReturned : groupAfterExplore,
             time: scenes[sceneIndex].time,
             loot : exploreLoot,
@@ -132,8 +181,9 @@ var Events = {
         return true;
     },
 
-    exploreFailed : function(description) {
+    exploreFailed : function(name, description) {
         return {
+                name: name,
                 robotReturned : [],
                 time : 0,
                 loot : {res_Power : 0,
@@ -141,5 +191,19 @@ var Events = {
                         res_Fuel : 0},
                 result : description
             }
+    },
+
+    groupPowerModifier : function(robotGroup, scene){
+        // Product Index  = sum (group attribute / required min attribute - 1)
+        // Max index: 1 
+        var hpMod = robotGroup.HP / scene.requirement.minHP - 1;
+        var attackMod = robotGroup.attackPower / scene.requirement.minAttackPower - 1;
+        var defenseMod = robotGroup.defensePower / scene.requirement.minDefensePower - 1;
+        var productIndex = (hpMod + attackMod + defenseMod) > 1 ? 1 : (hpMod + attackMod + defenseMod);
+        return productIndex;
+    },
+
+    addExplorationButton : function{
+        
     },
 }

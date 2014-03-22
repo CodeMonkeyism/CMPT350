@@ -2,47 +2,61 @@
 	<script type="text/javascript" src="script/robotFactory.js"></script>
 	<script type="text/javascript" src="script/model.js"></script>
 	<script type="text/javascript">
+
 	model.setData("res_Power",9999);
 	model.setData("res_Metal",9999);
 	model.setData("res_Fuel",9999);
 	
 	robot1 = robotFactory.createRobot("Robot One", robotFactory.ATTACKER);
-	document.write(robot1.robotName + "<br>");
-	document.write(robot1.attackPower + "<br>");
-	document.write(robot1.defensePower + "<br>");
-	document.write(robot1.HP + "<br>");
-	document.write(robot1.luck + "<br>");
-	document.write(robot1.robotType + "<br>");
+	document.writeln(robot1.robotName + "<br>");
+	document.writeln(robot1.attackPower + "<br>");
+	document.writeln(robot1.defensePower + "<br>");
+	document.writeln(robot1.HP + "<br>");
+	document.writeln(robot1.luck + "<br>");
+	document.writeln(robot1.robotType + "<br>");
 	robot2 = robotFactory.createRobot("Robot Two", "NaN");
-	document.write(robot2.robotName + "<br>");
-	document.write(robot2.attackPower + "<br>");
-	document.write(robot2.defensePower + "<br>");
-	document.write(robot2.HP + "<br>");
-	document.write(robot2.luck + "<br>");
-	document.write(robot2.robotType + "<br>");
+	document.writeln(robot2.robotName + "<br>");
+	document.writeln(robot2.attackPower + "<br>");
+	document.writeln(robot2.defensePower + "<br>");
+	document.writeln(robot2.HP + "<br>");
+	document.writeln(robot2.luck + "<br>");
+	document.writeln(robot2.robotType + "<br>");
 	robot3 = robotFactory.createRobot("Robot Three", robotFactory.DEFENSER);
-	document.write(robot3.robotName + "<br>");
-	document.write(robot3.attackPower + "<br>");
-	document.write(robot3.defensePower + "<br>");
-	document.write(robot3.HP + "<br>");
-	document.write(robot3.luck + "<br>");
-	document.write(robot3.robotType + "<br>");
+	document.writeln(robot3.robotName + "<br>");
+	document.writeln(robot3.attackPower + "<br>");
+	document.writeln(robot3.defensePower + "<br>");
+	document.writeln(robot3.HP + "<br>");
+	document.writeln(robot3.luck + "<br>");
+	document.writeln(robot3.robotType + "<br>");
 	robot4 = robotFactory.createRobot("Robot Four", robotFactory.GATHER);
-	document.write(robot4.robotName + "<br>");
-	document.write(robot4.attackPower + "<br>");
-	document.write(robot4.defensePower + "<br>");
-	document.write(robot4.HP + "<br>");
-	document.write(robot4.luck + "<br>");
-	document.write(robot4.robotType + "<br>");
+	document.writeln(robot4.robotName + "<br>");
+	document.writeln(robot4.attackPower + "<br>");
+	document.writeln(robot4.defensePower + "<br>");
+	document.writeln(robot4.HP + "<br>");
+	document.writeln(robot4.luck + "<br>");
+	document.writeln(robot4.robotType + "<br>");
 	robot5 = robotFactory.createRobot("Robot Five", robotFactory.HEALER);
-	document.write(robot5.robotName + "<br>");
-	document.write(robot5.attackPower + "<br>");
-	document.write(robot5.defensePower + "<br>");
-	document.write(robot5.HP + "<br>");
-	document.write(robot5.luck + "<br>");
-	document.write(robot5.robotType + "<br>");
-	
-	
+	document.writeln(robot5.robotName + "<br>");
+	document.writeln(robot5.attackPower + "<br>");
+	document.writeln(robot5.defensePower + "<br>");
+	document.writeln(robot5.HP + "<br>");
+	document.writeln(robot5.luck + "<br>");
+	document.writeln(robot5.robotType + "<br>");
+	testGroup = robotFactory.createRobotGroup(robot1,robot2,robot3,robot4,robot5);
+	document.writeln(testGroup.attackPower + "<br>");
+	document.writeln(testGroup.defensePower + "<br>");
+	document.writeln(testGroup.minDefense + "<br>");
+	document.writeln(testGroup.HP + "<br>");
+	document.writeln(testGroup.healerCount + "<br>");
+	document.writeln(testGroup.gatherCount + "<br>");
+	document.writeln(testGroup.robots + "<br>");
+
+	document.writeln(robotFactory.attackerList.length);
+	document.writeln(robotFactory.defenserList.length);
+	document.writeln(robotFactory.gatherList.length);
+	document.writeln(robotFactory.healerList.length);
+	document.writeln(robotFactory.malfunctionList.length);
+
 	</script>
 </head>
 <body>
