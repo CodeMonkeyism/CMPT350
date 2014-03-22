@@ -1,4 +1,4 @@
-var robotFactory = {
+robotFactory = {
     attackerList : [],
     defenserList : [],
     gatherList: [],

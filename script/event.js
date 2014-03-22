@@ -32,7 +32,7 @@ Random Event has the structure as in RandomEvent.js.
         }
 }
 */
-var Events = {
+Events = {
     exploreLevelOne : 1,
     exploreLevelTwo : 2,
     exploreLevelThree : 3,
@@ -150,16 +150,40 @@ var Events = {
                 exploreLoot[scenes[sceneIndex].loot[i].resourceName] = 0;
             };
         };
-        console.log(exploreLoot);
+        
 
-        return {
-            name: scenes[sceneIndex].name,
-            description: scenes[sceneIndex].description,
-            robotReturned : groupAfterExplore,
-            time: scenes[sceneIndex].time,
-            loot : exploreLoot,
-            result : scenes[sceneIndex].results[lossCount]
-        }
+
+        var btnOptions = {
+            cooldown: scenes[sceneIndex].time,
+            text: scenes[sceneIndex].name,
+        };
+        var progressBar = new Button.Button(btnOptions);
+        Button.cooldown(progressBar);
+        setTimeout(function(){
+            $(progressBar).remove();
+            console.log("TODO: change model")
+            console.log(scenes[sceneIndex].description);
+                console.log(scenes[sceneIndex].results[lossCount]);
+                // console.log(exploreLoot);
+
+                    for(var item in exploreLoot){
+                        console.log(item + ":" + exploreLoot[item]);
+                    };
+
+                console.log(groupAfterExplore);
+        }, scenes[sceneIndex].time * 1000)
+        return progressBar;
+        // $(countDownButton).addClass("startExplore");
+        // $(countDownButton).click();
+
+        // return {
+        //     name: scenes[sceneIndex].name,
+        //     description: scenes[sceneIndex].description,
+        //     robotReturned : groupAfterExplore,
+        //     time: scenes[sceneIndex].time,
+        //     loot : exploreLoot,
+        //     result : scenes[sceneIndex].results[lossCount],
+        // }
 
     },
 
@@ -203,7 +227,7 @@ var Events = {
         return productIndex;
     },
 
-    addExplorationButton : function{
-        
-    },
+    initExplorePanel : function(){
+
+    }
 }
