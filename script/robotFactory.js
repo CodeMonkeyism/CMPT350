@@ -187,7 +187,7 @@ var robotFactory = {
             // Calcuate total attack power
             newGroup.attackPower += arguments[i].attackPower;
             // Calcuate total defense power
-            totalDefense += arguments[i].defensePower;
+            newGroup.defensePower += arguments[i].defensePower;
             // Find minimum defense power. 
             if (arguments[i].defensePower < newGroup.minDefense) {
                 newGroup.minDefense = arguments[i].defensePower;
@@ -203,8 +203,6 @@ var robotFactory = {
             // Calcuate total HP
             newGroup.HP += arguments[i].HP;
         };
-        // Set average defense power = total / robot count
-        newGroup.defensePower = Math.floor(totalDefense/arguments.length);
         return newGroup;
     },
 }

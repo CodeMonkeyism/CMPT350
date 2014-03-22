@@ -1,3 +1,37 @@
+/**
+Exploration events have the following structure:
+{
+    name: The exploration's name.
+    description: The exploration's description.
+    robotReturned : The robot returned after exploration,
+    time: How much time will the exploration take,
+    loot : A structure contains all resources obtained,
+    result : A message reflecting exploration's loss.
+}
+
+Random Event has the structure as in RandomEvent.js.
+{
+    title: The random event's title,
+    isAvailable: a function to judge whether this event is possible.
+        scenes: {
+            'start': {
+                text: description of the event.
+                notification: text to show in notification area.
+                buttons:{
+                    bottonName: {
+                        text: bottonText,
+                        nextScene: { possibility: nextSceneName, possibility: nextSceneName }
+                    },...
+                }
+            },...
+            sceneName: {
+                text: ...,
+                buttons: {...},
+                }
+            },...
+        }
+}
+*/
 var Events = {
     exploreLevelOne : 1,
     exploreLevelTwo : 2,
@@ -106,6 +140,8 @@ var Events = {
         console.log(exploreLoot);
 
         return {
+            name: scenes[sceneIndex].name,
+            description: scenes[sceneIndex].description,
             robotReturned : groupAfterExplore,
             time: scenes[sceneIndex].time,
             loot : exploreLoot,
