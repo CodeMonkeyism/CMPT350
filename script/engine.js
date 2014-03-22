@@ -6,27 +6,36 @@ var HeadButtonName = ["Room","WorkShop","Outside"];
 
 engine = {
 	
+	//TODO  finish all resource
+	//rescourse speed
+	powerSpeed : "1",
+	scrapSpeed : "1",
+	lubeSpeed : "1",
 
-
+	//building switch
+	solarCellButton : false,
+	chargingPostButton : false,
 
     init: function(){
     	 $( document ).ready(function() {
     	showResource.refreshRes();
     	showResource.refreshBuild();
     	engine.initGUI();
+    	engine.calcResSpeed();
   		});
 	},
 
-	resAdd: function(){
-		timer =new Array();
-		var getRes = showResource.getAllResName();
-		for(var i=0;i<getRes.length;i++){
-				// setTimer:function(action,name,parameter,delay,period){
-			timer[i]=model.setTimer("add",getRes[i][0],1,1000,99999)
-		}
-		console.log(timer+"timerOOO");
-		return timer; 
+/**
+*@author: Xingze
+*calculate growth speed of resescourse 
+*/
+	calcResSpeed: function(){
+		//TODO finished res speed calc
+		this.powerSpeed = parseInt(this.powerSpeed) + parseInt(localStorage.getItem("bld_solar cell"));
+		console.log("powerSpeed is "+ this.powerSpeed);
+		// metalSpeed = 1;
 	},
+
 
 	cancelTimer: function(){
 		console.log(timer+"timer~~~~~~~~~~~~~~~~~");
@@ -35,6 +44,16 @@ engine = {
 		}	
 
 	},
+
+	/**
+	*@author:Xingze
+	* res added one time
+	*/
+	setGrow: function(){
+		model.add("res_power",this.powerSpeed);
+		model.add("res_metal",this.metalSpeed);
+	},
+
 
 	initGUI: function(){
 		//create headButtonArea
@@ -67,6 +86,30 @@ engine = {
 			click: 0,
 			cooldown: 10,
 		}).appendTo('div#buildingButton');
+	},
+
+
+		/**
+	@author:Xingze
+	@param action add/minus/multiply/divide
+	@param name name of items
+	@param parameter parameter of add/minus/multiply/divide method
+	@param delay the gap of two actions
+	@param times the length of loop time
+	*/
+
+	setTimer:function(action,delay){
+		var i=0;
+		var id;
+		if(action == "add"){
+			 id=setInterval(function(){
+				engine.setGrow();
+				// engine.initBuilding();
+				showResource.refreshRes();			
+				// console.log(model.getData(name));
+			},delay);
+		}
+		return id;
 	},
 
 	// Gets a guid
