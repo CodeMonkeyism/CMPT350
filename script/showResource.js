@@ -3,7 +3,6 @@
 *push message to resource and building
 */
 
-
 var showResource = {
 
 
@@ -17,10 +16,10 @@ var showResource = {
 			if(localStorage.key(i).substring(0,4)=="res_"){
 				var resName = localStorage.key(i);
 				var resValue = model.getData(resName);
-				console.log(resName+"name");
-				console.log(resValue+"value");
+				// console.log(resName+"name");
+				// console.log(resValue+"value");
 				allRes[j] = [resName,resValue];
-				console.log(allRes[j]+"array");
+				// console.log(allRes[j]+"array");
 				j++;
 			}
 		}
@@ -29,7 +28,7 @@ var showResource = {
 
 	refreshRes:function(){
 		var getRes = this.getAllRes();
-		console.log(getRes);
+		// console.log(getRes);
 		$("#sourceArea").empty();
 		for(var i=0;i<getRes.length;i++){
 			//getRes[i][0] is name, getRes[i][0] is value
@@ -50,10 +49,10 @@ var showResource = {
 			if(localStorage.key(i).substring(0,4)=="bld_"){
 				var bulidName = localStorage.key(i);
 				var bulidValue = model.getData(bulidName);
-				console.log(bulidName+"name");
-				console.log(bulidValue+"value");
+				// console.log(bulidName+"name");
+				// console.log(bulidValue+"value");
 				allBulid[j] = [bulidName,bulidValue];
-				console.log(allBulid[j]+"array");
+				// console.log(allBulid[j]+"array");
 				j++;
 			}
 		}
@@ -62,7 +61,7 @@ var showResource = {
 
 	refreshBuild:function(){
 		var getBulid = this.getAllBulid();
-		console.log(getBulid);
+		// console.log(getBulid);
 		$("#buildingArea").empty();
 		for(var i=0;i<getBulid.length;i++){
 			//getBulid[i][0] is name, getBulid[i][0] is value

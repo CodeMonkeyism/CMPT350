@@ -32,6 +32,25 @@ $(function(){
 			$("div#event").hide();
 		}else if (command=="tec") {
 			$("div#event").show();
+			d = document.createElement("div");
+			$(d).attr("id","headButtonArea")
+				.appendTo($("div#header"));
+			var list = ["room","WorkShop","Outside"];
+			list.forEach(function(name){
+				var b = document.createElement("button");
+				$(b).html(name).attr("id",name+"Button").appendTo($("div#headButtonArea"));	
+			});
+			$("#WorkShopButton").click(function(){
+				$(this).hide();
+			});
+			$("#OutsideButton").click(function(){
+				$("#WorkShopButton").show();
+			})
+		}else if (command=="addsolar") {
+			console.log("add a solar cell")
+			model.add("bld_Solar Cell",1);
+			engine.calcResSpeed();
+			showResource.refreshBuild();
 
 		};
 

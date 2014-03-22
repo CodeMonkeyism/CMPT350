@@ -3,7 +3,9 @@
 *change valuse of varible 
 */
 var HeadButtonName = ["Room","WorkShop","Outside"];
-
+var powerPerCell = 5;
+var delay = 1000;   //res add per 
+  
 engine = {
 	
 	//TODO  finish all resource
@@ -18,10 +20,22 @@ engine = {
 
     init: function(){
     	 $( document ).ready(function() {
+
+    	 //init rescourse and building 
+    	 model.setData("res_Power",0);
+		 model.setData("res_Scrap",0);
+         model.setData("res_Lube",0);
+
+    	 model.setData("bld_Solar Cell",0);
+		 model.setData("bld_Scrap Heap",0);
+         model.setData("bld_Factory",0);
+         model.setData("bld_Charging Post",0);
+
     	showResource.refreshRes();
     	showResource.refreshBuild();
     	engine.initGUI();
     	engine.calcResSpeed();
+    	engine.setTimer(delay);
   		});
 	},
 
@@ -31,14 +45,14 @@ engine = {
 */
 	calcResSpeed: function(){
 		//TODO finished res speed calc
-		this.powerSpeed = parseInt(this.powerSpeed) + parseInt(localStorage.getItem("bld_solar cell"));
-		console.log("powerSpeed is "+ this.powerSpeed);
+		this.powerSpeed = parseInt(this.powerSpeed) + parseInt(powerPerCell)*parseInt(localStorage.getItem("bld_Solar Cell"));
+		// console.log("powerSpeed is "+ this.powerSpeed);
 		// metalSpeed = 1;
 	},
 
 
 	cancelTimer: function(){
-		console.log(timer+"timer~~~~~~~~~~~~~~~~~");
+		// console.log(timer+"timer~~~~~~~~~~~~~~~~~");
 		for(var j=0;j<timer.length;j++){
 			clearInterval(timer[j]);
 		}	
@@ -50,10 +64,35 @@ engine = {
 	* res added one time
 	*/
 	setGrow: function(){
-		model.add("res_power",this.powerSpeed);
-		model.add("res_metal",this.metalSpeed);
+		model.add("res_Power",this.powerSpeed);
+		model.add("res_Scrap",this.scrapSpeed);
+		model.add("res_Lube",this.lubeSpeed);
+
+		
 	},
 
+
+	/**
+	@author:Xingze
+	@param action add/minus/multiply/divide
+	@param name name of items
+	@param parameter parameter of add/minus/multiply/divide method
+	@param delay the gap of two actions
+	@param times the length of loop time
+	*/
+
+	setTimer:function(delay){
+		var id;
+		// if(action == "add"){
+			 id=setInterval(function(){
+				engine.setGrow();
+				// engine.initBuilding();
+				showResource.refreshRes();			
+				// console.log(model.getData(name));
+			},delay);
+		// }
+		return id;
+	},
 
 	initGUI: function(){
 		//create headButtonArea
@@ -89,28 +128,7 @@ engine = {
 	},
 
 
-		/**
-	@author:Xingze
-	@param action add/minus/multiply/divide
-	@param name name of items
-	@param parameter parameter of add/minus/multiply/divide method
-	@param delay the gap of two actions
-	@param times the length of loop time
-	*/
 
-	setTimer:function(action,delay){
-		var i=0;
-		var id;
-		if(action == "add"){
-			 id=setInterval(function(){
-				engine.setGrow();
-				// engine.initBuilding();
-				showResource.refreshRes();			
-				// console.log(model.getData(name));
-			},delay);
-		}
-		return id;
-	},
 
 	// Gets a guid
 	//this method Copied from A Dark Room Code.
@@ -123,9 +141,14 @@ engine = {
 	//this method Copied from A Dark Room Code.
 	log: function(msg) {
 		if(this._log) {
-			console.log(msg);
+			// console.log(msg);
 		}
 	},
+
+
+	//@author Xingze
+	//button of build building
+	
 }
 	
 
