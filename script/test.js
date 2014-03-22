@@ -51,14 +51,6 @@ $(function(){
 			model.add("bld_Solar Cell",1);
 			engine.calcResSpeed();
 			showResource.refreshBuild();
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
->>>>>>> origin/Xingze1
 		};
 
 	}
