@@ -52,23 +52,24 @@ $(function(){
 			$("div#workerList").empty();
 			$.each(Workers._Duty, function(key,value){
 				var job = "wkr_"+key;
-				//build worker row
+			//build worker row
 				var workerRow = $('<div>')
 				.attr("class","RowRoot")
 				.attr("id",key+"Row")
 				.appendTo($("#workerList"));
-				//append job name to workerRow
+			//append job name to workerRow
 				$('<div>')
 				.attr("class","RowLeft")
 				.attr("id",key+"Name")
 				.text(key)
 				.appendTo($(workerRow));
-				//append worker value container to workerRow
+			//append worker value container to workerRow
 				var workerRight = $('<div>')
 				.attr("class","RowRight")
 				.attr("id",key+"Name")
 				.appendTo($(workerRow));
-				//append button and number to workerRow
+			//append button and number to workerRow
+				//left button
 				var minButton = $("<button>")
 				.text("<")
 				.click(function(){
@@ -76,13 +77,13 @@ $(function(){
 					model.minus(job,1);
 					model.add('wkr_Idle',1);						
 					};
-					console.log("this is "+model.getData(job));
-					console.log("idle is "+model.getData('wkr_Idle'));
 				})
 				.appendTo($(workerRight));
+				//number
 				$("<span>")
 				.text(model.getData(job))
 				.appendTo($(workerRight));
+				//right button
 				var maxButton = $("<button>")
 				.text(">")
 				.click(function(){
@@ -91,11 +92,21 @@ $(function(){
 					model.minus('wkr_Idle',1);						
 					};
 				})
+				//if it is idle, hide the button.
 				.appendTo($(workerRight));
 				if (key=='Idle') {
 					$(minButton).css('visibility','hidden');
 					$(maxButton).css('visibility','hidden');
 				};
+			//add cost tooltip
+				var costTooltip = $('<div>').addClass("tooltip bottom right");
+				for(var k in value) {
+					$("<div>").addClass('row_key').text(k).appendTo(costTooltip);
+					$("<div>").addClass('row_val').text(value[k]).appendTo(costTooltip);
+				}
+				if(costTooltip.children().length > 0) {
+					costTooltip.appendTo(workerRow);
+				}
 			});
 		} else if(command=="set worker"){
 				$.each(Workers._Duty, function(key,value){

@@ -158,3 +158,6 @@
 		border-style: groove;
 		width: 40%;
 	}
+	div.tooltip {
+		width: 100px;
+	}
