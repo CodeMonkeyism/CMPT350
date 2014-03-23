@@ -167,6 +167,10 @@ engine = {
 			)
 		);
 		Workers.refreshWorkerData();
+		//set page to first page.
+		var firstButtonId = "#"+HeadButtonName[0]+"Button";
+		$(firstButtonId).click();
+
 				//test code, for showing how create button.
 				//will be delete after create building buttons.
 				var secondPageId = "#"+HeadButtonName[0]+"Panel";
