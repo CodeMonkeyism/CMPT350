@@ -120,10 +120,8 @@
 		float: right;
 	}
 	div.RowMiddle{
-		clear: both;
-		float: left;
-		
-
+		float: right;
+		margin-right: 20px;
 	}
 	div.row_key{
 		clear: both;

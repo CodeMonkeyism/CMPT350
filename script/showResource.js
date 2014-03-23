@@ -32,16 +32,45 @@ var showResource = {
 		$("#sourceArea").empty();
 		for(var i=0;i<getRes.length;i++){
 			//getRes[i][0] is name, getRes[i][0] is value
+			var speed = 0;
+			if(getRes[i][0]=="res_Power"){
+				if(engine.powerSpeed>0)
+					speed = "+" + engine.powerSpeed;
+				else
+					speed = engine.powerSpeed;
+
+			}else if(getRes[i][0]=="res_Scrap"){
+				if(engine.scrapSpeed>0)
+					speed = "+" + engine.scrapSpeed;
+				else
+					speed = engine.scrapSpeed;
+			}else if(getRes[i][0]=="res_Lube"){
+				if(engine.lubeSpeed>0)
+					speed = "+" + engine.lubeSpeed;
+				else
+					speed = engine.lubeSpeed;
+
+			}
+			
+
 			$('<div>').attr("class","RowRoot").appendTo($("div#sourceArea"))
 			 .append("<div class='RowLeft'>" + getRes[i][0].substring(4) + "</div>")
-			 .append("<div class='RowMiddle'>" + "test1" + "</div>")
 			 .append("<div class='RowRight'>" + getRes[i][1] + "</div>")
+			 .append("<div class='RowMiddle'>" + speed + "</div>")
 			 .append("<div class='tooltip'>" + "test" + "</div>")
-
 			// $("#sourceArea").append("<div class='RowLeft'>" + getRes[i][0].substring(4) + "</div>");
 			// $("#sourceArea").append("<div class='RowRight'>" + getRes[i][1] + "</div>");
 			// $("#sourceArea").append("</div>");
 		}
+
+		//if grow speed>0 set green, otherwise set red;
+		$(".RowMiddle").each(function(){
+			// console.log($(this).text()+"~~~~~~~~~~~~~~~~");
+			if($(this).text()>0)
+				$(this).css("color","#00FF00");
+			else 
+				$(this).css("color","#FF0000");
+		});
 	},
 
 	getAllBulid:function(){

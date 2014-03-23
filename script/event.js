@@ -173,17 +173,6 @@ Events = {
                 console.log(groupAfterExplore);
         }, scenes[sceneIndex].time * 1000)
         return progressBar;
-        // $(countDownButton).addClass("startExplore");
-        // $(countDownButton).click();
-
-        // return {
-        //     name: scenes[sceneIndex].name,
-        //     description: scenes[sceneIndex].description,
-        //     robotReturned : groupAfterExplore,
-        //     time: scenes[sceneIndex].time,
-        //     loot : exploreLoot,
-        //     result : scenes[sceneIndex].results[lossCount],
-        // }
 
     },
 
