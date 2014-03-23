@@ -19,17 +19,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
+                resourceName : "res_Scrap",
                 quantity : 20,
                 rate : 1
             },
             {
-                resourceName : "res_Metal",
-                quantity : 20,
-                rate : 1
-            },
-            {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 20,
                 rate : 1
             },
@@ -57,17 +52,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
+                resourceName : "res_Scrap",
                 quantity : 60,
                 rate : 1
             },
             {
-                resourceName : "res_Metal",
-                quantity : 60,
-                rate : 1
-            },
-            {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 60,
                 rate : 1
             },
@@ -98,17 +88,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -136,17 +121,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 75,
-                rate : 0.8
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 75,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 75,
                 rate : 1
             },
@@ -171,7 +151,7 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 55,
                 rate : 1
             },
@@ -204,17 +184,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -243,17 +218,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -283,17 +253,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -301,7 +266,7 @@ Events.exploreScene = {
         },
 
         {
-        name : "Area Power Room",
+        name : "Area Engine Room",
         description : "Engine sound comes from the room. Is the engine running normally?",
         // The time to explore in second.
         time : 85,
@@ -324,17 +289,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -368,17 +328,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -408,17 +363,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -450,17 +400,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -491,17 +436,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -530,17 +470,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -575,17 +510,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -616,17 +546,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -658,17 +583,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -700,17 +620,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -740,17 +655,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -783,17 +693,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -830,17 +735,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -873,17 +773,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -917,17 +812,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -959,17 +849,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -1003,17 +888,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -1046,17 +926,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },
@@ -1090,17 +965,12 @@ Events.exploreScene = {
             },
         loot : [
             {
-                resourceName : "res_Power",
-                quantity : 70,
-                rate : 0.9
-            },
-            {
-                resourceName : "res_Metal",
+                resourceName : "res_Scrap",
                 quantity : 70,
                 rate : 1
             },
             {
-                resourceName : "res_Fuel",
+                resourceName : "res_Lube",
                 quantity : 70,
                 rate : 0.8
             },

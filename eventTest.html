@@ -1,49 +1,57 @@
 <head>
     <script type="text/javascript" src="script/event.js"></script>
+    <script language="JavaScript" src="script/model.js"></script>
     <script type="text/javascript" src="script/scene/exploreScene.js"></script>
     <script type="text/javascript" src="script/scene/randomEvent.js"></script>
+    <script type="text/javascript" src="lib/jquery-1.11.0.min.js"></script>
+    <script language="JavaScript" src="script/engine.js"></script>
+    <script language="JavaScript" src="script/showResource.js"></script>
+    <script type="text/javascript" src="lib/Button.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="lib/Button.css" />
     <script type="text/javascript">
-        document.write("Test read from event.exploreScene<br>");
-        document.write(Events.exploreScene.tier1.length + "<br>");
-        document.write(Events.exploreScene.tier1 + "<br>");
-        document.write(Events.exploreScene.tier2.length + "<br>");
-        document.write(Events.exploreScene.tier2 + "<br>");
-        var emptyGroup = {
-            attackPower : 0,
-            defensePower: 0,
-            minDefense: 0,
-            HP: 0,
-            lossOfHp: 0,
-            robots: [],
-        };
-        var emptyGroupResult = Events.explore(emptyGroup, Events.exploreLevelOne);
-        document.write("---emptyGroup---<br>");
-        document.write(emptyGroupResult.name + "<br>");
-        document.write(emptyGroupResult.robotReturned + "<br>");
-        document.write(emptyGroupResult.loot + "<br>");
-        document.write(emptyGroupResult.result + "<br>");
-        var group5 = {
-            attackPower : 5,
-            defensePower: 5,
-            minDefense: 5,
-            HP: 5,
-            lossOfHp: 0,
-            gatherCount : 2,
-            robots: ["Robot One"],
-        };
-        console.log("---group5---");
-        var group5Result = Events.explore(group5, Events.exploreLevelOne);
-        document.write("---group5---<br>");
+    $( document ).ready( function(){
+        $("#area").append("Test read from event.exploreScene<br>");
+        $("#area").append(Events.exploreScene.tier1.length + "<br>");
+        $("#area").append(Events.exploreScene.tier1 + "<br>");
+        $("#area").append(Events.exploreScene.tier2.length + "<br>");
+        $("#area").append(Events.exploreScene.tier2 + "<br>");
+        // var emptyGroup = {
+        //     attackPower : 0,
+        //     defensePower: 0,
+        //     minDefense: 0,
+        //     HP: 0,
+        //     lossOfHp: 0,
+        //     robots: [],
+        // };
+        // var emptyGroupResult = Events.explore(emptyGroup, Events.exploreLevelOne);
+        // $("#area").append("---emptyGroup---<br>");
+        // $("#area").append(emptyGroupResult.name + "<br>");
+        // $("#area").append(emptyGroupResult.robotReturned + "<br>");
+        // $("#area").append(emptyGroupResult.loot + "<br>");
+        // $("#area").append(emptyGroupResult.result + "<br>");
+        // var group5 = {
+        //     attackPower : 5,
+        //     defensePower: 5,
+        //     minDefense: 5,
+        //     HP: 5,
+        //     lossOfHp: 0,
+        //     gatherCount : 2,
+        //     robots: ["Robot One"],
+        // };
+        // console.log("---group5---");
+        // var group5Result = Events.explore(group5, Events.exploreLevelOne);
+        // $("#area").append("---group5---<br>");
         
-        document.write(group5Result.name + "<br>");
-        document.write(group5Result.robotReturned + "<br>");
-        document.write(group5Result.loot + "<br>");
-        if (group5Result.loot) {
-            for(var item in group5Result.loot){
-                document.write(item + ":" + group5Result.loot[item] + "<br>");
-            };
-        };
-        document.write(group5Result.result + "<br>");
+        // $("#area").append(group5Result.name + "<br>");
+        // $("#area").append(group5Result.robotReturned + "<br>");
+        // $("#area").append(group5Result.loot + "<br>");
+        // if (group5Result.loot) {
+        //     for(var item in group5Result.loot){
+        //         $("#area").append(item + ":" + group5Result.loot[item] + "<br>");
+        //     };
+        // };
+        // $("#area").append(group5Result.result + "<br>");
         var group20 = {
             attackPower : 20,
             defensePower: 20,
@@ -55,26 +63,42 @@
         };
         console.log("---group20---");
         var group20Result = Events.explore(group20, Events.exploreLevelTwo);
-        document.write("---group20---<br>");
+        // $("#area").append("---group20---<br>");
         
-        document.write(group20Result.name + "<br>");
-        document.write(group20Result.robotReturned + "<br>");
-        document.write(group20Result.loot + "<br>");
-        if (group20Result.loot) {
-            for(var item in group20Result.loot){
-                document.write(item + ":" + group20Result.loot[item] + "<br>");
-            };
-        };
-        document.write(group20Result.result + "<br>");
+        // $("#area").append(group20Result.name + "<br>");
+        // $("#area").append(group20Result.robotReturned + "<br>");
+        // $("#area").append(group20Result.loot + "<br>");
+        // if (group20Result.loot) {
+        //     for(var item in group20Result.loot){
+        //         $("#area").append(item + ":" + group20Result.loot[item] + "<br>");
+        //     };
+        // };
+        // $("#area").append(group20Result.result + "<br>");
 
-        var rndRoomEvent = Events.createRandomEvent(Events.randomRoomEvent);
-        document.write(rndRoomEvent.title + "<br>")
-        document.write(rndRoomEvent.scenes.start.text + "<br>")
-        document.write(rndRoomEvent.scenes.start.notification + "<br>")
-        document.write(rndRoomEvent.scenes.start.buttons.investigate + "<br>")
-        document.write(rndRoomEvent.scenes.start.buttons.ignore + "<br>")
-        document.write(rndRoomEvent.scenes.nothing + "<br>")
-        document.write(rndRoomEvent.scenes.stuff + "<br>")
+        // var rndRoomEvent = Events.createRandomEvent(Events.randomRoomEvent);
+        // $("#area").append(rndRoomEvent.title + "<br>")
+        // $("#area").append(rndRoomEvent.scenes.start.text + "<br>")
+        // $("#area").append(rndRoomEvent.scenes.start.notification + "<br>")
+        // $("#area").append(rndRoomEvent.scenes.start.buttons.investigate + "<br>")
+        // $("#area").append(rndRoomEvent.scenes.start.buttons.ignore + "<br>")
+        // $("#area").append(rndRoomEvent.scenes.nothing + "<br>")
+        // $("#area").append(rndRoomEvent.scenes.stuff + "<br>")
+
+        // var btnOptions = {
+        //     cooldown: 5,
+        //     text: group20Result.name,
+        //     click: function(){
+        //         alert("hi");
+        //     },
+        // };
+        // var button  = new Button.Button(btnOptions);
+        // $("#area").append(button);
+        // Button.cooldown(button);
+        $("#area").append(group20Result)
+        
+    })
     </script>
 </head>
-<body></body>
+<body>
+<div id="area"></div>
+</body>
