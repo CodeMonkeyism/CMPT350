@@ -51,6 +51,8 @@ $(function(){
 			model.add("bld_Solar Cell",1);
 			engine.calcResSpeed();
 			showResource.refreshBuild();
+		}else if (command=="worker") {
+			$("#WorkShopPanel").append($("<div>").attr("id","workerList"))
 		};
 
 	}
