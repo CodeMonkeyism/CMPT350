@@ -41,73 +41,9 @@ $(function(){
 			showResource.refreshBuild();
 
 		}else if (command=="worker") {
-			//put this block to init GUI
-			$("#WorkShopPanel").append(
-				$("<div>").attr("id","workerListContainer").append(
-					$("<div>").attr("id","workerList").attr("class","Area")
-				)
-			);
 			//put this block as function
 			//get number of worker from localstorage. 
-			$("div#workerList").empty();
-			$.each(Workers._Duty, function(key,value){
-				var job = "wkr_"+key;
-			//build worker row
-				var workerRow = $('<div>')
-				.attr("class","RowRoot")
-				.attr("id",key+"Row")
-				.appendTo($("#workerList"));
-			//append job name to workerRow
-				$('<div>')
-				.attr("class","RowLeft")
-				.attr("id",key+"Name")
-				.text(key)
-				.appendTo($(workerRow));
-			//append worker value container to workerRow
-				var workerRight = $('<div>')
-				.attr("class","RowRight")
-				.attr("id",key+"Name")
-				.appendTo($(workerRow));
-			//append button and number to workerRow
-				//left button
-				var minButton = $("<button>")
-				.text("<")
-				.click(function(){
-					if (model.getData(job)>0) {
-					model.minus(job,1);
-					model.add('wkr_Idle',1);						
-					};
-				})
-				.appendTo($(workerRight));
-				//number
-				$("<span>")
-				.text(model.getData(job))
-				.appendTo($(workerRight));
-				//right button
-				var maxButton = $("<button>")
-				.text(">")
-				.click(function(){
-					if (model.getData('wkr_Idle')>0) {
-					model.add(job,1);
-					model.minus('wkr_Idle',1);						
-					};
-				})
-				//if it is idle, hide the button.
-				.appendTo($(workerRight));
-				if (key=='Idle') {
-					$(minButton).css('visibility','hidden');
-					$(maxButton).css('visibility','hidden');
-				};
-			//add cost tooltip
-				var costTooltip = $('<div>').addClass("tooltip bottom right");
-				for(var k in value) {
-					$("<div>").addClass('row_key').text(k).appendTo(costTooltip);
-					$("<div>").addClass('row_val').text(value[k]).appendTo(costTooltip);
-				}
-				if(costTooltip.children().length > 0) {
-					costTooltip.appendTo(workerRow);
-				}
-			});
+			Workers.refreshWorkerData();
 		} else if(command=="set worker"){
 				$.each(Workers._Duty, function(key,value){
 					var job = "wkr_"+key;

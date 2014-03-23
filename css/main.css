@@ -111,6 +111,7 @@
 
 	div.RowRoot {
 		position: relative;
+		cursor: default;
 	}
 	div.RowLeft{
 		clear: both;
@@ -118,6 +119,7 @@
 	}
 	div.RowRight{
 		float: right;
+		width: 80px;
 	}
 	div.RowMiddle{
 		float: right;
@@ -160,4 +162,11 @@
 	}
 	div.tooltip {
 		width: 100px;
+	}
+	.Val {
+
+	}
+
+	.rightBtn {
+		float: right;
 	}

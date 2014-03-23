@@ -160,16 +160,27 @@ engine = {
 			.attr("class","Panel")
 			.appendTo($("#mainAreaRoller"));
 		});
-		var secondPageId = "#"+HeadButtonName[0]+"Panel";
-		$(secondPageId).append($('<div>')
-			.attr("id","buildingButton").append("test")
+		//create worker Area
+		$("#WorkShopPanel").append(
+			$("<div>").attr("id","workerListContainer").append(
+				$("<div>").attr("id","workerList").attr("class","Area")
+			)
 		);
-		new Button.Button({
-			id: 'gatherButton',
-			text: "gather wood",
-			click: 0,
-			cooldown: 10,
-		}).appendTo('div#buildingButton');
+		Workers.refreshWorkerData();
+				//test code, for showing how create button.
+				//will be delete after create building buttons.
+				var secondPageId = "#"+HeadButtonName[0]+"Panel";
+				$(secondPageId).append($('<div>')
+					.attr("id","buildingButton").append("test")
+				);
+				new Button.Button({
+					id: 'gatherButton',
+					text: "gather wood",
+					click: 0,
+					cooldown: 10,
+				}).appendTo('div#buildingButton');
+
+
 	},
 
 
@@ -189,7 +200,6 @@ engine = {
 			// console.log(msg);
 		}
 	},
-
 
 	//@author Xingze
 	//button of build building
