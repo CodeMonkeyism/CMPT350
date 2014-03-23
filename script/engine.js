@@ -54,6 +54,8 @@ engine = {
 */
 	calcResSpeed: function(){
 		//TODO finished res speed calc
+		this.calcGrowSpeed();
+		this.calcDecreaseSpeed();
 		// this.powerSpeed = parseInt(this.powerSpeed) + parseInt(powerPerCell)*parseInt(localStorage.getItem("bld_Solar Cell"));
 		this.powerSpeed = parseInt(this.powerGrow) - parseInt(this.powerDecrease);
 		this.scrapSpeed = parseInt(this.scrapGrow) - parseInt(this.scrapDecrease);
