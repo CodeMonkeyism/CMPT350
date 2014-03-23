@@ -152,7 +152,7 @@
 		z-index: 9999;
 		background-color:White;
 	}
-	div#workerList {
+	div#workerListContainer {
 		position: absolute;
 		left:50%;
 		border-style: groove;

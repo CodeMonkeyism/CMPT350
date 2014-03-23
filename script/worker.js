@@ -5,8 +5,8 @@ var Workers = {
 	name: "worker",
 	_Delay: 10,
 	_Duty: {
-		'Cellman':{
-			'power':1
+		'Idle':{
+			'power':0
 		},
 		'Scavenger':{
 			'power':-1,
@@ -20,27 +20,24 @@ var Workers = {
 		'Bender':{
 			'power':-1,
 			'metal':-5,
-			'frame':2
+			'frame':2,
+			'gear':1
 		},
-		'Miner':{
+		'Pumper':{
 			'power':-1,
-			'silicon':1
+			'lube':1
 		},
-		'Fitter':{
-			'power':-10,
-			'silicon':-5,
-			'chip':1
-		},
+
 
 
 	},
 	_WorkerCount: {
-		'Cellman':0,
+		'Idle':0,
 		'Scavenger':0,
 		'Foundryman':0,
 		'Bender':0,
-		'Miner':0,
-		'Fitter':0,
+		'Pumper':0,
+
 	},
 	Product: {
 		'power': function(){
