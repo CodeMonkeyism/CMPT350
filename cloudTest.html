@@ -1,0 +1,35 @@
+<head>
+    <script type="text/javascript" src="lib/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="script/cloudStateManager.js"></script>
+    <script type="text/javascript">
+        $(
+        function(){
+            var currentState = $CSM.getCurrentState();
+            console.log(currentState);
+            var jsonString = JSON.stringify(currentState);
+            $('#result').append(jsonString);
+        }   
+        )
+        function saveState(){
+            $CSM.saveState('test','test');
+        }
+        function loadState(){
+            $CSM.loadState('test','test');
+        }
+        function setLocalStorage(){
+            var key = prompt("Input a key", "None")
+            var value = prompt("Input a value", "None")
+            localStorage.setItem(key,value)
+        }
+        function register(){
+            $CSM.register('test','test')
+        }
+    </script>
+</head>
+<body>
+    <div id="result"></div>
+    <div id="register" onclick="register()">Register</div>
+    <div id="saveState" onclick="saveState()">Try Save</div>
+    <div id="loadState" onclick="loadState()">Try Load</div>
+    <div id="setLocalStorage" onclick="setLocalStorage()">Set Local Storage</div>
+</body>
