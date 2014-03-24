@@ -49,7 +49,21 @@ var showResource = {
 					speed = "+" + engine.lubeSpeed;
 				else
 					speed = engine.lubeSpeed;
-
+			}else if(getRes[i][0]=="res_Metal"){
+				if(engine.metalSpeed>0)
+					speed = "+" + engine.metalSpeed;
+				else
+					speed = engine.lubeSpeed;
+			}else if(getRes[i][0]=="res_Frame"){
+				if(engine.frameSpeed>0)
+					speed = "+" + engine.frameSpeed;
+				else
+					speed = engine.lubeSpeed;
+			}else if(getRes[i][0]=="res_Gear"){
+				if(engine.gearSpeed>0)
+					speed = "+" + engine.gearSpeed;
+				else
+					speed = engine.lubeSpeed;
 			}
 			
 

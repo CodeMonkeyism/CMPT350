@@ -13,15 +13,24 @@ engine = {
 	powerSpeed : "0",
 	scrapSpeed : "0",
 	lubeSpeed : "0",
+
+	metalSpeed : "0",
+	frameSpeed : "0",
+	gearSpeed : "0",
 	//rescourse speed
-	powerGrow : "3",
-	scrapGrow : "3",
-	lubeGrow : "3",
+	powerGrow : "0",
+	scrapGrow : "0",
+	lubeGrow : "0",
+
+	metalGrow : "0",
+	frameGrow : "0",
+	gearGrow : "0",
 
 	//decrease speed
-	powerDecrease :"1",
-	scrapDecrease : "1",
-	lubeDecrease : "1",
+	powerDecrease :"0",
+	scrapDecrease : "0",
+	lubeDecrease : "0",
+
 
 	//building switch
 	solarCellButton : false,
@@ -30,10 +39,15 @@ engine = {
     init: function(){
     	 $( document ).ready(function() {
 
-    	 //init rescourse and building 
+    	 // init rescourse and building 
     	 model.setData("res_Power",0);
 		 model.setData("res_Scrap",0);
          model.setData("res_Lube",0);
+
+         model.setData("res_Metal",0);
+         model.setData("res_Frame",0);
+         model.setData("res_Gear",0);
+
 
     	 model.setData("bld_Solar Cell",0);
 		 model.setData("bld_Scrap Heap",0);
@@ -57,31 +71,51 @@ engine = {
 		this.calcGrowSpeed();
 		this.calcDecreaseSpeed();
 		// this.powerSpeed = parseInt(this.powerSpeed) + parseInt(powerPerCell)*parseInt(localStorage.getItem("bld_Solar Cell"));
-		this.powerSpeed = parseInt(this.powerGrow) - parseInt(this.powerDecrease);
-		this.scrapSpeed = parseInt(this.scrapGrow) - parseInt(this.scrapDecrease);
-		this.lubeSpeed = parseInt(this.lubeGrow) - parseInt(this.lubeDecrease);
+		this.powerSpeed = parseInt(this.powerGrow) + parseInt(this.powerDecrease);
+		
+		if(localStorage.getItem("res_Power")>0){
+			this.scrapSpeed = parseInt(this.scrapGrow) + parseInt(this.scrapDecrease);
+		}else{
+			this.scrapSpeed = 0; 
+		}
+		
+		if(localStorage.getItem("res_Power")>0){
+			this.lubeSpeed = parseInt(this.lubeGrow) + parseInt(this.lubeDecrease);
+		}else{
+			this.lubeSpeed = 0; 
+		}
+
+		if(localStorage.getItem("res_Power")>0||localStorage.getItem("res_Scrap")>0){
+			this.metalSpeed = parseInt(this.metalGrow) + parseInt(this.metalDecrease);
+		}else{
+			this.metalSpeed = 0; 
+		}
+
+		if(localStorage.getItem("res_Power")>0||localStorage.getItem("res_Metal")>0){
+			this.frameSpeed = parseInt(this.frameGrow);
+		}else{
+			this.frameSpeed = 0; 
+		}
+
+		if(localStorage.getItem("res_Power")>0||localStorage.getItem("res_Metal")>0){
+			this.gearSpeed = parseInt(this.gearGrow);
+		}else{
+			this.gearSpeed = 0; 
+		}
+
 		// console.log("powerSpeed is "+ this.powerSpeed);
 		// metalSpeed = 1;
 
-
-
-	// powerSpeed : "0",
-	// scrapSpeed : "0",
-	// lubeSpeed : "0",
-	// //rescourse speed
-	// powerGrow : "3",
-	// scrapGrow : "3",
-	// lubeGrow : "3",
-
-	// //decrease speed
-	// powerDecrease :"1",
-	// scrapDecrease : "1",
-	// lubeDecrease : "1",
 	},
 
 	calcGrowSpeed: function(){
 		//TODO finished res speed calc
 		this.powerGrow = parseInt(powerPerCell)*parseInt(localStorage.getItem("bld_Solar Cell"));
+		this.lubeGrow = parseInt(Workers._Duty.Pumper.res_Lube*localStorage.getItem("wkr_Pumper"));
+		this.scrapGrow = parseInt(Workers._Duty.Scavenger.res_Scrap*localStorage.getItem("wkr_Scavenger"));
+		this.metalGrow = parseInt(Workers._Duty.Foundryman.res_Metal*localStorage.getItem("wkr_Foundryman"));
+		this.frameGrow = parseInt(Workers._Duty.Bender.res_Frame*localStorage.getItem("wkr_Bender"));
+		this.gearGrow = parseInt(Workers._Duty.Bender.res_Gear*localStorage.getItem("wkr_Bender"));
 		// console.log("powerSpeed is "+ this.powerSpeed);
 		// metalSpeed = 1;
 	},
@@ -89,7 +123,33 @@ engine = {
 	calcDecreaseSpeed: function(){
 		//TODO finished res speed calc
 		// this.powerSpeed = parseInt(this.powerSpeed) + parseInt(powerPerCell)*parseInt(localStorage.getItem("bld_Solar Cell"));
-		this.powerDecrease = "1";
+		 scavengerWorking = 0;
+		 foundrymanWorking = 0;
+		 benderWorking = 0;
+		 pumperWorking = 0;
+
+
+		if(this.scrapSpeed>0)
+			scavengerWorking = 1;
+
+		if(this.metalSpeed>0)
+			foundrymanWorking = 1;
+
+		if(this.frameSpeed>0)
+			benderWorking = 1;
+
+		if(this.lubeSpeed>0)
+			pumperWorking = 1;
+
+
+		this.powerDecrease = parseInt(Workers._Duty.Scavenger.res_Power*localStorage.getItem("wkr_Scavenger"))//*scavengerWorking)
+							+parseInt(Workers._Duty.Foundryman.res_Power*localStorage.getItem("wkr_Foundryman"))//*foundrymanWorking)
+							+parseInt(Workers._Duty.Bender.res_Power*localStorage.getItem("wkr_Bender"))//*benderWorking)
+							+parseInt(Workers._Duty.Pumper.res_Power*localStorage.getItem("wkr_Pumper"));//*pumperWorking);
+
+		this.scrapDecrease = parseInt(Workers._Duty.Foundryman.res_Scrap*localStorage.getItem("wkr_Foundryman"))//*this.foundrymanWorking);
+
+		this.metalDecrease = parseInt(Workers._Duty.Bender.res_Metal*localStorage.getItem("wkr_Bender"))//*this.benderWorking);
 		// console.log("powerSpeed is "+ this.powerSpeed);
 		// metalSpeed = 1;
 	},
@@ -112,6 +172,10 @@ engine = {
 		model.add("res_Power",this.powerSpeed);
 		model.add("res_Scrap",this.scrapSpeed);
 		model.add("res_Lube",this.lubeSpeed);
+
+		model.add("res_Metal",this.metalSpeed);
+		model.add("res_Frame",this.frameSpeed);
+		model.add("res_Gear",this.gearSpeed);
 
 		
 	},

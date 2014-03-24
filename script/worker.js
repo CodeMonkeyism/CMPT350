@@ -6,26 +6,26 @@ var Workers = {
 	_Delay: 10,
 	_Duty: {
 		'Idle':{
-			'power':0
+			'res_Power':0
 		},
 		'Scavenger':{
-			'power':-1,
-			'scrap':1
+			'res_Power':-1,
+			'res_Scrap':1
 		},
 		'Foundryman':{
-			'power':-1,
-			'scrap':-4,
-			'metal':2,
+			'res_Power':-1,
+			'res_Scrap':-4,
+			'res_Metal':2,
 		},
 		'Bender':{
-			'power':-1,
-			'metal':-5,
-			'frame':2,
-			'gear':1
+			'res_Power':-1,
+			'res_Metal':-5,
+			'res_Frame':2,
+			'res_Gear':1
 		},
 		'Pumper':{
-			'power':-1,
-			'lube':1
+			'res_Power':-1,
+			'res_Lube':1
 		},
 
 
@@ -105,6 +105,7 @@ var Workers = {
 			.text("<")
 			.attr("class","leftBtn")
 			.click(function(){
+				engine.calcResSpeed();
 				if (model.getData(job)>0) {
 				model.minus(job,1);
 				model.add('wkr_Idle',1);
@@ -122,6 +123,7 @@ var Workers = {
 			.text(">")
 			.attr("class","rightBtn")
 			.click(function(){
+				engine.calcResSpeed();
 				if (model.getData('wkr_Idle')>0) {
 				model.add(job,1);
 				model.minus('wkr_Idle',1);	
