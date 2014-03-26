@@ -205,3 +205,17 @@
 	.rightBtn {
 		float: right;
 	}
+
+	div#robotList{
+		float:left; 
+		display: inline-block;
+		width:50%;
+		height:100%;
+	}
+
+	div#zoneList {
+		float:right; 
+		display: inline-block;
+		width:50%;
+		height:100%;
+	}

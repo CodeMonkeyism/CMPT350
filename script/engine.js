@@ -237,6 +237,14 @@ engine = {
 			)
 		);
 		Workers.refreshWorkerData();
+		// Create outside Area
+		// Include two sub area: robot list and zone list
+		$("#OutsidePanel").append(
+			$("<div>").attr("id","exploreContainer").append(
+				[$("<div>").attr("id","robotList"),
+				$("<div>").attr("id","zoneList")]
+			)
+		);
 		//set page to first page.
 		var firstButtonId = "#"+HeadButtonName[0]+"Button";
 		$(firstButtonId).click();
