@@ -236,6 +236,12 @@ engine = {
 				$("<div>").attr("id","workerList").attr("class","Area")
 			)
 		);
+		//create robot craft Area
+		$("#RoomPanel").append(
+			$("<div>").attr("id","robotCraftListContainer").append(
+				$("<div>").attr("id","robotCraftList").attr("class","Area")
+			)
+		);
 		Workers.refreshWorkerData();
 		//set page to first page.
 		var firstButtonId = "#"+HeadButtonName[0]+"Button";

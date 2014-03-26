@@ -182,9 +182,10 @@
 		float:left;
 		margin-left: 5px;
 	}
-	div#workerListContainer {
+	div#workerListContainer,div#robotCraftListContainer {
 		position: absolute;
 		left:50%;
+		top: 20%;
 		border-style: groove;
 		width: 40%;
 	}
