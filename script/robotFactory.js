@@ -97,6 +97,7 @@ robotFactory = {
         // Check resource. Will consume if enough.
         if (!robotFactory.checkAndConsumeResource(type)) {
             Message.pushMessage('Not enough resource.');
+            return;
         };        
         // Get basic attribute modification by given type
         switch(type){
