@@ -118,6 +118,9 @@ var showResource = {
 			$("#buildingArea").append("<div class=RowRight>" + getBulid[i][1] + "</div>");
 			$("#buildingArea").append("</div>");
 		}
+
+		//TODO refresh building
+		building.pushBuilding("bld_SolarCell");
 	}
 }
 

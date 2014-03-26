@@ -6,6 +6,7 @@ var mainRoom = {
 			name:"bld_Solar Cell",
 			button:null,//what this line do?
 			maximum: 10,
+			unlock: "lok_ChargingPost",
 			electricitySpeed: 5,
 			buildMsg:'a new solar cell is installed.',
 			hint:'generate electricity',
@@ -23,6 +24,7 @@ var mainRoom = {
 			name:'bld_Charging Post',
 			button:null,//what this line do?
 			maximum: 10,
+			unlock: "null",
 			//support robot
 			supportWorker: 5,
 			supportFight: 2,
@@ -43,6 +45,7 @@ var mainRoom = {
 			name:'bld_Workshop',
 			button:null,//what this line do?
 			maximum: 10,
+			unlock: "null",
 			//support robot
 			supportWorker: 5,
 			supportFight: 2,
@@ -154,6 +157,7 @@ var mainRoom = {
 			name:'bld_Scrap Heap',
 			button:null,//what this line do?
 			maximum: 1,
+			unlock: "null",
 			hint:'You can find scrap here.',
 			buildMsg:'A Scrap Heap is settled',
 			maxMsg:'electricity supply is not enough for more charging post.',

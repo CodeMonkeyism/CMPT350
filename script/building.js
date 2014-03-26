@@ -17,29 +17,35 @@
 				// 	click: 0,
 				// 	cost: mainRoom._buildings[name].cost(),
 				// }).appendTo('div#BuildingList');
-				var buttonId = name+"Button";
+				var buttonId = buildName+"Button";
 				var newButton = new Button.Button({
 					id: buttonId,
 					text: mainRoom._buildings[buildName].name.substring(4),
-					click: this.buttonOnClick(buildName),
+					// click: this.buttonOnClick(buildName),
+					click:function() {
+								model.add(mainRoom._buildings[buildName].name,1);
+								showResource.refreshBuild();
+								// $("#"+buttonId).replaceWith(newButton);
+							},
 					cost: mainRoom._buildings[buildName].cost(),
 				});
+
 				if($("#"+buttonId).length>0){
 					$("#"+buttonId).replaceWith(newButton);
 				}
 				else{
 					newButton.appendTo('div#BuildingList');
 				}
-		},
+		// },
 
-		buttonOnClick:function(buildName){
-			model.add(mainRoom._buildings[buildName].name,1);
-			showResource.refreshBuild();
+		// buttonOnClick:function(buildName){
+		// 	model.add(mainRoom._buildings[buildName].name,1);
+		// 	showResource.refreshBuild();
 
-			//check unlock
-			if(mainRoom._buildings[buildName].unlock.length>0){
+		//	check unlock
+			if(mainRoom._buildings[buildName].unlock!="null"){
 				model.setData(mainRoom._buildings[buildName].unlock="True")
+				console.log(mainRoom._buildings[buildName].unlock+"~~~~~~~~");
 			}
 		},
-
 	};

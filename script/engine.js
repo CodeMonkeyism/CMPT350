@@ -39,6 +39,7 @@ engine = {
     init: function(){
     	 $( document ).ready(function() {
 
+    	 //TODO for test 
     	 // init rescourse and building 
     	 model.setData("res_Power",0);
 		 model.setData("res_Scrap",0);
@@ -53,6 +54,13 @@ engine = {
 		 model.setData("bld_Scrap Heap",0);
          model.setData("bld_Factory",0);
          model.setData("bld_Charging Post",0);
+
+         //true is unlocked, false is locked
+         model.setData("lok_Worker Robot",false);
+         model.setData("lok_Attacker Robot",false);
+         model.setData("lok_Defenser Robot",false);
+         model.setData("lok_Gather Robot",false);
+
 
     	showResource.refreshRes();
     	showResource.refreshBuild();
