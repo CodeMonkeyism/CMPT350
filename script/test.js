@@ -60,6 +60,9 @@ $(function(){
             	robotType: robotFactory.ATTACKER
         	};
 			robotFactory.idleList.push(robot);
+			console.log(robotFactory.idleList);
+			robotFactory.refreshRobotList();
+			Events.initExplorePanel();
 
 
 		} else if(command=="add defenser"){

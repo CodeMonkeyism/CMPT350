@@ -228,4 +228,16 @@ robotFactory = {
         var index = robotFactory.idleList.indexOf(robot);
         robotFactory.idleList.splice(index,1);
     },
+    refreshRobotList: function (){
+        $("#robotList").empty();
+        for (var i = 0; i < robotFactory.idleList.length; i++) {
+            $('<input>')
+            .attr("type","checkbox")
+            .attr("value",i)
+            .appendTo($('<div>').attr('id','robot'+i+'button').appendTo($("#robotList")));
+            $('<p>').text(robotFactory.idleList[i].robotName+" "+robotFactory.idleList[i].robotType).appendTo($("#robot"+i+"button"))
+        };
+
+
+    }
 }

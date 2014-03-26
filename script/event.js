@@ -35,6 +35,14 @@ Random Event has the structure as in RandomEvent.js.
 Events = {
     activeEvent: null,
     activeScene: null,
+    LevelName: {
+        'safePlaceName':1,
+        'normalPlaceName':2,
+        'badPlaceName':3,
+        'dangrousPlaceName':4,
+        'deadPlaceName':5,
+        'hellPlaceName':6,
+    },
     exploreLevelOne : 1,
     exploreLevelTwo : 2,
     exploreLevelThree : 3,
@@ -292,6 +300,13 @@ Events = {
     },
 
     initExplorePanel : function(){
+        $("#zoneList").empty();
+        $.each(Events.LevelName, function(key,value){
+            var zone = $('<div>').attr("id",'zone'+value+'button').appendTo($("#zoneList"));
+            $('<input>').attr('type','radio')
+            .attr('value',value).attr('name','zone').appendTo(zone);
+            $('<p>').text(key).appendTo(zone);
+        });
 
-    }
+    },
 }
