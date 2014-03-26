@@ -188,6 +188,13 @@
 		border-style: groove;
 		width: 40%;
 	}
+	div#BuildingListContainer {
+		position: absolute;
+		left:5%;
+		top: 20%;
+		border-style: groove;
+		width: 40%;
+	}
 	div.tooltip {
 		width: 100px;
 	}

@@ -224,6 +224,12 @@ engine = {
 			.attr("class","Panel")
 			.appendTo($("#mainAreaRoller"));
 		});
+		//create building Area
+		$("#RoomPanel").append(
+			$("<div>").attr("id","BuildingListContainer").append(
+				$("<div>").attr("id","BuildingList").attr("class","Area")
+			)
+		);
 		//create worker Area
 		$("#WorkShopPanel").append(
 			$("<div>").attr("id","workerListContainer").append(
