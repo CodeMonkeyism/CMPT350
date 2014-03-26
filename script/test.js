@@ -105,6 +105,8 @@ $(function(){
 			building.pushBuilding("bld_SolarCell");
 
 
+		}else if(command=="name"){
+			robotFactory.initButton();
 		};
 
 	}

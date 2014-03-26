@@ -67,6 +67,7 @@ engine = {
     	engine.initGUI();
     	engine.calcResSpeed();
     	engine.setTimer(delay);
+    	robotFactory.initButton();
   		});
 	},
 

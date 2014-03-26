@@ -4,55 +4,59 @@ robotFactory = {
     // Basic attribute modification for attacker.
     // Also contains cost for attacker.
     ATTACKERMOD : {
+        name:"Attacker",
         attackPowerMod : 7,
         defensePowerMod : 2,
         hpMod: 0,
         luckMod: 0,
         cost: {
-            res_Power : 7,
-            res_Metal : 10,
-            res_Lube  : 6,
+            "res_Power" : 7,
+            "res_Metal" : 10,
+            "res_Lube"  : 6,
         }
         
     },
     // Basic attribute modification for defenser.
     // Also contains cost for defenser.
     DEFENSERMOD : {
+        name:"Defenser",
         attackPowerMod : 2,
         defensePowerMod : 7,
         hpMod: 0,
         luckMod: 0,
         cost:{
-            res_Power : 10,
-            res_Metal : 7,
-            res_Lube  : 6,
+            "res_Power" : 10,
+            "res_Metal" : 7,
+            "res_Lube"  : 6,
         }
         
     },
     // Basic attribute modification for gather.
     // Also contains cost for gather.
     GATHERMOD : {
+        name:"Gather",
         attackPowerMod : 0,
         defensePowerMod : 0,
         hpMod: 2,
         luckMod: 7,
         cost: {
-            res_Power : 6,
-            res_Metal : 7,
-            res_Lube  : 10,
+            "res_Power" : 6,
+            "res_Metal" : 7,
+            "res_Lube"  : 10,
         }
     },
     // Basic attribute modification for healer.
     // Also contains cost for healer.
     HEALERMOD : {
+        name:"Healer",
         attackPowerMod : 0,
         defensePowerMod : 2,
         hpMod: 7,
         luckMod: 0,
         cost: {
-            res_Power : 10,
-            res_Metal : 10,
-            res_Lube  : 10,
+            "res_Power" : 10,
+            "res_Metal" : 10,
+            "res_Lube"  : 10,
         }
     },
     // Basic attribute modification for other undefined types.
@@ -63,9 +67,9 @@ robotFactory = {
         hpMod: 0,
         luckMod: 0,
         cost: {
-            res_Power : 5,
-            res_Metal : 5,
-            res_Lube  : 5,
+            "res_Power" : 5,
+            "res_Metal" : 5,
+            "res_Lube"  : 5,
         }
     },
     // Constants for robot type.
@@ -73,6 +77,50 @@ robotFactory = {
     DEFENSER : "Defenser",
     GATHER : "Gather",
     HEALER : "Healer",
+    initButton : function() {
+        $('#robotCraftList').empty();
+        //need to refactor this part after group the type of robot.
+        robotFactory.createButton("Attacker").appendTo($('#robotCraftList'));
+        robotFactory.createButton("Defenser").appendTo($('#robotCraftList'));
+        robotFactory.createButton("Gather").appendTo($('#robotCraftList'));
+        robotFactory.createButton("Healer").appendTo($('#robotCraftList'));
+
+    },
+
+    createButton : function(type) {
+        //get cost by name.
+        //need refactor if the structure changed.
+        var theCost = null;
+        $.each(robotFactory,function(index,value){
+            if(value.name==type){
+                var theCost = value.cost;
+            }
+        });
+        return new Button.Button({
+            id: type+'CreateButton',
+            text:'Create '+type,
+            click:function(){
+                robotFactory.createRobotWithRandomName(type); 
+            },
+            cost:theCost,
+        });
+
+
+    },
+    //create robot with random name.
+    // Passing an undefined type (see constants for robot type) will
+    // build a manfunctioned robot.
+    // Will check if there is enough resource.
+    // If the resource is not enough, a message will be post.
+    // If the robot is built, it will be added in robotFactory.idleList.
+    // A success message will also be posted.
+
+    // @param {String} type robot's type.
+    createRobotWithRandomName : function(type){
+        var rand = robotName[Math.floor(Math.random() * robotName.length)];
+        return robotFactory.createRobot(rand,type);
+    },
+
     // Create a robot by given name and type.
     // Passing an undefined type (see constants for robot type) will
     // build a manfunctioned robot.
@@ -278,6 +326,7 @@ robotFactory = {
         for (var i = 0; i < robotFactory.idleList.length; i++) {
             $('<input>')
             .attr("type","checkbox")
+            .attr("name","robotList")
             .attr("value",i)
             .appendTo($('<div>').attr('id','robot'+i+'button').appendTo($("#robotList")));
             $('<p>').text(robotFactory.idleList[i].robotName+" "+robotFactory.idleList[i].robotType).appendTo($("#robot"+i+"button"))
