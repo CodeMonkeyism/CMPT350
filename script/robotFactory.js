@@ -95,6 +95,7 @@ robotFactory = {
             robotType: ""
         };
         // Check resource. Will consume if enough.
+        // If resource is not enough, post a message and return.
         if (!robotFactory.checkAndConsumeResource(type)) {
             Message.pushMessage('Not enough resource.');
             return;
@@ -124,6 +125,7 @@ robotFactory = {
             robotFactory.idleList.push(baseRobot);
             robotFactory.refreshRobotList();
             Message.pushMessage('Bad argument. You get a malfunctioned robot.')
+            return;
         };
         
         // Randomly generate a modifier for this robot's main attribute.
