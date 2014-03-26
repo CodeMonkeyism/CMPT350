@@ -105,12 +105,12 @@ var Workers = {
 			.text("<")
 			.attr("class","leftBtn")
 			.click(function(){
-				engine.calcResSpeed();
 				if (model.getData(job)>0) {
 				model.minus(job,1);
-				model.add('wkr_Idle',1);
-				Workers.refreshWorkerData();						
+				model.add('wkr_Idle',1);						
 				};
+				Workers.refreshWorkerData();
+				engine.calcResSpeed();
 			})
 			.appendTo($(workerRight));
 			//number
@@ -123,12 +123,13 @@ var Workers = {
 			.text(">")
 			.attr("class","rightBtn")
 			.click(function(){
-				engine.calcResSpeed();
+				
 				if (model.getData('wkr_Idle')>0) {
 				model.add(job,1);
-				model.minus('wkr_Idle',1);	
-				Workers.refreshWorkerData();					
+				model.minus('wkr_Idle',1);						
 				};
+				Workers.refreshWorkerData();
+				engine.calcResSpeed();
 			})
 			//if it is idle, hide the button.
 			.appendTo($(workerRight));
