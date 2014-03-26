@@ -51,12 +51,16 @@ $(function(){
 				.append($('<div>').attr("class",'title').text(theEvent.title));
 				//write event text into div
 				$('#eventPanel').append($('<div>').attr("id","eventDescription"));
-				for (var i = theEvent.scenes[theScene].text.length - 1; i >= 0; i--) {
-					$('#eventDescription').append($('<div>').attr("class","eventText").text(theEvent.scenes[theScene].text[i])); 
+				var s= theEvent.scenes[theScene];
+				if(s.notification){
+					pushMessage.addNew(s.notification);
+				}
+				for (var i = s.text.length - 1; i >= 0; i--) {
+					$('#eventDescription').append($('<div>').attr("class","eventText").text(s.text[i])); 
 				};
 				//put event button into div
 				$('#eventPanel').append($('<div>').attr("id","eventButtons"));
-				$.each(theEvent.scenes[theScene].buttons,function(index,value){
+				$.each(s.buttons,function(index,value){
 					var b = new Button.Button({
 						id: index,
 						text: value.text,
