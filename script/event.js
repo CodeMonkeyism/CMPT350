@@ -86,7 +86,7 @@ Events = {
             if(thisScene.notification){
                 pushMessage.addNew(thisScene.notification);
             }
-            for (var i = thisScene.text.length - 1; i >= 0; i--) {
+            for (var i = 0; i < thisScene.text.length; i++) {
                 $('#eventDescription').append($('<div>').attr("class","eventText").text(thisScene.text[i])); 
             };
 
