@@ -44,7 +44,7 @@ var Message = {
 	// document.write(message);
 };
 
-var testPushMessage= Object.create(pushMessage);
+// var testPushMessage= Object.create(pushMessage);
 // testPushMessage.init();
 
 // testPushMessage.addNew(1);

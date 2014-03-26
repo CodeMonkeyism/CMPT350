@@ -101,6 +101,12 @@ $(function(){
 			robotFactory.idleList.push(robot);
 
 
+		}else if(command=="testbutton"){
+			building.pushBuilding("bld_SolarCell");
+
+
 		};
 
 	}
+
+
