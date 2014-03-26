@@ -9,45 +9,57 @@ robotFactory = {
         defensePowerMod : 2,
         hpMod: 0,
         luckMod: 0,
-        powerMod : 2,
-        metalMod : 5,
-        fuelMod  : 1
+        costMod: {
+            res_Power : 2,
+            res_Metal : 5,
+            res_Lube  : 1,
+        }
+        
     },
     DEFENSERMOD : {
         attackPowerMod : 2,
         defensePowerMod : 7,
         hpMod: 0,
         luckMod: 0,
-        powerMod : 5,
-        metalMod : 2,
-        fuelMod  : 1,
+        costMod:{
+            res_Power : 5,
+            res_Metal : 2,
+            res_Lube  : 1,
+        }
+        
     },
     GATHERMOD : {
         attackPowerMod : 0,
         defensePowerMod : 0,
         hpMod: 2,
         luckMod: 7,
-        powerMod : 1,
-        metalMod : 2,
-        fuelMod  : 5,
+        costMod: {
+            res_Power : 1,
+            res_Metal : 2,
+            res_Lube  : 5,
+        }
     },
     HEALERMOD : {
         attackPowerMod : 0,
         defensePowerMod : 2,
         hpMod: 7,
         luckMod: 0,
-        powerMod : 5,
-        metalMod : 5,
-        fuelMod  : 5,
+        costMod: {
+            res_Power : 5,
+            res_Metal : 5,
+            res_Lube  : 5,
+        }
     },
     ZEROMOD : {
         attackPowerMod : 0,
         defensePowerMod : 0,
         hpMod: 0,
         luckMod: 0,
-        powerMod : 0,
-        metalMod : 0,
-        fuelMod  : 0,
+        costMod: {
+            res_Power : 0,
+            res_Metal : 0,
+            res_Lube  : 0,
+        }
     },
     ATTACKER : "Attacker",
     DEFENSER : "Defenser",
@@ -131,9 +143,9 @@ robotFactory = {
     checkAndConsumeResource : function (type){
         // Base resource cost.
         var resourceCost = {
-            Power : 5,
-            Metal : 5,
-            Fuel : 5,
+            res_Power : 5,
+            res_Metal : 5,
+            res_Lube : 5,
         };
         // Set resource cost for different robots
         switch(type){
@@ -153,26 +165,22 @@ robotFactory = {
                 var modifier = robotFactory.ZEROMOD;
                 break;
         }
-        // Set Resource Cost:
-        resourceCost.Power += modifier.powerMod;
-        resourceCost.Metal += modifier.metalMod;
-        resourceCost.Fuel += modifier.fuelMod;
-        console.log("Consume Power:" + resourceCost.Power);
-        console.log("Consume Metal:" + resourceCost.Metal);
-        console.log("Consume Fuel:" + resourceCost.Fuel);
-        // Check resource. 
-        // If it is enough, spend resource and return true. Otherwise returns false.
-        if (model.getData("res_Power") >= resourceCost.Power
-            && model.getData("res_Metal") >= resourceCost.Metal
-            && model.getData("res_Fuel") >= resourceCost.Fuel) {
-            model.minus("res_Power",resourceCost.Power)
-            model.minus("res_Metal",resourceCost.Metal)
-            model.minus("res_Fuel",resourceCost.Fuel)
-            return true;
-        }
-        else {
-            return false;
+        // Calcuate Resource Cost:
+        for (var key in resourceCost) {
+            resourceCost[key] += modifier.costMod[key];
+            console.log("Consume " + key + " for " + resourceCost[key]);
         };
+        // Check resource
+        var isResourceEnough = false;
+        for (var resource in resourceCost) {
+            if (model.getData(resource) >= resourceCost[resource]) {
+                isResourceEnough = true;
+            } else{
+                isResourceEnough = false;
+                break;
+            };
+        };
+        return isResourceEnough;
     },
 
     createRobotGroup: function (){
