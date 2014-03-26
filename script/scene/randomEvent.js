@@ -3,6 +3,7 @@ Events.random = {
         baseEvent.title = 'Noise from storage room';
         baseEvent.scenes.start.text = ["There is strange noise from your storage room.",
                                         "It sounds like eletrical spark."];
+        baseEvent.isAvailable = true;//TODO
         baseEvent.scenes.start.notification = 'Strange noise in your storage room.';
         baseEvent.scenes.start.buttons = {
             'investigate' : {
@@ -48,6 +49,7 @@ Events.random = {
         baseEvent.title = 'Your room rocked for a while';
         baseEvent.scenes.start.text = ["You heard a strong sound.",
                                         "Something hit your plant."];
+        baseEvent.isAvailable = true;//TODO
         baseEvent.scenes.start.notification = 'A spaceship crashed on your plant.';
         baseEvent.scenes.start.buttons = {
             'investigate' : {

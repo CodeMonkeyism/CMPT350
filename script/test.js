@@ -40,10 +40,33 @@ $(function(){
 			engine.calcResSpeed();
 			showResource.refreshBuild();
 
-		}else if (command=="worker") {
-			//put this block as function
-			//get number of worker from localstorage. 
-			Workers.refreshWorkerData();
+		}else if (command=="re") {
+			var theEvent = Events.createRandomEvent("room");	
+			var theScene = 'start';
+			//should be a function
+			if (theEvent.isAvailable){			
+				$('#event').hide();
+				$('#eventPanel').empty()
+				//write event title into div
+				.append($('<div>').attr("class",'title').text(theEvent.title));
+				//write event text into div
+				$('#eventPanel').append($('<div>').attr("id","eventDescription"));
+				for (var i = theEvent.scenes[theScene].text.length - 1; i >= 0; i--) {
+					$('#eventDescription').append($('<div>').attr("class","eventText").text(theEvent.scenes[theScene].text[i])); 
+				};
+				//put event button into div
+				$('#eventPanel').append($('<div>').attr("id","eventButtons"));
+				$.each(theEvent.scenes[theScene].buttons,function(index,value){
+					var b = new Button.Button({
+						id: index,
+						text: value.text,
+						click: Events.clickButton(value),
+					}).appendTo($("#eventButtons"));
+				});
+				//show the event.
+				$('#event').show();
+			}
+
 		} else if(command=="set worker"){
 				$.each(Workers._Duty, function(key,value){
 					var job = "wkr_"+key;

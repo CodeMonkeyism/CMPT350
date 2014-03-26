@@ -66,6 +66,9 @@ Events = {
                 return Events.random.unknownEvent(baseEvent);
         }
     },
+    clickButton : function (value) {
+
+    },
 
     explore : function (robotGroup, sceneLevel) {
         // Determine explore scene.
