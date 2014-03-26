@@ -151,8 +151,8 @@
 		border-style: groove;
 		border-bottom-width: 15px;
 		border-right-width: 15px;
-		width: 20%;
-		height: 20%;
+		width: 400px;
+		height: 250px;
 		z-index: 9999;
 		background-color:White;
 	}

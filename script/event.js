@@ -93,7 +93,7 @@ Events = {
         //write event text into div
             $('#eventPanel').append($('<div>').attr("id","eventDescription"));          
             if(thisScene.notification){
-                pushMessage.addNew(thisScene.notification);
+                Message.pushMessage(thisScene.notification);
             }
             for (var i = 0; i < thisScene.text.length; i++) {
                 $('#eventDescription').append($('<div>').attr("class","eventText").text(thisScene.text[i])); 
