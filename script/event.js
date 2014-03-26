@@ -41,6 +41,7 @@ Events = {
     exploreLevelFour : 4,
     exploreLevelFive : 5,
     exploreLevelSix : 6,
+    exploreLevelMax : 6,
     randomRoomEvent : "room",
     randomShipEvent : "ship",
     createRandomEvent  : function ( type ) {
