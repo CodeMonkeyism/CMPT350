@@ -29,7 +29,7 @@ $(function(){
 			$("#testMode").empty()
 			.append("<p>clear vision Test is On!</p>");
 
-		}else if (command=="teo") {//trigger event
+		}else if (command=="teo") {//trigger event frame
 			$("div#event").hide();
 		}else if (command=="tec") {
 			$("div#event").show();
@@ -40,36 +40,10 @@ $(function(){
 			engine.calcResSpeed();
 			showResource.refreshBuild();
 
-		}else if (command=="re") {
+		}else if (command=="re") {//trigger event.
 			var theEvent = Events.createRandomEvent("room");	
 			var theScene = 'start';
-			//should be a function
-			if (theEvent.isAvailable){			
-				$('#event').hide();
-				$('#eventPanel').empty()
-				//write event title into div
-				.append($('<div>').attr("class",'title').text(theEvent.title));
-				//write event text into div
-				$('#eventPanel').append($('<div>').attr("id","eventDescription"));
-				var s= theEvent.scenes[theScene];
-				if(s.notification){
-					pushMessage.addNew(s.notification);
-				}
-				for (var i = s.text.length - 1; i >= 0; i--) {
-					$('#eventDescription').append($('<div>').attr("class","eventText").text(s.text[i])); 
-				};
-				//put event button into div
-				$('#eventPanel').append($('<div>').attr("id","eventButtons"));
-				$.each(s.buttons,function(index,value){
-					var b = new Button.Button({
-						id: index,
-						text: value.text,
-						click: Events.clickButton(value),
-					}).appendTo($("#eventButtons"));
-				});
-				//show the event.
-				$('#event').show();
-			}
+			Events.loadEvent(theEvent,theScene);
 
 		} else if(command=="set worker"){
 				$.each(Workers._Duty, function(key,value){

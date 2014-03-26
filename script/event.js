@@ -33,6 +33,8 @@ Random Event has the structure as in RandomEvent.js.
 }
 */
 Events = {
+    activeEvent: null,
+    activeScene: null,
     exploreLevelOne : 1,
     exploreLevelTwo : 2,
     exploreLevelThree : 3,
@@ -66,7 +68,76 @@ Events = {
                 return Events.random.unknownEvent(baseEvent);
         }
     },
-    clickButton : function (value) {
+
+    loadEvent: function(theEvent,theScene){
+        if (theEvent.isAvailable){  
+            var thisScene= theEvent.scenes[theScene];
+            Events.activeEvent = theEvent;
+            Events.activeScene = theScene;  
+            console.log(Events.activeScene);    
+            $('#event').hide();
+            $('#eventPanel').empty();
+
+        //write event title into div
+            $('#eventPanel').append($('<div>').attr("class",'title').text(theEvent.title));
+
+        //write event text into div
+            $('#eventPanel').append($('<div>').attr("id","eventDescription"));          
+            if(thisScene.notification){
+                pushMessage.addNew(thisScene.notification);
+            }
+            for (var i = thisScene.text.length - 1; i >= 0; i--) {
+                $('#eventDescription').append($('<div>').attr("class","eventText").text(thisScene.text[i])); 
+            };
+
+        //put event button into div
+            $('#eventPanel').append($('<div>').attr("id","eventButtons"));
+            $.each(thisScene.buttons,function(index,value){
+                var b = new Button.Button({
+                    id: index,
+                    text: value.text,
+                    click: Events.clickButton,
+                }).appendTo($("#eventButtons"));
+            });
+        //show the event.
+            $('#event').show();
+        }        
+    },
+    //some code of this method came from project A Dark Room 
+    clickButton : function (theButton) {
+        var value = Events.activeEvent.scenes[Events.activeScene].buttons[theButton.attr('id')];
+
+        if (value.cost) {
+        //TODO need code about handle cost/loot/etc of button.            
+        };
+
+        if (value.nextScene) {
+            if(value.nextScene == 'end') {
+                Events.endEvent();
+            } else {
+                var r = Math.random();
+                var lowestMatch = null;
+                for(var i in value.nextScene) {
+                    if(r < i && (lowestMatch == null || i < lowestMatch)) {
+                        lowestMatch = i;
+                    }
+                }
+                if(lowestMatch != null) {
+                    Events.loadEvent(Events.activeEvent,value.nextScene[lowestMatch]);
+                    return;
+                }
+                Engine.log('ERROR: no suitable scene found');
+                Events.endEvent();
+            }
+        }else{
+            Engine.log("this button have no nextScene");
+        };
+    },
+
+    endEvent: function() {
+        Events.activeEvent = null;
+        Events.activeScene = null;
+        $("#event").hide();
 
     },
 
