@@ -1,9 +1,5 @@
 robotFactory = {
-    attackerList : [],
-    defenserList : [],
-    gatherList: [],
-    healerList: [],
-    malfunctionList : [],
+    idleList : [],
     ATTACKERMOD : {
         attackPowerMod : 7,
         defensePowerMod : 2,
@@ -107,6 +103,7 @@ robotFactory = {
         
         // If the robot is malfunctioned, directly return it.
         if (modifier == robotFactory.ZEROMOD) {
+            robotFactory.idleList.push(baseRobot);
             return baseRobot;
         };
         
@@ -138,6 +135,7 @@ robotFactory = {
             default:
                 break;
         }
+        robotFactory.idleList.push(baseRobot);
         return baseRobot;
     },
     checkAndConsumeResource : function (type){
@@ -227,30 +225,7 @@ robotFactory = {
         return newGroup;
     },
     removeRobot : function(robot) {
-        var robotType = robot.robotType;
-        switch(robotType){
-            case robotFactory.ATTACKER:
-                var index = robotFactory.attackerList.indexOf(robot);
-                robotFactory.attackerList.splice(index,1);
-                break;
-            case robotFactory.DEFENSER:
-                var index = robotFactory.defenserList.indexOf(robot);
-                robotFactory.defenserList.splice(index,1);
-                break;
-            case robotFactory.GATHER:
-                var index = robotFactory.gatherList.indexOf(robot);
-                robotFactory.gatherList.splice(index,1);
-                break;
-            case robotFactory.HEALER:
-                var index = robotFactory.healerList.indexOf(robot);
-                robotFactory.healerList.splice(index,1);
-                break;
-            case "Malfunction":
-                var index = robotFactory.malfunctionList.indexOf(robot);
-                robotFactory.malfunctionList.splice(index,1);
-                break;
-            default :
-                break;
-        }
+        var index = robotFactory.idleList.indexOf(robot);
+        robotFactory.idleList.splice(index,1);
     },
 }
