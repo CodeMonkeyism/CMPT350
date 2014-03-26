@@ -3,10 +3,10 @@
 *push message to each informmation area
 */
 
-var pushMessage = {
+var Message = {
 
 
-	addNew:function(newMessage){
+	pushMessage:function(newMessage){
 
 		$("#messageArea").prepend("<p>"+newMessage+"</p>");
 		console.log("new is  "+ newMessage);
