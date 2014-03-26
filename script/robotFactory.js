@@ -1,68 +1,91 @@
 robotFactory = {
+    // All robot list
     idleList : [],
+    // Basic attribute modification for attacker.
+    // Also contains cost for attacker.
     ATTACKERMOD : {
         attackPowerMod : 7,
         defensePowerMod : 2,
         hpMod: 0,
         luckMod: 0,
-        costMod: {
-            res_Power : 2,
-            res_Metal : 5,
-            res_Lube  : 1,
+        cost: {
+            res_Power : 7,
+            res_Metal : 10,
+            res_Lube  : 6,
         }
         
     },
+    // Basic attribute modification for defenser.
+    // Also contains cost for defenser.
     DEFENSERMOD : {
         attackPowerMod : 2,
         defensePowerMod : 7,
         hpMod: 0,
         luckMod: 0,
-        costMod:{
-            res_Power : 5,
-            res_Metal : 2,
-            res_Lube  : 1,
+        cost:{
+            res_Power : 10,
+            res_Metal : 7,
+            res_Lube  : 6,
         }
         
     },
+    // Basic attribute modification for gather.
+    // Also contains cost for gather.
     GATHERMOD : {
         attackPowerMod : 0,
         defensePowerMod : 0,
         hpMod: 2,
         luckMod: 7,
-        costMod: {
-            res_Power : 1,
-            res_Metal : 2,
-            res_Lube  : 5,
+        cost: {
+            res_Power : 6,
+            res_Metal : 7,
+            res_Lube  : 10,
         }
     },
+    // Basic attribute modification for healer.
+    // Also contains cost for healer.
     HEALERMOD : {
         attackPowerMod : 0,
         defensePowerMod : 2,
         hpMod: 7,
         luckMod: 0,
-        costMod: {
+        cost: {
+            res_Power : 10,
+            res_Metal : 10,
+            res_Lube  : 10,
+        }
+    },
+    // Basic attribute modification for other undefined types.
+    // Also contains cost for other undefined types.
+    BADMOD : {
+        attackPowerMod : 0,
+        defensePowerMod : 0,
+        hpMod: 0,
+        luckMod: 0,
+        cost: {
             res_Power : 5,
             res_Metal : 5,
             res_Lube  : 5,
         }
     },
-    ZEROMOD : {
-        attackPowerMod : 0,
-        defensePowerMod : 0,
-        hpMod: 0,
-        luckMod: 0,
-        costMod: {
-            res_Power : 0,
-            res_Metal : 0,
-            res_Lube  : 0,
-        }
-    },
+    // Constants for robot type.
     ATTACKER : "Attacker",
     DEFENSER : "Defenser",
     GATHER : "Gather",
     HEALER : "Healer",
+    // Create a robot by given name and type.
+    // Passing an undefined type (see constants for robot type) will
+    // build a manfunctioned robot.
+    // Will check if there is enough resource.
+    // If the resource is not enough, a message will be post.
+    // If the robot is built, it will be added in robotFactory.idleList.
+    // A success message will also be posted.
+    // @param {String} name robot's name.   
+    // @param {String} type robot's type.
     createRobot : function (name, type) {
         // Create a new base robot.
+        // Must define here, since new Object() is behaving oddly,
+        // resulting robot has a strange name.
         var baseRobot = {
             robotName : "rob_" + name,
             attackPower : 5,
@@ -71,48 +94,43 @@ robotFactory = {
             luck: 5,
             robotType: ""
         };
-        // Check resource.
+        // Check resource. Will consume if enough.
         if (!robotFactory.checkAndConsumeResource(type)) {
-            return null;
+            Message.pushMessage('Not enough resource.');
         };        
-        // Set basic attributes for different robots.
+        // Get basic attribute modification by given type
         switch(type){
             case robotFactory.ATTACKER:
                 var modifier = robotFactory.ATTACKERMOD;
-                robotFactory.attackerList.push(baseRobot);
                 break;
             case robotFactory.DEFENSER:
                 var modifier = robotFactory.DEFENSERMOD;
-                robotFactory.defenserList.push(baseRobot);
                 break;
             case robotFactory.GATHER:
                 var modifier = robotFactory.GATHERMOD;
-                robotFactory.gatherList.push(baseRobot);
                 break;
             case robotFactory.HEALER:
                 var modifier = robotFactory.HEALERMOD;
-                robotFactory.healerList.push(baseRobot);
                 break;
             default:
-                var modifier = robotFactory.ZEROMOD;
+                var modifier = robotFactory.BADMOD;
                 baseRobot.robotType = "Malfunction";
-                robotFactory.malfunctionList.push(baseRobot);
                 break;
-        }
-        // Add robot to group.
-        
-        // If the robot is malfunctioned, directly return it.
-        if (modifier == robotFactory.ZEROMOD) {
+        }        
+        // If the robot is malfunctioned, send a message.
+        // Also add it to robot list.
+        if (modifier == robotFactory.BADMOD) {
             robotFactory.idleList.push(baseRobot);
-            return baseRobot;
+            robotFactory.refreshRobotList();
+            Message.pushMessage('Bad argument. You get a malfunctioned robot.')
         };
         
-        // Randomly generate a number for this robot.
-        // If we get < 0.5, then bad luck. Attributes will be reduced.
+        // Randomly generate a modifier for this robot's main attribute.
+        // If we get < 0.5, then bad luck. Main attribute will be reduced.
         var magic = Math.random() < 0.5 ? -1 : 1;
         var baseStat = 4;
         var randomStat = Math.ceil(magic * baseStat * Math.random());
-        // Modify robot attribute, set to basic by type.
+        // Modify robot attribute by given type.
         baseRobot.robotType = type;
         baseRobot.attackPower += modifier.attackPowerMod;
         baseRobot.defensePower += modifier.defensePowerMod;
@@ -135,52 +153,71 @@ robotFactory = {
             default:
                 break;
         }
+        // Add the robot to list and post a message.
         robotFactory.idleList.push(baseRobot);
-        return baseRobot;
+        robotFactory.refreshRobotList();
+        Message.pushMessage('You got a new robot:' + type + '.');
     },
+    /**
+     * Internal method. Should only be invoked by createRobot.
+     * Try to consume resource to build a robot.
+     * @param  {String} type The type of the robot.
+     * @return {Boolean}     Whether the resource is consumed.
+     */
     checkAndConsumeResource : function (type){
-        // Base resource cost.
-        var resourceCost = {
-            res_Power : 5,
-            res_Metal : 5,
-            res_Lube : 5,
-        };
-        // Set resource cost for different robots
+        // Get resource cost for different robots
         switch(type){
             case robotFactory.ATTACKER:
-                var modifier = robotFactory.ATTACKERMOD;
+                var cost = robotFactory.ATTACKERMOD.cost;
                 break;
             case robotFactory.DEFENSER:
-                var modifier = robotFactory.DEFENSERMOD;
+                var cost = robotFactory.DEFENSERMOD.cost;
                 break;
             case robotFactory.GATHER:
-                var modifier = robotFactory.GATHERMOD;
+                var cost = robotFactory.GATHERMOD.cost;
                 break;
             case robotFactory.HEALER:
-                var modifier = robotFactory.HEALERMOD;
+                var cost = robotFactory.HEALERMOD.cost;
                 break;
             default:
-                var modifier = robotFactory.ZEROMOD;
+                var cost = robotFactory.BADMOD.cost;
                 break;
         }
-        // Calcuate Resource Cost:
-        for (var key in resourceCost) {
-            resourceCost[key] += modifier.costMod[key];
-            console.log("Consume " + key + " for " + resourceCost[key]);
-        };
         // Check resource
         var isResourceEnough = false;
-        for (var resource in resourceCost) {
-            if (model.getData(resource) >= resourceCost[resource]) {
+        for (var resource in cost) {
+            if (model.getData(resource) >= cost[resource]) {
                 isResourceEnough = true;
             } else{
                 isResourceEnough = false;
                 break;
             };
         };
+        // Consume resource only if we have enough resource.
+        if (isResourceEnough) {
+            for (var resource in cost) {
+                model.minus(resource,cost[resource]);
+            };
+        };
         return isResourceEnough;
     },
 
+    /**
+     * Create a robot by given robots.
+     * Should give at least one robot, otherwise return false.
+     * Returned object is described as an object:
+     * {
+            attackPower : total attack power of the group,
+            defensePower: total defense power of the group,
+            minDefense: the minimum defense power in the group,
+            HP: total HP of the group,
+            lossOfHp: this is for future use,
+            healerCount : healer in the group,
+            gatherCount : gather in the group,
+            robots: the robots in the group
+        };
+     * @return {RobotGroup} See above.
+     */
     createRobotGroup: function (){
         // Guard: avoid zero argument.
         if (arguments.length == 0) {
@@ -198,7 +235,7 @@ robotFactory = {
             robots: [],
         };
         var totalDefense = 0;
-        // Create robot group.
+        // Add robots into the group.
         for (var i = arguments.length - 1; i >= 0; i--) {
             // Add robot
             newGroup.robots.push(arguments[i]);
@@ -224,10 +261,18 @@ robotFactory = {
         }
         return newGroup;
     },
+    /**
+     * Helper method for createRobotGroup().
+     * Remove added robot from idle list.
+     * @param  {Robot} robot robot to remove
+     */
     removeRobot : function(robot) {
         var index = robotFactory.idleList.indexOf(robot);
         robotFactory.idleList.splice(index,1);
     },
+    /**
+     * Add robot list to user interface.
+     */
     refreshRobotList: function (){
         $("#robotList").empty();
         for (var i = 0; i < robotFactory.idleList.length; i++) {
