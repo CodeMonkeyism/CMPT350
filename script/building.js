@@ -18,6 +18,7 @@
 				// 	cost: mainRoom._buildings[name].cost(),
 				// }).appendTo('div#BuildingList');
 				var buttonId = buildName+"Button";
+				console.log(mainRoom._buildings[buildName].name.substring(4));
 				var newButton = new Button.Button({
 					id: buttonId,
 					text: mainRoom._buildings[buildName].name.substring(4),
