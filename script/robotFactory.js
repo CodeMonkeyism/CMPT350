@@ -357,7 +357,11 @@ robotFactory = {
                 var level = $("input[type='radio']:checked").val();
                 var group = robotFactory.createRobotGroup(robotList);
                 console.log(group);
-
+                console.log(group);
+                var bar = Events.explore(group,parseInt(level));
+                robotFactory.refreshRobotList();
+                console.log(bar);
+                $("div#robotArea").append(bar);
             },
         });
         $('<div>').attr("id","robotExpedition").append(b).appendTo($("#exploreContainer"));
