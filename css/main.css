@@ -119,6 +119,10 @@
 	}
 	div.RowRight{
 		float: right;
+		width: 30px;
+	}
+	div.workerRight{
+		float: right;
 		width: 80px;
 	}
 	div.RowMiddle{
