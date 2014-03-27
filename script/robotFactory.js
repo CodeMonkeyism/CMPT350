@@ -328,7 +328,7 @@ robotFactory = {
             .attr("type","checkbox")
             .attr("name","robotList")
             .attr("value",i)
-            .appendTo($('<div>').attr('id','robot'+i+'button').appendTo($("#robotList")));
+            .appendTo($('<div>').attr("class","robotButton").attr('id','robot'+i+'button').appendTo($("#robotList")));
             $('<p>').text(robotFactory.idleList[i].robotName+" "+robotFactory.idleList[i].robotType).appendTo($("#robot"+i+"button"))
         };
 

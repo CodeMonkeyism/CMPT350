@@ -41,7 +41,10 @@ $(function(){
 			showResource.refreshBuild();
 
 		}else if (command=="re") {//trigger event.
-			var theEvent = Events.createRandomEvent("room");	
+			var eventName = randomEventType[Math.floor(Math.random() * randomEventType.length)];
+
+			var theEvent = Events.createRandomEvent(eventName);
+
 			var theScene = 'start';
 			Events.loadEvent(theEvent,theScene);
 
@@ -50,58 +53,7 @@ $(function(){
 				var job = "wkr_"+key;
 				model.setData(job,15);
 			});
-		}  else if(command=="add attacker"){
-			var robot ={
-            	robotName : "rob_" + engine.getGuid(),
-            	attackPower : 10,
-            	defensePower : 8,
-            	HP: 7,
-            	luck: 5,
-            	robotType: robotFactory.ATTACKER
-        	};
-			robotFactory.idleList.push(robot);
-			console.log(robotFactory.idleList);
-			robotFactory.refreshRobotList();
-			Events.initExplorePanel();
-
-
-		} else if(command=="add defenser"){
-			var robot ={
-            	robotName : "rob_" + engine.getGuid(),
-            	attackPower : 8,
-            	defensePower : 10,
-            	HP: 8,
-            	luck: 5,
-            	robotType: robotFactory.DEFENSER
-        	};
-			robotFactory.idleList.push(robot);
-
-
-		} else if(command=="add gather"){
-			var robot ={
-            	robotName : "rob_" + engine.getGuid(),
-            	attackPower : 5,
-            	defensePower : 5,
-            	HP: 8,
-            	luck: 10,
-            	robotType: robotFactory.GATHER
-        	};
-			robotFactory.idleList.push(robot);
-
-
-		} else if(command=="add healer"){
-			var robot ={
-            	robotName : "rob_" + engine.getGuid(),
-            	attackPower : 5,
-            	defensePower : 7,
-            	HP: 8,
-            	luck: 10,
-            	robotType: robotFactory.HEALER
-        	};
-			robotFactory.idleList.push(robot);
-
-
-		}else if(command=="testbutton"){
+		} else if(command=="testbutton"){
 			building.pushBuilding("bld_SolarCell");
 
 

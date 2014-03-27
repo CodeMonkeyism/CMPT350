@@ -9,4 +9,8 @@ var robotName = [
 'Tamara',	'Sloan',	'Lennox',	'Agnes',	'Milan',	'Gael',
 'Mimi',	'Jody',	'Sally',	'Deja',	'Stanley',	'Ansel',
 'Renata',	'Alfie',	'Matthias',	'August',	'Kailani',	'Reeva',
-'Lula',	'Sasha',	'Gwyneth',	'Lois',	'Hester',	'Vernen',]
+'Lula',	'Sasha',	'Gwyneth',	'Lois',	'Hester',	'Vernen',];
+
+
+var randomEventType = [
+'ship','room'];

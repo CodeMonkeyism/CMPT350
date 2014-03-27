@@ -61,10 +61,10 @@ engine = {
          model.setData("lok_Defenser Robot",false);
          model.setData("lok_Gather Robot",false);
 
-
+        engine.initGUI();
     	showResource.refreshRes();
     	showResource.refreshBuild();
-    	engine.initGUI();
+    	Events.initExplorePanel(); 	
     	engine.calcResSpeed();
     	engine.setTimer(delay);
     	robotFactory.initButton();

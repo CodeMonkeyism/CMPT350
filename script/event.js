@@ -36,12 +36,12 @@ Events = {
     activeEvent: null,
     activeScene: null,
     LevelName: {
-        'safePlaceName':1,
-        'normalPlaceName':2,
-        'badPlaceName':3,
-        'dangrousPlaceName':4,
-        'deadPlaceName':5,
-        'hellPlaceName':6,
+        'safe Zone':1,
+        'normal Zone':2,
+        'bad Zone':3,
+        'dangrous Zone':4,
+        'dead Zone':5,
+        'hell Zone':6,
     },
     exploreLevelOne : 1,
     exploreLevelTwo : 2,
@@ -302,7 +302,10 @@ Events = {
     initExplorePanel : function(){
         $("#zoneList").empty();
         $.each(Events.LevelName, function(key,value){
-            var zone = $('<div>').attr("id",'zone'+value+'button').appendTo($("#zoneList"));
+            var zone = $('<div>')
+            .attr("id",'zone'+value+'button')
+            .attr("class","zone")
+            .appendTo($("#zoneList"));
             $('<input>').attr('type','radio')
             .attr('value',value).attr('name','zone').appendTo(zone);
             $('<p>').text(key).appendTo(zone);
