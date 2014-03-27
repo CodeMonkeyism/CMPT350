@@ -52,14 +52,22 @@ engine = {
 
     	 model.setData("bld_Solar Cell",0);
 		 model.setData("bld_Scrap Heap",0);
-         model.setData("bld_Factory",0);
+         model.setData("bld_Workshop",0);
          model.setData("bld_Charging Post",0);
+         model.setData("bld_Worker Robot Factory",0);
+         model.setData("bld_Attacker Robot Factory",0);
+         model.setData("bld_Defenser RobotFactory",0);
+         model.setData("bld_Gather RobotFactory",0);
+         model.setData("bld_Healer RobotFactory",0);
+
 
          //true is unlocked, false is locked
-         model.setData("lok_Worker Robot",false);
-         model.setData("lok_Attacker Robot",false);
-         model.setData("lok_Defenser Robot",false);
-         model.setData("lok_Gather Robot",false);
+         // model.setData("lok_Worker Robot",false);
+         // model.setData("lok_Attacker Robot",false);
+         // model.setData("lok_Defenser Robot",false);
+         // model.setData("lok_Gather Robot",false);
+
+         // model.setData("lok_Gather Robot",false);        
 
         engine.initGUI();
     	showResource.refreshRes();

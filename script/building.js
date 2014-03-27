@@ -24,8 +24,14 @@
 					text: buildName.substring(4),
 					// click: this.buttonOnClick(buildName),
 					click:function() {
-								model.add(buildName,1);
-								showResource.refreshBuild();
+								if(model.getData(buildName)<mainRoom._buildings[buildName].maximum){
+									model.add(buildName,1);
+									showResource.refreshBuild();
+									engine.calcResSpeed();
+									Message.pushMessage(mainRoom._buildings[buildName].buildMsg);
+								}
+								else
+									Message.pushMessage(mainRoom._buildings[buildName].maxMsg);
 								// $("#"+buttonId).replaceWith(newButton);
 							},
 					cost: mainRoom._buildings[buildName].cost(),
@@ -54,10 +60,14 @@
 		pushAllBuilButton:function(){
 			$.each(mainRoom._buildings, function(key,value){
 				building.pushBuilding(key);
-				// $("#"+value.buttonID).hide();
+				$("#"+value.buttonID).hide();
 				// console.log("key"+key);
 				// console.log("value"+value);
 			});
 			// $("#bld_SolarCell").hide();
+			unlock.unlockBuilding("bld_SolarCell");
 			}
+
+
+
 	};

@@ -1,5 +1,8 @@
 var unlock = {
-	_unlockBuilding:{
-		"bld_SolarCell":"false",
-	}
+	unlockBuilding:function(buildID){
+		$("#"+buildID).show();
+		console.log(buildID);
+	},	
 }
+
+// unlock.unlockBuilding("bld_Solar Cell");

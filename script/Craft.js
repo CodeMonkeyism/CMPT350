@@ -16,7 +16,7 @@ var mainRoom = {
 				// var n =1; //TODO change n = (get the number of exist solar cell)
 				var n = localStorage.getItem("bld_Solar Cell");
 				return {
-					'power': 10 + (n*10)
+					'res_power': 10 + (n*10)
 				};
 			}
 		},
@@ -35,8 +35,8 @@ var mainRoom = {
 			cost: function(){
 				var n = localStorage.getItem("bld_Charging Post");
 				return {
-					'power': 50 + (n*50),
-					'metal': 10 + (n*5),
+					'res_power': 50 + (n*50),
+					'res_metal': 10 + (n*5),
 				};
 			}			
 		},
@@ -56,8 +56,8 @@ var mainRoom = {
 			cost: function(){
 				var n = localStorage.getItem("bld_Charging Post");
 				return {
-					'power': 50 + (n*50),
-					'metal': 10 + (n*5),
+					'res_power': 50 + (n*50),
+					'res_metal': 10 + (n*5),
 				};
 			}			
 		},
@@ -74,8 +74,8 @@ var mainRoom = {
 			cost: function(){
 				var n = localStorage.getItem("bld_Worker Robot Factory");
 				return {
-					'power': 50 + (n*50),
-					'metal': 10 + (n*5),
+					'res_power': 50 + (n*50),
+					'res_metal': 10 + (n*5),
 				};
 			}			
 		},
@@ -92,8 +92,8 @@ var mainRoom = {
 			cost: function(){
 				var n = localStorage.getItem("bld_Attacker Robot Factory");
 				return {
-					'power': 50 + (n*50),
-					'metal': 10 + (n*5),
+					'res_power': 50 + (n*50),
+					'res_metal': 10 + (n*5),
 				};
 			}			
 		},
@@ -110,8 +110,8 @@ var mainRoom = {
 			cost: function(){
 				var n = localStorage.getItem("bld_Defenser Robot Factory");
 				return {
-					'power': 50 + (n*50),
-					'metal': 10 + (n*5),
+					'res_power': 50 + (n*50),
+					'res_metal': 10 + (n*5),
 				};
 			}			
 		},
@@ -128,8 +128,8 @@ var mainRoom = {
 			cost: function(){
 				var n = localStorage.getItem("bld_Gather Robot Factory");
 				return {
-					'power': 50 + (n*50),
-					'metal': 10 + (n*5),
+					'res_power': 50 + (n*50),
+					'res_metal': 10 + (n*5),
 				};
 			}			
 		},
@@ -146,8 +146,8 @@ var mainRoom = {
 			cost: function(){
 				var n = localStorage.getItem("bld_Healer Robot Factory");
 				return {
-					'power': 50 + (n*50),
-					'metal': 10 + (n*5),
+					'res_power': 50 + (n*50),
+					'res_metal': 10 + (n*5),
 				};
 			}			
 		},
@@ -165,8 +165,8 @@ var mainRoom = {
 			cost: function(){
 				var n = localStorage.getItem("bld_Scrap Heap");
 				return {
-					'power': 50 + (n*50),
-					'metal': 10 + (n*5),
+					'res_power': 50 + (n*50),
+					'res_metal': 10 + (n*5),
 				};
 			}			
 		},
