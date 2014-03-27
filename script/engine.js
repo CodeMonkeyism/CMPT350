@@ -56,9 +56,9 @@ engine = {
          model.setData("bld_Charging Post",0);
          model.setData("bld_Worker Robot Factory",0);
          model.setData("bld_Attacker Robot Factory",0);
-         model.setData("bld_Defenser RobotFactory",0);
-         model.setData("bld_Gather RobotFactory",0);
-         model.setData("bld_Healer RobotFactory",0);
+         model.setData("bld_Defenser Robot Factory",0);
+         model.setData("bld_Gather Robot Factory",0);
+         model.setData("bld_Healer Robot Factory",0);
 
 
          //true is unlocked, false is locked
