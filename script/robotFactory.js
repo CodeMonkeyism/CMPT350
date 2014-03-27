@@ -84,6 +84,11 @@ robotFactory = {
         robotFactory.createButton("Defenser").appendTo($('#robotCraftList'));
         robotFactory.createButton("Gather").appendTo($('#robotCraftList'));
         robotFactory.createButton("Healer").appendTo($('#robotCraftList'));
+
+        $("#AttackerCreateButton").hide();
+        $("#DefenserCreateButton").hide();
+        $("#GatherCreateButton").hide();
+        $("#HealerCreateButton").hide();
         robotFactory.createExpeditionButton();
 
     },

@@ -44,11 +44,8 @@ var mainRoom = {
 		'bld_Workshop': {
 			buttonID:'bld_Workshop',
 			button:null,//what this line do?
-			maximum: 10,
+			maximum: 1,
 			unlock: ["lok_bld_Attacker Robot Factory","lok_bld_Defenser Robot Factory","lok_bld_Gather Robot Factory","lok_bld_Healer Robot Factory"],
-			//support robot
-			supportWorker: 5,
-			supportFight: 2,
 			hint:'You can build your accessories in Workshop',
 			buildMsg:'a new Workshop is settled',
 			maxMsg:'electricity supply is not enough for more charging post.',

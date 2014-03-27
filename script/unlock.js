@@ -11,7 +11,12 @@ var unlock = {
 			if(getLock[i][1]=="true"){
 				console.log("unlock"+ getLock[i][0]);
 				 // mainRoom._buildings[getLock[i][0].substring(4)].buttonID
-				this.unlockBuilding(mainRoom._buildings[getLock[i][0].substring(4)].buttonID);
+				 console.log(getLock[i][0].substring(4,8));
+				 if(getLock[i][0].substring(4,8)=="bld_")
+					this.unlockBuilding(mainRoom._buildings[getLock[i][0].substring(4)].buttonID);
+				 else{
+				 	this.unlockBuilding(getLock[i][0].substring(4));
+				 }
 			}
 		}
 	},

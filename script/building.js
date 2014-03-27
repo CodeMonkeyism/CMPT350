@@ -88,7 +88,7 @@
 	  		// model.getData(key)
 	  		// console.log(value+"~!@#!@~");
 	  		if(model.getData(key)<value){
-	  			console.log("test~!@#");
+	  			// console.log("test~!@#");
 	  			isEnough = false;
 	  		}
 	  	});
