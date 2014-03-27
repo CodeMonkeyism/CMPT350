@@ -17,13 +17,14 @@
 				// 	click: 0,
 				// 	cost: mainRoom._buildings[name].cost(),
 				// }).appendTo('div#BuildingList');
-				var buttonId = buildName+"Button";
+				// console.log(mainRoom._buildings[buildName]);
+				var buttonId = mainRoom._buildings[buildName].buttonID
 				var newButton = new Button.Button({
 					id: buttonId,
-					text: mainRoom._buildings[buildName].name.substring(4),
+					text: buildName.substring(4),
 					// click: this.buttonOnClick(buildName),
 					click:function() {
-								model.add(mainRoom._buildings[buildName].name,1);
+								model.add(buildName,1);
 								showResource.refreshBuild();
 								// $("#"+buttonId).replaceWith(newButton);
 							},
@@ -48,4 +49,15 @@
 				console.log(mainRoom._buildings[buildName].unlock+"~~~~~~~~");
 			}
 		},
+
+		//push all button to gui
+		pushAllBuilButton:function(){
+			$.each(mainRoom._buildings, function(key,value){
+				building.pushBuilding(key);
+				// $("#"+value.buttonID).hide();
+				// console.log("key"+key);
+				// console.log("value"+value);
+			});
+			// $("#bld_SolarCell").hide();
+			}
 	};

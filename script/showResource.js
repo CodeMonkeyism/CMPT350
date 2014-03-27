@@ -120,7 +120,7 @@ var showResource = {
 		}
 
 		//TODO refresh building
-		building.pushBuilding("bld_SolarCell");
+		building.pushBuilding("bld_Solar Cell");
 	}
 }
 

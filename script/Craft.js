@@ -2,8 +2,8 @@ var mainRoom = {
 	name: 'mainRoom',
 
 	_buildings: {
-		'bld_SolarCell':{
-			name:"bld_Solar Cell",
+		"bld_Solar Cell":{
+			buttonID:"bld_SolarCell",
 			button:null,//what this line do?
 			maximum: 10,
 			unlock: "lok_ChargingPost",
@@ -20,8 +20,8 @@ var mainRoom = {
 				};
 			}
 		},
-		'bld_ChargingPost': {
-			name:'bld_Charging Post',
+		'bld_Charging Post': {
+			buttonID:'bld_ChargingPost',
 			button:null,//what this line do?
 			maximum: 10,
 			unlock: "null",
@@ -42,7 +42,7 @@ var mainRoom = {
 		},
 
 		'bld_Workshop': {
-			name:'bld_Workshop',
+			buttonID:'bld_Workshop',
 			button:null,//what this line do?
 			maximum: 10,
 			unlock: "null",
@@ -62,8 +62,8 @@ var mainRoom = {
 			}			
 		},
 
-		'bld_WorkerRobotFactory': {
-			name:'bld_Worker Robot Factory',
+		'bld_Worker Robot Factory': {
+			buttonID:'bld_WorkerRobotFactory',
 			button:null,//what this line do?
 			unlock:"lok_Worker Robot",
 			maximum: 1,
@@ -80,8 +80,8 @@ var mainRoom = {
 			}			
 		},
 
-		'bld_AttackerRobotFactory': {
-			name:'bld_Attacker Robot Factory',
+		'bld_Attacker Robot Factory': {
+			buttonID:'bld_AttackerRobotFactory',
 			button:null,//what this line do?
 			unlock: "lok_Attacker Robot",
 			hint:'You can build Attacker Robot in this factory',
@@ -98,8 +98,8 @@ var mainRoom = {
 			}			
 		},
 
-		'bld_DefenserRobotFactory': {
-			name:'bld_Defenser Robot Factory',
+		'bld_Defenser Robot Factory': {
+			buttonID:'bld_DefenserRobotFactory',
 			button:null,//what this line do?
 			unlock: "lok_Defenser Robot",
 			hint:'You can build Defenser Robot in this factory',
@@ -116,8 +116,8 @@ var mainRoom = {
 			}			
 		},
 
-		'bld_GatherRobotFactory': {
-			name:'bld_Gather Robot Factory',
+		'bld_Gather Robot Factory': {
+			buttonID:'bld_GatherRobotFactory',
 			button:null,//what this line do?
 			unlock: "lok_Gather Robot",
 			hint:'You can build Gather Robot in this factory',
@@ -134,8 +134,8 @@ var mainRoom = {
 			}			
 		},
 
-		'bld_HealerRobotFactory': {
-			name:'bld_Healer Robot Factory',
+		'bld_Healer Robot Factory': {
+			buttonID:'bld_HealerRobotFactory',
 			button:null,//what this line do?
 			unlock: "lok_Healer Robot",
 			hint:'You can build Healer Robot in this factory',
@@ -153,8 +153,8 @@ var mainRoom = {
 		},
 
 
-		'bld_ScrapHeap': {
-			name:'bld_Scrap Heap',
+		'bld_Scrap Heap': {
+			buttonID:'bld_ScrapHeap',
 			button:null,//what this line do?
 			maximum: 1,
 			unlock: "null",

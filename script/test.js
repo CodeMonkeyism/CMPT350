@@ -55,7 +55,7 @@ $(function(){
 				model.setData(job,15);
 			});
 		} else if(command=="testbutton"){
-			building.pushBuilding("bld_SolarCell");
+			building.pushBuilding("bld_Solar Cell");
 
 
 		}else if(command=="name"){
