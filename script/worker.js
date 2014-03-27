@@ -96,7 +96,7 @@ var Workers = {
 			.appendTo($(workerRow));
 		//append worker value container to workerRow
 			var workerRight = $('<div>')
-			.attr("class","RowRight")
+			.attr("class","workerRight")
 			.attr("id",key+"Name")
 			.appendTo($(workerRow));
 		//append button and number to workerRow
