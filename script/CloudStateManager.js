@@ -79,7 +79,13 @@ var CloudStateManager = {
             var value = data[key]
             localStorage.setItem(key,value)
         };
-    }
+    },
+    openCloud: function(){
+        var theEvent = Events.createRandomEvent("cloud");
+        console.log(theEvent);
+        var theScene = 'start';
+        Events.loadEvent(theEvent,theScene);
+    },
 }
 
 //alias

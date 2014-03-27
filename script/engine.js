@@ -270,6 +270,12 @@ engine = {
 				$("<div>").attr("id","zoneList")]
 			)
 		);
+
+		$("#menuAreaContainer").append(
+			$('<div>').attr('class','bottomButton').append(
+				$('<div>').click($CSM.openCloud).text('cloud save')
+			)
+		);
 		//set page to first page.
 		var firstButtonId = "#"+HeadButtonName[0]+"Button";
 		$(firstButtonId).click();

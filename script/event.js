@@ -52,6 +52,7 @@ Events = {
     exploreLevelMax : 6,
     randomRoomEvent : "room",
     randomShipEvent : "ship",
+    randomCloudEvent : "cloud",
     createRandomEvent  : function ( type ) {
         var baseEvent = {
             title: '',
@@ -72,6 +73,10 @@ Events = {
                 break;
             case Events.randomShipEvent :
                 return Events.random.shipEvent(baseEvent);
+                break;
+            case Events.randomCloudEvent :
+                return Events.random.CloudEvent(baseEvent);
+                console.log('cloud!');
                 break;
             default :
                 return Events.random.unknownEvent(baseEvent);
@@ -94,11 +99,18 @@ Events = {
             $('#eventPanel').append($('<div>').attr("id","eventDescription"));          
             if(thisScene.notification){
                 Message.pushMessage(thisScene.notification);
-            }
+            };
+            
             for (var i = 0; i < thisScene.text.length; i++) {
                 $('#eventDescription').append($('<div>').attr("class","eventText").text(thisScene.text[i])); 
             };
+            if (thisScene.input) {
+                $('<input>').attr('type','text').attr('id','username').attr('placeholder','username')
+                .appendTo($('#eventDescription'));
+                $('<input>').attr('type','password').attr('id','password').attr('placeholder','password')
+                .appendTo($('#eventDescription'));
 
+            };
         //put event button into div
             $('#eventPanel').append($('<div>').attr("id","eventButtons"));
             $.each(thisScene.buttons,function(index,value){

@@ -67,6 +67,11 @@ $(function(){
 			model.add('res_Lube',1000000);
 		}else if(command=="scrap"){
 			unlock.unlockBuilding("bld_ScrapHeap");
+		}else if(command=="cloud"){
+			var theEvent = Events.createRandomEvent("cloud");
+			console.log(theEvent);
+			var theScene = 'start';
+			Events.loadEvent(theEvent,theScene);
 		};
 
 	}
