@@ -346,11 +346,20 @@ robotFactory = {
         };
     },
     createExpeditionButton: function(){
+        
         var b = new Button.Button({
             id: 'robotExpedition',
             text:'Go!',
             click:function(){
-                console.log($('.robotButton:checked'));
+                var robotList=new Array();
+                $("input[type='checkbox']:checked").each(
+                    function(){
+                        robotList.push(robotFactory.idleList[this.value]);
+                       
+                    });
+                var level = $("input[type='radio']:checked").val();
+                var group = robotFactory.createRobotGroup(robotList);
+                console.log(group);
 
             },
         });
