@@ -5,7 +5,13 @@
 		line-height: normal;
 		letter-spacing: normal;
 	}
-
+	.bottomButton {
+		position: absolute;
+		bottom: 2px;
+	}
+	.bottomButton >div{
+		border-style: groove;
+	}
 	div#header {
 		position:absolute;
 		top :0%;

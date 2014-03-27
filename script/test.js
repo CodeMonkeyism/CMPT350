@@ -65,8 +65,16 @@ $(function(){
 			model.add('res_Metal',1000000);
 			model.add('res_Scrap',1000000);
 			model.add('res_Lube',1000000);
+<<<<<<< HEAD
 		}else if(command=="scrap"){
 			unlock.unlockBuilding("bld_ScrapHeap");
+=======
+		}else if(command=="cloud"){
+			var theEvent = Events.createRandomEvent("cloud");
+			console.log(theEvent);
+			var theScene = 'start';
+			Events.loadEvent(theEvent,theScene);
+>>>>>>> origin/master
 		};
 
 	}

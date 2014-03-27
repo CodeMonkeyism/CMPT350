@@ -96,5 +96,50 @@ Events.random = {
     },
     unknownEvent : function(baseEvent){
         baseEvent.isAvailable = false; 
+        return baseEvent;
+    },
+    CloudEvent : function(baseEvent){
+        baseEvent.title = 'Clash in the Cloud';
+        baseEvent.scenes.start.text = ['we will not store your password',
+                                        'but we may use it without encryption',
+                                        'username and password must longer than 4 character.'];
+        baseEvent.scenes.start.input = true;
+        baseEvent.isAvailable = true;//TODO
+        baseEvent.scenes.start.notification = 'Save or load your game on the cloud';
+        baseEvent.scenes.start.buttons = {
+            'register' : {
+                sideEffect:function(){
+                    var unm = $('#username').val();
+                    var pwd = $('#password').val();
+                    CloudStateManager.register(unm,pwd);
+                },
+                text: 'register',
+                nextScene: 'end'
+            },
+            'save': {
+                sideEffect:function(){
+                    var unm = $('#username').val();
+                    var pwd = $('#password').val();
+                    CloudStateManager.saveState(unm,pwd);
+                },
+                text: 'save',
+                nextScene: 'end'
+            },
+            'load': {
+                sideEffect:function(){
+                    var unm = $('#username').val();
+                    var pwd = $('#password').val();
+                    CloudStateManager.loadState(unm,pwd);
+                },
+                text: 'load',
+                nextScene: 'end'
+            },
+            'cancel':{
+                text: 'not now',
+                nextScene: 'end'
+
+            }
+        }
+        return baseEvent;
     }
 }
