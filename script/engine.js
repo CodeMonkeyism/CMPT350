@@ -282,16 +282,37 @@ engine = {
 
 				//test code, for showing how create button.
 				//will be delete after create building buttons.
-				var secondPageId = "#"+HeadButtonName[0]+"Panel";
+				var secondPageId = "#"+HeadButtonName[1]+"Panel";
 				$(secondPageId).append($('<div>')
-					.attr("id","buildingButton").append("test")
+					.attr("id","gatherButton")
 				);
 				new Button.Button({
-					id: 'gatherButton',
-					text: "gather wood",
-					click: 0,
-					cooldown: 10,
-				}).appendTo('div#buildingButton');
+					id: 'gatherPower',
+					text: "Change Battery",
+					click: function(){
+						model.add('res_Power',30);
+						Message.pushMessage('Link an empty battery to solar system, get a full one back.');
+					},
+					cooldown: 60,
+				}).appendTo('div#gatherButton');
+				new Button.Button({
+					id: 'gatherScrap',
+					text: "Retrieve Scarp",
+					click: function(){
+						model.add('res_Scrap',30);
+						Message.pushMessage('collect a bag of scarp will take time, not every piece of them useful.');
+					},
+					cooldown: 90,
+				}).appendTo('div#gatherButton');
+				new Button.Button({
+					id: 'gatherLube',
+					text: "Retrieve Lube",
+					click: function(){
+						model.add('res_Lube',30);
+						Message.pushMessage('barrel is too heavy, fill it need some time.');
+					},
+					cooldown: 90,
+				}).appendTo('div#gatherButton');
 
 
 	},
