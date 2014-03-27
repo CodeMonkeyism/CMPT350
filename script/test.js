@@ -68,7 +68,6 @@ $(function(){
 
 		}else if(command=="scrap"){
 			unlock.unlockBuilding("bld_ScrapHeap");
-
 		}else if(command=="cloud"){
 			var theEvent = Events.createRandomEvent("cloud");
 			console.log(theEvent);
