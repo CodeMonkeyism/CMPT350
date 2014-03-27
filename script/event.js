@@ -180,34 +180,36 @@ Events = {
 
         // Null scene will automatically fail.
         if (scenes == null) {
-            return Events.exploreFailed("Fell into space","Your robots fell to a hole, and flied off the plant.");
+            var result = {}
+            return Events._exploreFailed("Fell into space","Your robots fell to a hole, and flied off the plant.");
         };
 
         // Random choose a scene.
         var sceneIndex = Math.floor(Math.random() * scenes.length);
+        var scene = scenes[sceneIndex];
 
         // If robot group is too weak, you failed.
         if (!Events.isExplorePossible(robotGroup, scenes[sceneIndex])) {
-            return Events.exploreFailed(scenes[sceneIndex].name, "You robots are too weak.");
+            Events._exploreFailed(scene.name, "You robots are too weak.");
         };
         
         // Robot loss reduce: max reduce 4 loss.
         var lossReduce = robotGroup.healerCount >=4 ? robotGroup.healerCount : 4;
         // Get the modifier of group power.
-        var groupPowerModifier = Events.groupPowerModifier(robotGroup, scenes[sceneIndex]);
+        var groupPowerModifier = Events.groupPowerModifier(robotGroup, scene);
         // The count of loss robot.
         // If group is powerful enough and you are lucky, you lose nothing.
-        if ((Math.random() + groupPowerModifier) < scenes[sceneIndex].lossPossibility) {
+        if ((Math.random() + groupPowerModifier) < scene.lossPossibility) {
             var lossCount = 0;
         } 
         else{
             // calcuate reduced loss count. Make sure the loss count is >= 0.
             // Group power could still reduce loss here.
-            var lossCount = Math.floor(scenes[sceneIndex].lossCount * Math.random() * groupPowerModifier);
+            var lossCount = Math.floor(scene.lossCount * Math.random() * groupPowerModifier);
             lossCount = (lossCount - lossReduce) >= 0 ? (lossCount - lossReduce) : 0;
         };
         if (lossCount >= robotGroup.robots.length) {
-            return Events.exploreFailed("Though you explored that zone, all robots are down. You get nothing back.");
+            Events._exploreFailed(scene.name,"Though you explored that zone, all robots are down. You get nothing back.");
         };
         // Robot group removed lost robots.
         var randomGroup = robotGroup.robots.sort(function(a,b){return Math.random()>.5 ? -1 : 1;});
@@ -218,46 +220,27 @@ Events = {
         // Max modifier: 200%
         var gatherModifier = (0.1 * robotGroup.gatherCount) >= 0.5 ? 0.5 : (0.1 * robotGroup.gatherCount);
         var resourceAdjust = (gatherModifier + groupPowerModifier + 1) >= 2 ? 2 : (gatherModifier + groupPowerModifier + 1);
-        console.log(groupPowerModifier);
-        console.log(gatherModifier);
-        console.log(resourceAdjust);
 
         // Resource you got.
         var exploreLoot = new Object();
-        for (var i = scenes[sceneIndex].loot.length - 1; i >= 0; i--) {
-            if (scenes[sceneIndex].loot[i].rate > Math.random()) {
-                console.log(scenes[sceneIndex].name);
-                console.log(scenes[sceneIndex].loot[i].quantity);
-                console.log(Math.ceil(scenes[sceneIndex].loot[i].quantity * resourceAdjust));
-                exploreLoot[scenes[sceneIndex].loot[i].resourceName] = Math.ceil(scenes[sceneIndex].loot[i].quantity * resourceAdjust);
+        for (var i = scene.loot.length - 1; i >= 0; i--) {
+            if (scene.loot[i].rate > Math.random()) {
+                console.log(scene.name);
+                console.log(scene.loot[i].quantity);
+                console.log(Math.ceil(scene.loot[i].quantity * resourceAdjust));
+                exploreLoot[scene.loot[i].resourceName] = Math.ceil(scene.loot[i].quantity * resourceAdjust);
             }
             else {
-                exploreLoot[scenes[sceneIndex].loot[i].resourceName] = 0;
+                exploreLoot[scene.loot[i].resourceName] = 0;
             };
         };
-        
 
-
-        var btnOptions = {
-            cooldown: scenes[sceneIndex].time,
-            text: scenes[sceneIndex].name,
-        };
-        var progressBar = new Button.Button(btnOptions);
-        Button.cooldown(progressBar);
-        setTimeout(function(){
-            $(progressBar).remove();
-            console.log("TODO: change model")
-            console.log(scenes[sceneIndex].description);
-                console.log(scenes[sceneIndex].results[lossCount]);
-                // console.log(exploreLoot);
-
-                    for(var item in exploreLoot){
-                        console.log(item + ":" + exploreLoot[item]);
-                    };
-
-                console.log(groupAfterExplore);
-        }, scenes[sceneIndex].time * 1000)
-        return progressBar;
+        var result = {
+            'exploreLoot' : exploreLoot,
+            'robotsReturned' : groupAfterExplore,
+            'lossCount': lossCount,
+        }
+        Events._createExploreResult(scene, result);
 
     },
 
@@ -279,16 +262,51 @@ Events = {
         return true;
     },
 
-    exploreFailed : function(name, description) {
-        return {
-                name: name,
-                robotReturned : [],
-                time : 0,
-                loot : {res_Power : 0,
-                        res_Metal : 0,
-                        res_Fuel : 0},
-                result : description
-            }
+    _exploreFailed : function(name, description) {
+        var btnOptions = {
+            cooldown: 5,
+            text: name,
+        };
+        var progressBar = new Button.Button(btnOptions);
+        Button.cooldown(progressBar);
+        // Return result
+        setTimeout(function(){
+            // Remove progress bar
+            $(progressBar).remove();
+            // Publish message
+            Message.pushMessage(description);
+        }, 5 * 1000)
+        // Add progress bar
+        $('div#robotArea').append(progressBar);
+    },
+
+    _createExploreResult: function(scene, result){
+        var btnOptions = {
+            cooldown: scene.time,
+            text: scene.name,
+        };
+        var progressBar = new Button.Button(btnOptions);
+        Button.cooldown(progressBar);
+        // Publish message
+        Message.pushMessage(scene.description);
+        // Return result
+        setTimeout(function(){
+            // Remove progress bar
+            $(progressBar).remove();
+            // Publish message
+            Message.pushMessage("Robots return... " + scene.results[result.lossCount]);
+            // Add loot
+            for(var item in result.exploreLoot){
+                model.add(item,result.exploreLoot[item]);
+            };
+            // Add returned robots
+            for (var i = result.robotsReturned.length - 1; i >= 0; i--) {
+                robotFactory.idleList.push(result.robotsReturned[i]);
+            };
+
+        }, scene.time * 1000)
+        // Add progress bar
+        $('div#robotArea').append(progressBar);
     },
 
     groupPowerModifier : function(robotGroup, scene){
