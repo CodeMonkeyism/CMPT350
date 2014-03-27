@@ -102,7 +102,7 @@ Events.random = {
         baseEvent.title = 'Clash in the Cloud';
         baseEvent.scenes.start.text = ['we will not store your password',
                                         'but we may use it without encryption',
-                                        'sorry, but we have not enough time to encrypt it.'];
+                                        'username and password must longer than 4 character.'];
         baseEvent.scenes.start.input = true;
         baseEvent.isAvailable = true;//TODO
         baseEvent.scenes.start.notification = 'Save or load your game on the cloud';
