@@ -319,6 +319,8 @@ Events = {
             for (var i = result.robotsReturned.length - 1; i >= 0; i--) {
                 robotFactory.idleList.push(result.robotsReturned[i]);
             };
+            //refresh robot list.
+            robotFactory.refreshRobotList();
 
         }, scene.time * 1000)
         // Add progress bar
