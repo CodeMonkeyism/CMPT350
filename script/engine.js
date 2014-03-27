@@ -287,6 +287,15 @@ engine = {
 					.attr("id","gatherButton")
 				);
 				new Button.Button({
+					id: 'gatherWorker',
+					text: "Walk around",
+					click: function(){
+
+						Message.pushMessage('everything is covered by darkness, only slience above head.');
+					},
+					cooldown: 50,
+				}).appendTo('div#gatherButton');
+				new Button.Button({
 					id: 'gatherPower',
 					text: "Change Battery",
 					click: function(){
@@ -308,10 +317,10 @@ engine = {
 					id: 'gatherLube',
 					text: "Retrieve Lube",
 					click: function(){
-						model.add('res_Lube',30);
+						model.add('res_Lube',15);
 						Message.pushMessage('barrel is too heavy, fill it need some time.');
 					},
-					cooldown: 90,
+					cooldown: 40,
 				}).appendTo('div#gatherButton');
 
 
