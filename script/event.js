@@ -195,7 +195,8 @@ Events = {
         // Null scene will automatically fail.
         if (scenes == null) {
             var result = {}
-            return Events._exploreFailed("Fell into space","Your robots fell to a hole, and flied off the plant.");
+            Events._exploreFailed("Fell into space","Your robots fell to a hole, and flied off the plant.");
+            return;
         };
 
         // Random choose a scene.
@@ -205,6 +206,7 @@ Events = {
         // If robot group is too weak, you failed.
         if (!Events.isExplorePossible(robotGroup, scenes[sceneIndex])) {
             Events._exploreFailed(scene.name, "You robots are too weak.");
+            return;
         };
         
         // Robot loss reduce: max reduce 4 loss.
