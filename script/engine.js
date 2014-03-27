@@ -39,35 +39,10 @@ engine = {
     init: function(){
     	 $( document ).ready(function() {
 
-    	 //TODO for test 
-    	 // init rescourse and building 
-    	 model.setData("res_Power",100);
-		 model.setData("res_Scrap",100);
-         model.setData("res_Lube",100);
-
-         model.setData("res_Metal",110);
-         model.setData("res_Frame",110);
-         model.setData("res_Gear",110);
-
-
-    	 model.setData("bld_Solar Cell",0);
-		 model.setData("bld_Scrap Heap",0);
-         model.setData("bld_Workshop",0);
-         model.setData("bld_Charging Post",0);
-         model.setData("bld_Worker Robot Factory",0);
-         model.setData("bld_Attacker Robot Factory",0);
-         model.setData("bld_Defenser Robot Factory",0);
-         model.setData("bld_Gather Robot Factory",0);
-         model.setData("bld_Healer Robot Factory",0);
-
-
-         //true is unlocked, false is locked
-         // model.setData("lok_Worker Robot",false);
-         // model.setData("lok_Attacker Robot",false);
-         // model.setData("lok_Defenser Robot",false);
-         // model.setData("lok_Gather Robot",false);
-
-         // model.setData("lok_Gather Robot",false);        
+    	 //if is first time, init all value
+    	 if(engine.isFirstTime()){
+    	 	engine.initAllValue();
+    	 }	
 
         engine.initGUI();
     	showResource.refreshRes();
@@ -344,9 +319,54 @@ engine = {
 		}
 	},
 
+
+	//author:Xingze
+	//init all value,includ res, building and unlock
+	initAllValue:function(){
+
+		//init all res
+		 model.setData("res_Power",0);
+		 model.setData("res_Scrap",0);
+         model.setData("res_Lube",0);
+
+         model.setData("res_Metal",0);
+         model.setData("res_Frame",0);
+         model.setData("res_Gear",0);
+
+         //init all building
+    	 model.setData("bld_Solar Cell",0);
+		 model.setData("bld_Scrap Heap",0);
+         model.setData("bld_Workshop",0);
+         model.setData("bld_Charging Post",0);
+         model.setData("bld_Worker Robot Factory",0);
+         model.setData("bld_Attacker Robot Factory",0);
+         model.setData("bld_Defenser Robot Factory",0);
+         model.setData("bld_Gather Robot Factory",0);
+         model.setData("bld_Healer Robot Factory",0);
+
+         model.setData("lok_bld_Charging Post","false");
+         model.setData("lok_bld_Attacker Robot Factory","false");
+         model.setData("lok_bld_Defenser Robot Factory","false");
+         model.setData("lok_bld_Gather Robot Factory","false");
+         model.setData("lok_bld_Healer Robot Factory","false");
+         model.setData("lok_AttackerCreateButton","false");
+         model.setData("lok_DefenserCreateButton","false");
+         model.setData("lok_GatherCreateButton","false");
+         model.setData("lok_HealerCreateButton","false");
+         model.setData("lok_bld_Workshop","false");
+         model.setData("lok_bld_Charging Post","false");
+	},
+
 	//@author Xingze
-	//button of build building
-	
+	//check if is first time log in
+	//true if yes,  fasle no
+	isFirstTime:function(){
+		//check three value, if all null, then first time
+		if(model.getData("res_Power")==null||model.getData("res_Scrap")==null||model.getData("res_Lube")==null){
+			return true;
+		}else
+			return false;
+	},
 }
 	
 
