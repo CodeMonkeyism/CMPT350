@@ -140,7 +140,7 @@ var Workers = {
 		//add cost tooltip
 			var costTooltip = $('<div>').addClass("tooltip bottom right");
 			for(var k in value) {
-				$("<div>").addClass('row_key').text(k).appendTo(costTooltip);
+				$("<div>").addClass('row_key').text(k.substring(4)).appendTo(costTooltip);
 				$("<div>").addClass('row_val').text(value[k]).appendTo(costTooltip);
 			}
 			if(costTooltip.children().length > 0) {

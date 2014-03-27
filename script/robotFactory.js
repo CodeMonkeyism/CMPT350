@@ -85,6 +85,7 @@ robotFactory = {
         robotFactory.createButton("Gather").appendTo($('#robotCraftList'));
         robotFactory.createButton("Healer").appendTo($('#robotCraftList'));
 
+
     },
 
     createButton : function(type) {
@@ -93,10 +94,11 @@ robotFactory = {
         var theCost = null;
         $.each(robotFactory,function(index,value){
             if(value.name==type){
-                var theCost = value.cost;
+                theCost = value.cost;
+                
             }
         });
-        return new Button.Button({
+        var b = new Button.Button({
             id: type+'CreateButton',
             text:'Create '+type,
             click:function(){
@@ -104,6 +106,7 @@ robotFactory = {
             },
             cost:theCost,
         });
+        return b;
 
 
     },
@@ -327,12 +330,19 @@ robotFactory = {
     refreshRobotList: function (){
         $("#robotList").empty();
         for (var i = 0; i < robotFactory.idleList.length; i++) {
+            var thisRobot = robotFactory.idleList[i];
+            var selectBar = $('<div>').attr("class","robotButton").attr('id','robot'+i+'button').appendTo($("#robotList"));
+            var selectCheckbox = $('<div>').attr('class','RowLeft').appendTo(selectBar);
+            var selectText = $('<div>').appendTo(selectBar);
             $('<input>')
             .attr("type","checkbox")
             .attr("name","robotList")
             .attr("value",i)
-            .appendTo($('<div>').attr("class","robotButton").attr('id','robot'+i+'button').appendTo($("#robotList")));
-            $('<p>').text(robotFactory.idleList[i].robotName+" "+robotFactory.idleList[i].robotType).appendTo($("#robot"+i+"button"))
+            .appendTo(selectCheckbox);
+            $('<div>').text(thisRobot.robotName.substring(4))           
+            .appendTo(selectText);
+            $('<div>').text(thisRobot.robotType+" "+thisRobot.attackPower+" " +thisRobot.defensePower+" "+thisRobot.HP+" "+thisRobot.luck)
+            .appendTo(selectText);
         };
 
 
