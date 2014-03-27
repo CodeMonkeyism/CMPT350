@@ -133,6 +133,11 @@ Events.random = {
                 },
                 text: 'load',
                 nextScene: 'end'
+            },
+            'cancel':{
+                text: 'not now',
+                nextScene: 'end'
+
             }
         }
         return baseEvent;
