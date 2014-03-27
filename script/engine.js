@@ -284,11 +284,11 @@ engine = {
 		);
 
 		//set page to first page.
-		var firstButtonId = "#"+HeadButtonName[0]+"Button";
-		$(firstButtonId).click();
+		var firstPageButtonId = "#"+HeadButtonName[0]+"Button";
+		$(firstPageButtonId).click();
 
-				//test code, for showing how create button.
-				//will be delete after create building buttons.
+				//some gather button 
+				//for new player get source faster.
 				var secondPageId = "#"+HeadButtonName[1]+"Panel";
 				$(secondPageId).append($('<div>')
 					.attr("id","gatherButton")
