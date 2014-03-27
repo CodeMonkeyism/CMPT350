@@ -121,7 +121,9 @@ Events = {
         if (value.cost) {
         //TODO need code about handle cost/loot/etc of button.            
         };
-
+        if (value.sideEffect) {
+            value.sideEffect();
+        };
         if (value.nextScene) {
             if(value.nextScene == 'end') {
                 Events.endEvent();
