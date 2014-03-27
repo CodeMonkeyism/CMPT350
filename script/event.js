@@ -36,12 +36,12 @@ Events = {
     activeEvent: null,
     activeScene: null,
     LevelName: {
-        'safePlaceName':1,
-        'normalPlaceName':2,
-        'badPlaceName':3,
-        'dangrousPlaceName':4,
-        'deadPlaceName':5,
-        'hellPlaceName':6,
+        'safe Zone':1,
+        'normal Zone':2,
+        'bad Zone':3,
+        'dangrous Zone':4,
+        'dead Zone':5,
+        'hell Zone':6,
     },
     exploreLevelOne : 1,
     exploreLevelTwo : 2,
@@ -79,7 +79,7 @@ Events = {
     },
 
     loadEvent: function(theEvent,theScene){
-        if (theEvent.isAvailable){  
+        if (theEvent!=null&&theEvent.isAvailable){  
             var thisScene= theEvent.scenes[theScene];
             Events.activeEvent = theEvent;
             Events.activeScene = theScene;  
@@ -110,7 +110,9 @@ Events = {
             });
         //show the event.
             $('#event').show();
-        }        
+        } else {
+            Message.pushMessage("Nothing special, everything goes normal.");
+        }       
     },
     //some code of this method came from project A Dark Room 
     clickButton : function (theButton) {
@@ -119,7 +121,9 @@ Events = {
         if (value.cost) {
         //TODO need code about handle cost/loot/etc of button.            
         };
-
+        if (value.sideEffect) {
+            value.sideEffect();
+        };
         if (value.nextScene) {
             if(value.nextScene == 'end') {
                 Events.endEvent();
@@ -302,11 +306,20 @@ Events = {
     initExplorePanel : function(){
         $("#zoneList").empty();
         $.each(Events.LevelName, function(key,value){
-            var zone = $('<div>').attr("id",'zone'+value+'button').appendTo($("#zoneList"));
+            var zone = $('<div>')
+            .attr("id",'zone'+value+'button')
+            .attr("class","zone")
+            .appendTo($("#zoneList"));
             $('<input>').attr('type','radio')
             .attr('value',value).attr('name','zone').appendTo(zone);
             $('<p>').text(key).appendTo(zone);
         });
-
     },
+    startRandomEvent : function(){
+        var eventName = randomEventType[Math.floor(Math.random() * randomEventType.length)];
+        var theEvent = Events.createRandomEvent(eventName);
+        var theScene = 'start';
+        Events.loadEvent(theEvent,theScene);
+    },
+
 }

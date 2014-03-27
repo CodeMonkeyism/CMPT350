@@ -53,6 +53,9 @@ Events.random = {
         baseEvent.scenes.start.notification = 'A spaceship crashed on your plant.';
         baseEvent.scenes.start.buttons = {
             'investigate' : {
+                sideEffect:function(){
+                    console.log("Yay!")
+                },
                 text: 'Investigate remains',
                 nextScene: { 0.3: 'stuff', 1: 'nothing' }
             },
@@ -92,6 +95,6 @@ Events.random = {
         return baseEvent;
     },
     unknownEvent : function(baseEvent){
-        baseEvent.isAvailable = function(){return false;}; 
+        baseEvent.isAvailable = false; 
     }
 }

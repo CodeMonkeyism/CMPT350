@@ -84,6 +84,7 @@ robotFactory = {
         robotFactory.createButton("Defenser").appendTo($('#robotCraftList'));
         robotFactory.createButton("Gather").appendTo($('#robotCraftList'));
         robotFactory.createButton("Healer").appendTo($('#robotCraftList'));
+        robotFactory.createExpeditionButton();
 
     },
 
@@ -93,10 +94,11 @@ robotFactory = {
         var theCost = null;
         $.each(robotFactory,function(index,value){
             if(value.name==type){
-                var theCost = value.cost;
+                theCost = value.cost;
+                
             }
         });
-        return new Button.Button({
+        var b = new Button.Button({
             id: type+'CreateButton',
             text:'Create '+type,
             click:function(){
@@ -104,6 +106,7 @@ robotFactory = {
             },
             cost:theCost,
         });
+        return b;
 
 
     },
@@ -143,8 +146,10 @@ robotFactory = {
             robotType: ""
         };
         // Check resource. Will consume if enough.
+        // If resource is not enough, post a message and return.
         if (!robotFactory.checkAndConsumeResource(type)) {
             Message.pushMessage('Not enough resource.');
+            return;
         };        
         // Get basic attribute modification by given type
         switch(type){
@@ -171,6 +176,7 @@ robotFactory = {
             robotFactory.idleList.push(baseRobot);
             robotFactory.refreshRobotList();
             Message.pushMessage('Bad argument. You get a malfunctioned robot.')
+            return;
         };
         
         // Randomly generate a modifier for this robot's main attribute.
@@ -204,7 +210,7 @@ robotFactory = {
         // Add the robot to list and post a message.
         robotFactory.idleList.push(baseRobot);
         robotFactory.refreshRobotList();
-        Message.pushMessage('You got a new robot:' + type + '.');
+        Message.pushMessage('A new robot is created. it seems like a ' + type + ', you decided to call it '+ name+'.');
     },
     /**
      * Internal method. Should only be invoked by createRobot.
@@ -324,14 +330,31 @@ robotFactory = {
     refreshRobotList: function (){
         $("#robotList").empty();
         for (var i = 0; i < robotFactory.idleList.length; i++) {
+            var thisRobot = robotFactory.idleList[i];
+            var selectBar = $('<div>').attr("class","robotButton").attr('id','robot'+i+'button').appendTo($("#robotList"));
+            var selectCheckbox = $('<div>').attr('class','RowLeft').appendTo(selectBar);
+            var selectText = $('<div>').appendTo(selectBar);
             $('<input>')
             .attr("type","checkbox")
             .attr("name","robotList")
             .attr("value",i)
-            .appendTo($('<div>').attr('id','robot'+i+'button').appendTo($("#robotList")));
-            $('<p>').text(robotFactory.idleList[i].robotName+" "+robotFactory.idleList[i].robotType).appendTo($("#robot"+i+"button"))
+            .appendTo(selectCheckbox);
+            $('<div>').text(thisRobot.robotName.substring(4))           
+            .appendTo(selectText);
+            $('<div>').text(thisRobot.robotType+" "+thisRobot.attackPower+" " +thisRobot.defensePower+" "+thisRobot.HP+" "+thisRobot.luck)
+            .appendTo(selectText);
         };
+    },
+    createExpeditionButton: function(){
+        var b = new Button.Button({
+            id: 'robotExpedition',
+            text:'Go!',
+            click:function(){
+                console.log($('.robotButton:checked'));
 
+            },
+        });
+        $('<div>').attr("id","robotExpedition").append(b).appendTo($("#exploreContainer"));
 
-    }
+    },
 }
