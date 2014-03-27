@@ -258,6 +258,7 @@ robotFactory = {
 
     /**
      * Create a robot by given robots.
+     * Robots should be in an array.
      * Should give at least one robot, otherwise return false.
      * Returned object is described as an object:
      * {
@@ -272,11 +273,7 @@ robotFactory = {
         };
      * @return {RobotGroup} See above.
      */
-    createRobotGroup: function (){
-        // Guard: avoid zero argument.
-        if (arguments.length == 0) {
-            return false;
-        };
+    createRobotGroup: function (robotList){
         // Create a new group.
         var newGroup = {
             attackPower : 0,
@@ -290,28 +287,28 @@ robotFactory = {
         };
         var totalDefense = 0;
         // Add robots into the group.
-        for (var i = arguments.length - 1; i >= 0; i--) {
+        for (var i = robotList.length - 1; i >= 0; i--) {
             // Add robot
-            newGroup.robots.push(arguments[i]);
+            newGroup.robots.push(robotList[i]);
             // Calcuate total attack power
-            newGroup.attackPower += arguments[i].attackPower;
+            newGroup.attackPower += robotList[i].attackPower;
             // Calcuate total defense power
-            newGroup.defensePower += arguments[i].defensePower;
+            newGroup.defensePower += robotList[i].defensePower;
             // Find minimum defense power. 
-            if (arguments[i].defensePower < newGroup.minDefense) {
-                newGroup.minDefense = arguments[i].defensePower;
+            if (robotList[i].defensePower < newGroup.minDefense) {
+                newGroup.minDefense = robotList[i].defensePower;
             };
             // Get healer count.
-            if (arguments[i].robotType == robotFactory.GATHER) {
+            if (robotList[i].robotType == robotFactory.GATHER) {
                 newGroup.gatherCount += 1;
             };
             // Get healer count.
-            if (arguments[i].robotType == robotFactory.HEALER) {
+            if (robotList[i].robotType == robotFactory.HEALER) {
                 newGroup.healerCount += 1;
             };
             // Calcuate total HP
-            newGroup.HP += arguments[i].HP;
-            robotFactory.removeRobot(arguments[i]);
+            newGroup.HP += robotList[i].HP;
+            robotFactory.removeRobot(robotList[i]);
         }
         return newGroup;
     },
