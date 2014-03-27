@@ -251,12 +251,19 @@ engine = {
 				$('<div>').click($CSM.openCloud).text('cloud save')
 			)
 		);
-		//set page to first page.
-		var firstButtonId = "#"+HeadButtonName[0]+"Button";
-		$(firstButtonId).click();
+		$('.bottomButton').append(
+			$('<div>').click(function(){
+				engine.resetData();
+			})
+			.text('reset')
+		);
 
-				//test code, for showing how create button.
-				//will be delete after create building buttons.
+		//set page to first page.
+		var firstPageButtonId = "#"+HeadButtonName[0]+"Button";
+		$(firstPageButtonId).click();
+
+				//some gather button 
+				//for new player get source faster.
 				var secondPageId = "#"+HeadButtonName[1]+"Panel";
 				$(secondPageId).append($('<div>')
 					.attr("id","gatherButton")
@@ -300,8 +307,16 @@ engine = {
 
 
 	},
-
-
+	setWorkerZero: function(){
+		$.each(Workers._Duty,function(key,value){
+			var wkr_Name = 'wkr_'+key;
+			model.setData(wkr_Name,0);
+		});
+		Workers.refreshWorkerData();
+	},
+	resetData: function(){
+		engine.setWorkerZero();
+	},
 
 
 	// Gets a guid
