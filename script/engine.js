@@ -41,13 +41,13 @@ engine = {
 
     	 //TODO for test 
     	 // init rescourse and building 
-    	 model.setData("res_Power",0);
-		 model.setData("res_Scrap",0);
-         model.setData("res_Lube",0);
+    	 model.setData("res_Power",100);
+		 model.setData("res_Scrap",100);
+         model.setData("res_Lube",100);
 
-         model.setData("res_Metal",0);
-         model.setData("res_Frame",0);
-         model.setData("res_Gear",0);
+         model.setData("res_Metal",110);
+         model.setData("res_Frame",110);
+         model.setData("res_Gear",110);
 
 
     	 model.setData("bld_Solar Cell",0);

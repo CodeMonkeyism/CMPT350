@@ -65,6 +65,8 @@ $(function(){
 			model.add('res_Metal',1000000);
 			model.add('res_Scrap',1000000);
 			model.add('res_Lube',1000000);
+		}else if(command=="scrap"){
+			unlock.unlockBuilding("bld_ScrapHeap");
 		};
 
 	}

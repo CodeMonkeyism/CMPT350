@@ -6,7 +6,7 @@ var mainRoom = {
 			buttonID:"bld_SolarCell",
 			button:null,//what this line do?
 			maximum: 10,
-			unlock: "lok_ChargingPost",
+			unlock: ["lok_bld_Charging Post"],
 			electricitySpeed: 5,
 			buildMsg:'a new solar cell is installed.',
 			hint:'generate electricity',
@@ -24,7 +24,7 @@ var mainRoom = {
 			buttonID:'bld_ChargingPost',
 			button:null,//what this line do?
 			maximum: 10,
-			unlock: "null",
+			unlock: ["null"],
 			//support robot
 			supportWorker: 5,
 			supportFight: 2,
@@ -45,7 +45,7 @@ var mainRoom = {
 			buttonID:'bld_Workshop',
 			button:null,//what this line do?
 			maximum: 10,
-			unlock: "null",
+			unlock: ["lok_bld_Attacker Robot Factory","lok_bld_Defenser Robot Factory","lok_bld_Gather Robot Factory","lok_bld_Healer Robot Factory"],
 			//support robot
 			supportWorker: 5,
 			supportFight: 2,
@@ -62,28 +62,28 @@ var mainRoom = {
 			}			
 		},
 
-		'bld_Worker Robot Factory': {
-			buttonID:'bld_WorkerRobotFactory',
-			button:null,//what this line do?
-			unlock:"lok_Worker Robot",
-			maximum: 1,
-			hint:'You can build Worker Robot in this factory',
-			buildMsg:'You can build worker in factory.',
-			maxMsg:'You can only have one factory',
-			type:'building',
-			cost: function(){
-				var n = localStorage.getItem("bld_Worker Robot Factory");
-				return {
-					'res_Power': 50 + (n*50),
-					'res_Metal': 10 + (n*5),
-				};
-			}			
-		},
+		// 'bld_Worker Robot Factory': {
+		// 	buttonID:'bld_WorkerRobotFactory',
+		// 	button:null,//what this line do?
+		// 	unlock:"lok_Worker Robot",
+		// 	maximum: 1,
+		// 	hint:'You can build Worker Robot in this factory',
+		// 	buildMsg:'You can build worker in factory.',
+		// 	maxMsg:'You can only have one factory',
+		// 	type:'building',
+		// 	cost: function(){
+		// 		var n = localStorage.getItem("bld_Worker Robot Factory");
+		// 		return {
+		// 			'res_Power': 50 + (n*50),
+		// 			'res_Metal': 10 + (n*5),
+		// 		};
+		// 	}			
+		// },
 
 		'bld_Attacker Robot Factory': {
 			buttonID:'bld_AttackerRobotFactory',
 			button:null,//what this line do?
-			unlock: "lok_Attacker Robot",
+			unlock: ["lok_AttackerCreateButton"],
 			hint:'You can build Attacker Robot in this factory',
 			maximum: 1,
 			buildMsg:'You can build Attacker Robot in factory.',
@@ -101,7 +101,7 @@ var mainRoom = {
 		'bld_Defenser Robot Factory': {
 			buttonID:'bld_DefenserRobotFactory',
 			button:null,//what this line do?
-			unlock: "lok_Defenser Robot",
+			unlock: ["lok_DefenserCreateButton"],
 			hint:'You can build Defenser Robot in this factory',
 			maximum: 1,
 			buildMsg:'You can build Defenser Robot  in factory.',
@@ -119,7 +119,7 @@ var mainRoom = {
 		'bld_Gather Robot Factory': {
 			buttonID:'bld_GatherRobotFactory',
 			button:null,//what this line do?
-			unlock: "lok_Gather Robot",
+			unlock: ["lok_GatherCreateButton"],
 			hint:'You can build Gather Robot in this factory',
 			maximum: 1,
 			buildMsg:'You can build Gather Robot in factory.',
@@ -137,7 +137,7 @@ var mainRoom = {
 		'bld_Healer Robot Factory': {
 			buttonID:'bld_HealerRobotFactory',
 			button:null,//what this line do?
-			unlock: "lok_Healer Robot",
+			unlock: ["lok_HealerCreateButton"],
 			hint:'You can build Healer Robot in this factory',
 			maximum: 1,
 			buildMsg:'You can build Healer Robot in factory.',
@@ -157,7 +157,7 @@ var mainRoom = {
 			buttonID:'bld_ScrapHeap',
 			button:null,//what this line do?
 			maximum: 1,
-			unlock: "null",
+			unlock: ["lok_bld_Workshop"],
 			hint:'You can find scrap here.',
 			buildMsg:'A Scrap Heap is settled',
 			maxMsg:'electricity supply is not enough for more charging post.',

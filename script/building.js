@@ -38,6 +38,15 @@
 										$.each(buildingCost,function(key,value){
 											model.minus(key,value);
 										});
+
+										//	check unlock
+										if(mainRoom._buildings[buildName].unlock[0]!="null"){
+											$.each(mainRoom._buildings[buildName].unlock,function(key,value){
+												model.setData(value,"true")
+												// console.log(value);
+											});
+										}
+										unlock.refreshUnlock();
 									}
 									else{
 										Message.pushMessage(mainRoom._buildings[buildName].maxMsg);
@@ -57,12 +66,6 @@
 				else{
 					newButton.appendTo('div#BuildingList');
 				}
-
-		//	check unlock
-			if(mainRoom._buildings[buildName].unlock!="null"){
-				model.setData(mainRoom._buildings[buildName].unlock="True")
-				// console.log(mainRoom._buildings[buildName].unlock+"~~~~~~~~");
-			}
 		},
 
 		//push all button to gui
