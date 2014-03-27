@@ -210,7 +210,7 @@ robotFactory = {
         // Add the robot to list and post a message.
         robotFactory.idleList.push(baseRobot);
         robotFactory.refreshRobotList();
-        Message.pushMessage('You got a new robot:' + type + '.');
+        Message.pushMessage('A new robot is created. it seems like a ' + type + ', you decided to call it '+ name+'.');
     },
     /**
      * Internal method. Should only be invoked by createRobot.

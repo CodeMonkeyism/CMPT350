@@ -13,4 +13,4 @@ var robotName = [
 
 
 var randomEventType = [
-'ship','room'];
+'ship','room','nothinghappend.'];

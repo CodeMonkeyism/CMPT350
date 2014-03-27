@@ -92,6 +92,6 @@ Events.random = {
         return baseEvent;
     },
     unknownEvent : function(baseEvent){
-        baseEvent.isAvailable = function(){return false;}; 
+        baseEvent.isAvailable = false; 
     }
 }

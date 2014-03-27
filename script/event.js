@@ -79,7 +79,7 @@ Events = {
     },
 
     loadEvent: function(theEvent,theScene){
-        if (theEvent.isAvailable){  
+        if (theEvent!=null&&theEvent.isAvailable){  
             var thisScene= theEvent.scenes[theScene];
             Events.activeEvent = theEvent;
             Events.activeScene = theScene;  
@@ -110,7 +110,9 @@ Events = {
             });
         //show the event.
             $('#event').show();
-        }        
+        } else {
+            Message.pushMessage("Nothing special, everything goes normal.");
+        }       
     },
     //some code of this method came from project A Dark Room 
     clickButton : function (theButton) {
@@ -310,6 +312,12 @@ Events = {
             .attr('value',value).attr('name','zone').appendTo(zone);
             $('<p>').text(key).appendTo(zone);
         });
-
     },
+    startRandomEvent : function(){
+        var eventName = randomEventType[Math.floor(Math.random() * randomEventType.length)];
+        var theEvent = Events.createRandomEvent(eventName);
+        var theScene = 'start';
+        Events.loadEvent(theEvent,theScene);
+    },
+
 }
