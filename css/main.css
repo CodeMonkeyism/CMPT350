@@ -243,3 +243,8 @@
 	.robotButton > * {
 		display: inline-block;		
 	}
+	#robotExpedition {
+		position: absolute;
+		bottom: 2%;
+		right: 2%;
+	}

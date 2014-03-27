@@ -84,7 +84,7 @@ robotFactory = {
         robotFactory.createButton("Defenser").appendTo($('#robotCraftList'));
         robotFactory.createButton("Gather").appendTo($('#robotCraftList'));
         robotFactory.createButton("Healer").appendTo($('#robotCraftList'));
-
+        robotFactory.createExpeditionButton();
 
     },
 
@@ -344,7 +344,17 @@ robotFactory = {
             $('<div>').text(thisRobot.robotType+" "+thisRobot.attackPower+" " +thisRobot.defensePower+" "+thisRobot.HP+" "+thisRobot.luck)
             .appendTo(selectText);
         };
+    },
+    createExpeditionButton: function(){
+        var b = new Button.Button({
+            id: 'robotExpedition',
+            text:'Go!',
+            click:function(){
+                console.log($('.robotButton:checked'));
 
+            },
+        });
+        $('<div>').attr("id","robotExpedition").append(b).appendTo($("#exploreContainer"));
 
-    }
+    },
 }
