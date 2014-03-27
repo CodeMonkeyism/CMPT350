@@ -18,23 +18,37 @@
 				// 	cost: mainRoom._buildings[name].cost(),
 				// }).appendTo('div#BuildingList');
 				// console.log(mainRoom._buildings[buildName]);
-				var buttonId = mainRoom._buildings[buildName].buttonID
+				var buttonId = mainRoom._buildings[buildName].buttonID;
+				var buildingCost = mainRoom._buildings[buildName].cost();
 				var newButton = new Button.Button({
 					id: buttonId,
 					text: buildName.substring(4),
 					// click: this.buttonOnClick(buildName),
 					click:function() {
-								if(model.getData(buildName)<mainRoom._buildings[buildName].maximum){
-									model.add(buildName,1);
-									showResource.refreshBuild();
-									engine.calcResSpeed();
-									Message.pushMessage(mainRoom._buildings[buildName].buildMsg);
-								}
-								else
-									Message.pushMessage(mainRoom._buildings[buildName].maxMsg);
+								console.log(building.checkRes(buildingCost));
+								if(building.checkRes(buildingCost)){
+									//if have enough res
+									if(model.getData(buildName)<mainRoom._buildings[buildName].maximum){
+										model.add(buildName,1);
+										showResource.refreshBuild();
+										engine.calcResSpeed();
+										Message.pushMessage(mainRoom._buildings[buildName].buildMsg);
+
+										//reduce res
+										$.each(buildingCost,function(key,value){
+											model.minus(key,value);
+										});
+									}
+									else{
+										Message.pushMessage(mainRoom._buildings[buildName].maxMsg);
+									}
+								} else{
+									 	Message.pushMessage("You don't have enough resource");
+									}
+
 								// $("#"+buttonId).replaceWith(newButton);
 							},
-					cost: mainRoom._buildings[buildName].cost(),
+					cost: buildingCost,
 				});
 
 				if($("#"+buttonId).length>0){
@@ -43,16 +57,11 @@
 				else{
 					newButton.appendTo('div#BuildingList');
 				}
-		// },
-
-		// buttonOnClick:function(buildName){
-		// 	model.add(mainRoom._buildings[buildName].name,1);
-		// 	showResource.refreshBuild();
 
 		//	check unlock
 			if(mainRoom._buildings[buildName].unlock!="null"){
 				model.setData(mainRoom._buildings[buildName].unlock="True")
-				console.log(mainRoom._buildings[buildName].unlock+"~~~~~~~~");
+				// console.log(mainRoom._buildings[buildName].unlock+"~~~~~~~~");
 			}
 		},
 
@@ -66,8 +75,21 @@
 			});
 			// $("#bld_SolarCell").hide();
 			unlock.unlockBuilding("bld_SolarCell");
-			}
+			},
 
 
+	  //check if have enough res
+	  checkRes:function(bulCost){
+	  	var isEnough = true;
+	  	$.each(bulCost,function(key,value){
+	  		// model.getData(key)
+	  		// console.log(value+"~!@#!@~");
+	  		if(model.getData(key)<value){
+	  			console.log("test~!@#");
+	  			isEnough = false;
+	  		}
+	  	});
+	  		return isEnough;
+	  },
 
 	};
