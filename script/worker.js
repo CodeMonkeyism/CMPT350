@@ -148,5 +148,32 @@ var Workers = {
 			}
 		});
 	},
+	addWorker:function(num){
+		model.add('wkr_Idle',num);
+	},
+	WorkerCome: function(){
+		var postNum = model.getData('bld_Charging Post');
+		var workerPerPost = mainRoom._buildings['bld_Charging Post'].supportWorker;
+		var capacity = postNum * workerPerPost;
+		var workerNum = 0;
+		$.each(Workers._Duty,function(key,value){
+			workerNum +=parseInt(model.getData('wkr_'+key));
+		});
+		if (workerNum<capacity) {
+			var min = parseInt(capacity) - parseInt(workerNum);
+			if (min>40) {
+				Workers.addWorker(20);
+				Message.pushMessage('a dozen of worker robot is online now, a cold sound said that. ');
+			}else if (min>15) {
+				Workers.addWorker(5);
+				Message.pushMessage('several work robot occured, slide to plug of charging post. ');
+			}else{
+				Workers.addWorker(1);
+				Message.pushMessage('a worker robot found the spot on charging post, plug itself on.')					
+			};
+		}
+		Workers.refreshWorkerData();
+
+	},
 
 }

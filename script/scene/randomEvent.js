@@ -54,7 +54,9 @@ Events.random = {
         baseEvent.scenes.start.buttons = {
             'investigate' : {
                 sideEffect:function(){
-                    console.log("Yay!")
+                    //TODO
+                    Message.pushMessage("It seems there are a lot of scrap.");
+
                 },
                 text: 'Investigate remains',
                 nextScene: { 0.3: 'stuff', 1: 'nothing' }

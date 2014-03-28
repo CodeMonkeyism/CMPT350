@@ -297,7 +297,8 @@ engine = {
 					id: 'gatherWorker',
 					text: "Walk around",
 					click: function(){
-
+						Events.startRandomEvent();
+						Workers.WorkerCome();
 						Message.pushMessage('everything is covered by darkness, only slience above head.');
 					},
 					cooldown: 50,

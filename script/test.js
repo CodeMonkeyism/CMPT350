@@ -21,9 +21,12 @@ $(function(){
 		
 		if (command=="show me the money") {//test case example 1
 			console.log("gas and money+10000");
-
+			model.add('res_Power',1000000);
+			model.add('res_Metal',1000000);
+			model.add('res_Scrap',1000000);
+			model.add('res_Lube',1000000);
 			$("#testMode").empty()
-			.append("<p>Rich Test is On!</p>");
+			.append("<p>Rich Test Mode is On!</p>");
 		}else if (command=="black sheep wall") {//test case example 2
 
 			console.log("no fog of war!");
@@ -73,6 +76,8 @@ $(function(){
 			console.log(theEvent);
 			var theScene = 'start';
 			Events.loadEvent(theEvent,theScene);
+		}else if(command=='workers'){
+			Workers.WorkerCome();
 		};
 
 	}
