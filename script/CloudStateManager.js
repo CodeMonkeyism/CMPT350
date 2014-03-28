@@ -10,10 +10,12 @@ var CloudStateManager = {
                 'username': username,
                 'password': password,},
         }).done(function(){
-            console.log("Cloud Save Registered.")
+            console.log("Cloud Save Registered.");
+            Message.pushMessage('god say yes. you feel good.');
         }).fail(function(data){
             console.log("Cloud Save Register Failed.")
             console.log("Reason: " + data['status'])
+            Message.pushMessage('no respond from cloud. maybe they do not work today?');
         })
     },
     /** Save to cloud.
@@ -31,9 +33,13 @@ var CloudStateManager = {
                 'savedata': currentData,},
         }).done(function(){
             console.log("Cloud Save Completed.")
+            Message.pushMessage('Data fly to cloud. you feel good.');
+
         }).fail(function(data){
             console.log("Cloud Save Failed.")
             console.log("Reason: " + data['status'])
+            Message.pushMessage('no respond from cloud. maybe they do not work today?');
+
         })
     },
     /** Load from cloud.
@@ -52,9 +58,12 @@ var CloudStateManager = {
             console.log(data)
             console.log(JSON.parse(data))
             $CSM.setCurrentState(JSON.parse(data))
+            Message.pushMessage('Data flies down from cloud. world changed.');
         }).fail(function(data){
             console.log("Cloud Save Failed.")
             console.log("Reason: " + data['status'])
+            Message.pushMessage('no respond from cloud. maybe they do not work today?');
+
         })
     },
     /**

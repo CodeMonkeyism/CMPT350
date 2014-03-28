@@ -21,6 +21,10 @@ $(function(){
 		
 		if (command=="show me the money") {//test case example 1
 			console.log("gas and money+10000");
+			model.add('res_Power',1000000);
+			model.add('res_Metal',1000000);
+			model.add('res_Scrap',1000000);
+			model.add('res_Lube',1000000);
 
 			$("#testMode").empty()
 			.append("<p>Rich Test is On!</p>");
