@@ -269,6 +269,18 @@ engine = {
 					.attr("id","gatherButton")
 				);
 				new Button.Button({
+					id: 'redButton',
+					text: "A Shining Big Red Button",
+					click: function(){
+						model.add('res_Power',10);
+						if(unlock.ifLocked('bld_SolarCell')){
+							unlock.unlockBuilding("bld_SolarCell");
+							Message.pushMessage('it shines for a second, an operation panel occured from wall.');
+						}
+					},
+					cooldown: 300,
+				}).appendTo('div#RoomPanel');
+				new Button.Button({
 					id: 'gatherWorker',
 					text: "Walk around",
 					click: function(){
@@ -363,6 +375,7 @@ engine = {
          model.setData("bld_Gather Robot Factory",0);
          model.setData("bld_Healer Robot Factory",0);
 
+         model.setData("lok_bld_Solar Cell","false");
          model.setData("lok_bld_Charging Post","false");
          model.setData("lok_bld_Attacker Robot Factory","false");
          model.setData("lok_bld_Defenser Robot Factory","false");
