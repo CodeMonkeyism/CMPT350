@@ -319,6 +319,7 @@ engine = {
 		engine.setWorkerZero();
 		engine.initAllValue();
 		unlock.refreshUnlock();
+		engine.calcResSpeed();
 	},
 
 
