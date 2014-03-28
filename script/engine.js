@@ -51,8 +51,8 @@ engine = {
     	engine.calcResSpeed();
     	engine.setTimer(delay);
     	robotFactory.initButton();
-
     	building.pushAllBuilButton();
+    	unlock.refreshUnlock();
   		});
 	},
 
