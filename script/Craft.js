@@ -41,6 +41,24 @@ var mainRoom = {
 			}			
 		},
 
+		'bld_Scrap Heap': {
+			buttonID:'bld_ScrapHeap',
+			button:null,//what this line do?
+			maximum: 1,
+			unlock: ["lok_bld_Workshop"],
+			hint:'You can find scrap here.',
+			buildMsg:'A Scrap Heap is settled',
+			maxMsg:'electricity supply is not enough for more charging post.',
+			type:'building',
+			cost: function(){
+				var n = localStorage.getItem("bld_Scrap Heap");
+				return {
+					'res_Power': 50 + (n*50),
+					'res_Metal': 10 + (n*5),
+				};
+			}			
+		},
+
 		'bld_Workshop': {
 			buttonID:'bld_Workshop',
 			button:null,//what this line do?
@@ -149,24 +167,6 @@ var mainRoom = {
 			}			
 		},
 
-
-		'bld_Scrap Heap': {
-			buttonID:'bld_ScrapHeap',
-			button:null,//what this line do?
-			maximum: 1,
-			unlock: ["lok_bld_Workshop"],
-			hint:'You can find scrap here.',
-			buildMsg:'A Scrap Heap is settled',
-			maxMsg:'electricity supply is not enough for more charging post.',
-			type:'building',
-			cost: function(){
-				var n = localStorage.getItem("bld_Scrap Heap");
-				return {
-					'res_Power': 50 + (n*50),
-					'res_Metal': 10 + (n*5),
-				};
-			}			
-		},
 	}//end of craftables
 }
 

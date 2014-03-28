@@ -70,7 +70,9 @@ $(function(){
 			model.add('res_Lube',1000000);
 
 		}else if(command=="scrap"){
-			unlock.unlockBuilding("bld_ScrapHeap");
+			// unlock.unlockBuilding("bld_ScrapHeap");
+			model.setData("lok_bld_Scrap Heap","true");
+			unlock.refreshUnlock();
 		}else if(command=="cloud"){
 			var theEvent = Events.createRandomEvent("cloud");
 			console.log(theEvent);
@@ -78,6 +80,8 @@ $(function(){
 			Events.loadEvent(theEvent,theScene);
 		}else if(command=='workers'){
 			Workers.WorkerCome();
+		}else if(command=="iflock"){
+			unlock.ifLocked("bld_Scrap Heap");
 		};
 
 	}
