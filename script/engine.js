@@ -370,6 +370,7 @@ engine = {
          model.setData("lok_HealerCreateButton","false");
          model.setData("lok_bld_Workshop","false");
          model.setData("lok_bld_Charging Post","false");
+         model.setData("lok_bld_Scrap Heap","false");
 	},
 
 	//@author Xingze

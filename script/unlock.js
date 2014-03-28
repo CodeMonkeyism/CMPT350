@@ -1,10 +1,13 @@
 var unlock = {
+	//@Author: Xingze
+	//unlock a building 
 	unlockBuilding:function(buildID){
 		$("#"+buildID).show();
-		console.log(buildID);
+		// console.log(buildID);
 	},	
 
-
+	//@Author: Xingze
+	//refresh all build according the unlock status
 	refreshUnlock:function(){
 		var getLock = this.getAllLock();
 		for(var i=0;i<getLock.length;i++){
@@ -21,6 +24,8 @@ var unlock = {
 		}
 	},
 
+	//@Author: Xingze
+	//get all lock value
 	getAllLock:function(){
 		var allLock =new Array()
 		var j = 0;
@@ -39,6 +44,21 @@ var unlock = {
 		}
 		return allLock;
 	},	
+
+	//@Author: Xingze
+	//check if locked, true is locked, false otherwise
+	ifLocked:function(key){
+		var lockKey = "lok_"+key;
+		console.log(model.getData(lockKey)+"~~~");
+		if(model.getData(lockKey)=="false"){
+			console.log("lock");
+			return true;
+		}
+		else{ 
+			console.log("unlock");
+			return false;
+		}
+	},
 };
 
 // unlock.unlockBuilding("bld_Solar Cell");
