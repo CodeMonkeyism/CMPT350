@@ -54,7 +54,9 @@ Events.random = {
         baseEvent.scenes.start.buttons = {
             'investigate' : {
                 sideEffect:function(){
-                    //TODO
+                    //unlock scrap heap;
+                    model.setData("lok_bld_Scrap Heap","true");
+                    unlock.refreshUnlock();
                     Message.pushMessage("It seems there are a lot of scrap.");
 
                 },

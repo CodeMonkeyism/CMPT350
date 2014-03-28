@@ -317,6 +317,8 @@ engine = {
 	},
 	resetData: function(){
 		engine.setWorkerZero();
+		engine.initAllValue();
+		unlock.refreshUnlock();
 	},
 
 

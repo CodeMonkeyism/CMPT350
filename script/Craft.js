@@ -36,7 +36,7 @@ var mainRoom = {
 				var n = localStorage.getItem("bld_Charging Post");
 				return {
 					'res_Power': 50 + (n*50),
-					'res_Metal': 10 + (n*5),
+					'res_Scrap': 10 + (n*5),
 				};
 			}			
 		},
